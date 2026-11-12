@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mengenang 40 Hari Almarhum Deni Priyadi bin Moeryadi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- YouTube IFrame API for Backsound "Raihan - Demi Masa" -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: {
+                            50: '#FDFBF7',
+                            100: '#F9F5EC',
+                            200: '#F2EAD8',
+                            300: '#E6D8BC',
+                        },
+                        royal: {
+                            800: '#1B365D',
+                            900: '#10233F',
+                        },
+                        emerald: {
+                            800: '#1E463B',
+                            900: '#132E27',
+                        },
+                        gold: {
+                            300: '#DFC78C',
+                            400: '#C5A059',
+                            500: '#B08A44',
+                            600: '#8F6C2C',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['"Amiri"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9F5EC;
+            color: #1F2937;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Islamic Geometric Pattern Overlay */
+        .bg-islamic-pattern {
+            background-image: radial-gradient(#C5A059 0.75px, transparent 0.75px), radial-gradient(#1B365D 0.75px, #F9F5EC 0.75px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            opacity: 0.08;
+        }
+
+        /* Gold Foil Shimmer Text */
+        .gold-foil-text {
+            background: linear-gradient(135deg, #8F6C2C 0%, #C5A059 35%, #E8D29B 50%, #B08A44 75%, #8F6C2C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 6s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Slow Mandala Rotation */
+        .spin-slow {
+            animation: spin 45s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mihrab Arch Frame */
+        .mihrab-arch {
+            border-radius: 9999px 9999px 16px 16px;
+        }
+
+        /* Gold Ornate Border */
+        .gold-border-gradient {
+            border: 1.5px solid transparent;
+            background: linear-gradient(#FDFBF7, #FDFBF7) padding-box,
+                        linear-gradient(135deg, #C5A059, #1B365D, #1E463B, #C5A059) border-box;
+        }
+
+        /* Smooth Fade-Up Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cover Gate Curtain Transition */
+        #cover-gate {
+            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+        }
+        #cover-gate.opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-gold-300 selection:text-royal-900">
+
+    <!-- =====================================================================
+         1. COVER GATE (LAYAR PEMBUKA KHIDMAT SAAT QR DI-SCAN)
+    ====================================================================== -->
+    <div id="cover-gate" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ivory-100 px-5 py-8 text-center overflow-hidden">
+        <!-- Ambient Background Pattern -->
+        <div class="absolute inset-0 bg-islamic-pattern pointer-events-none"></div>
+        
+        <!-- Decorative Top & Bottom Gold Bars -->
+        <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-royal-900 via-gold-400 to-emerald-900"></div>
+        <div class="absolute bottom-0 inset-x-0 h-2 bg-gradient-to-r from-emerald-900 via-gold-400 to-royal-900"></div>
+
+        <!-- Outer Ornamental Card -->
+        <div class="relative z-10 w-full max-w-md bg-ivory-50/95 backdrop-blur-sm gold-border-gradient rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col items-center">
+            
+            <!-- Basmalah -->
+            <p class="font-arabic text-2xl sm:text-3xl text-gold-600 mb-1" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+            <span class="text-[11px] uppercase tracking-[0.25em] text-royal-800 font-semibold mb-4">Biografi & Ruang Kenangan</span>
+
+            <!-- Portrait with Rotating Mandala Ring -->
+            <div class="relative w-40 h-40 sm:w-44 sm:h-44 flex items-center justify-center mb-5">
+                <!-- SVG Mandala Ring -->
+                <svg class="absolute inset-0 w-full h-full text-gold-400 spin-slow opacity-85" viewBox="0 0 200 200" fill="none">
+                    <circle cx="100" cy="100" r="92" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+                    <circle cx="100" cy="100" r="84" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M100 4 L106 18 L120 12 L120 26 L135 25 L130 39 L145 43 L135 55 L148 64 L135 72 L144 85 L129 88 L134 102 L119 100 L119 115 L106 108 L100 122 L94 108 L81 115 L81 100 L66 102 L71 88 L56 85 L65 72 L52 64 L65 55 L55 43 L70 39 L65 25 L80 26 L80 12 L94 18 Z" stroke="currentColor" stroke-width="0.6" opacity="0.45"/>
+                </svg>
+                
+                <!-- Portrait Container -->
+                <div class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-gold-400 shadow-inner bg-ivory-200">
+                    <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1000" 
+                         alt="Almarhum Deni Priyadi bin Moeryadi" 
+                         class="w-full h-full object-cover object-top"
+                         onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/20 to-transparent"></div>
+                </div>
+            </div>
+
+            <p class="font-serif italic text-base sm:text-lg text-emerald-800 mb-1">Mengenang 40 Hari Kepergian Papah Kami Tercinta</p>
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold gold-foil-text tracking-wide leading-tight">
+                DENI PRIYADI
+            </h1>
+            <p class="font-serif text-lg sm:text-xl font-semibold text-royal-800 tracking-widest mt-0.5 mb-4">
+                BIN MOERYADI
+            </p>
+
+            <!-- Dates Badge -->
+            <div class="w-full py-2.5 px-4 bg-ivory-100 rounded-xl border border-gold-300/60 text-xs sm:text-sm text-gray-700 space-y-0.5 mb-7">
+                <p><span class="font-semibold text-royal-800">Lahir:</span> Jakarta, 17 Juli 1977</p>
+                <p><span class="font-semibold text-royal-800">Wafat:</span> Jakarta, 11 Oktober 2026</p>
+                <p class="text-gold-600 font-semibold pt-0.5">Pada Usia: 49 Tahun</p>
+            </div>
+
+            <!-- Open Button -->
+            <button onclick="openBiography()" class="group relative inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-gradient-to-r from-royal-900 via-royal-800 to-emerald-900 text-ivory-50 rounded-full font-medium text-sm tracking-wider shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 border border-gold-400">
+                <i data-lucide="book-open" class="w-4 h-4 text-gold-300 group-hover:rotate-12 transition-transform"></i>
+                <span>Buka Biografi & Kenangan</span>
+            </button>
+            
+            <p class="text-[11px] text-gray-400 mt-4">Ketuk tombol di atas untuk membaca kisah hidup beliau</p>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         2. FLOATING AUDIO & QR SHARE CONTROLS
+    ====================================================================== -->
+    <div id="floating-controls" class="fixed bottom-20 right-4 z-40 flex flex-col items-end gap-2.5 opacity-0 pointer-events-none transition-opacity duration-700">
+        <!-- Now Playing Pill -->
+        <div id="music-badge" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-royal-900/90 backdrop-blur-md text-ivory-100 border border-gold-400/60 shadow-lg text-[11px]">
+            <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
+            <span class="font-medium text-gold-300">Raihan - Demi Masa</span>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+            <!-- Audio Toggle -->
+            <button id="audio-btn" onclick="toggleAudio()" title="Putar/Jeda Raihan - Demi Masa" class="w-11 h-11 rounded-full bg-royal-900/90 backdrop-blur-md text-gold-300 border border-gold-400 shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+                <i id="audio-icon" data-lucide="volume-2" class="w-5 h-5"></i>
+            </button>
+            
+            <!-- QR Code Modal Trigger (Untuk Cetak di Buku Yasin) -->
+            <button onclick="toggleQrModal(true)" title="Lihat QR Barcode Buku Yasin" class="w-11 h-11 rounded-full bg-ivory-50/95 backdrop-blur-md text-royal-900 border border-gold-400 shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+                <i data-lucide="qr-code" class="w-5 h-5 text-gold-600"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hidden YouTube Player Container for Raihan - Demi Masa -->
+    <div class="fixed -top-96 -left-96 w-1 h-1 opacity-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div id="yt-backsound-player"></div>
+    </div>
+
+    <!-- =====================================================================
+         3. BOTTOM NAVIGATION BAR (MOBILE-FIRST INTERACTIVE MENU)
+    ====================================================================== -->
+    <nav id="bottom-nav" class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-md bg-royal-900/95 backdrop-blur-md border border-gold-400/60 rounded-full px-3 py-2 shadow-2xl opacity-0 pointer-events-none transition-opacity duration-700">
+        <ul class="flex items-center justify-around text-[11px] text-ivory-200">
+            <li>
+                <a href="#profil" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
+                    <i data-lucide="user-check" class="w-4 h-4 text-gold-400"></i>
+                    <span>Profil</span>
+                </a>
+            </li>
+            <li>
+                <a href="#perjalanan" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
+                    <i data-lucide="compass" class="w-4 h-4 text-gold-400"></i>
+                    <span>Kisah</span>
+                </a>
+            </li>
+            <li>
+                <a href="#pesan-papah" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
+                    <i data-lucide="heart-handshake" class="w-4 h-4 text-gold-400"></i>
+                    <span>Wasiat</span>
+                </a>
+            </li>
+            <li>
+                <a href="#galeri" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
+                    <i data-lucide="image" class="w-4 h-4 text-gold-400"></i>
+                    <span>Galeri</span>
+                </a>
+            </li>
+            <li>
+                <a href="#doa-tamu" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
+                    <i data-lucide="message-square-heart" class="w-4 h-4 text-gold-400"></i>
+                    <span>Kirim Doa</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- =====================================================================
+         4. MAIN CONTENT AREA
+    ====================================================================== -->
+    <main id="main-content" class="relative pb-28">
+        <!-- Subtle Background Pattern -->
+        <div class="fixed inset-0 bg-islamic-pattern pointer-events-none z-0"></div>
+
+        <!-- HEADER / HERO SECTION -->
+        <section id="profil" class="relative z-10 pt-10 pb-14 px-4 max-w-2xl mx-auto text-center">
+            <!-- Top Ornamental Frame -->
+            <div class="bg-ivory-50 gold-border-gradient rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+                <!-- Floral Corner Accents -->
+                <div class="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-royal-800/20 rounded-tl-3xl pointer-events-none"></div>
+                <div class="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-emerald-800/20 rounded-tr-3xl pointer-events-none"></div>
+                
+                <p class="font-arabic text-2xl sm:text-3xl text-gold-600 mb-3">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</p>
+                <p class="text-xs sm:text-sm italic text-gray-600 max-w-md mx-auto mb-6 leading-relaxed">
+                    "Sesungguhnya kami adalah milik Allah dan kepada-Nya-lah kami kembali."
+                </p>
+
+                <!-- Arched Portrait -->
+                <div class="relative mx-auto w-48 h-60 sm:w-56 sm:h-68 mihrab-arch p-1.5 bg-gradient-to-b from-gold-400 via-royal-800 to-emerald-800 shadow-lg mb-6">
+                    <div class="w-full h-full mihrab-arch overflow-hidden bg-ivory-200 relative">
+                        <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1000" 
+                             alt="Potret Kenangan Almarhum Deni Priyadi" 
+                             class="w-full h-full object-cover object-top"
+                             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-royal-900/45 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-0 right-0 text-[11px] text-ivory-100 font-medium tracking-wider uppercase">
+                            Kenangan Almarhum Papah
+                        </span>
+                    </div>
+                </div>
+
+                <span class="inline-block px-4 py-1 rounded-full bg-royal-800/10 text-royal-800 text-xs font-semibold tracking-wider uppercase mb-2">
+                    Mengenang 40 Hari Kepergian
+                </span>
+                
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold gold-foil-text tracking-wide">
+                    DENI PRIYADI
+                </h2>
+                <p class="font-serif text-xl sm:text-2xl font-semibold text-royal-800 tracking-widest mt-1">
+                    BIN MOERYADI
+                </p>
+
+                <!-- Divider -->
+                <div class="flex items-center justify-center gap-3 my-5">
+                    <span class="h-[1px] w-16 bg-gold-400"></span>
+                    <i data-lucide="sparkles" class="w-4 h-4 text-gold-500"></i>
+                    <span class="h-[1px] w-16 bg-gold-400"></span>
+                </div>
+
+                <!-- Vital Info Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center mt-4">
+                    <div class="bg-ivory-100/90 p-3.5 rounded-2xl border border-gold-300/50">
+                        <p class="text-[11px] uppercase tracking-wider text-gray-500">Kelahiran</p>
+                        <p class="font-serif text-base sm:text-lg font-bold text-royal-900 mt-0.5">Jakarta, 17 Juli 1977</p>
+                    </div>
+                    <div class="bg-ivory-100/90 p-3.5 rounded-2xl border border-gold-300/50">
+                        <p class="text-[11px] uppercase tracking-wider text-gray-500">Berpulang</p>
+                        <p class="font-serif text-base sm:text-lg font-bold text-emerald-900 mt-0.5">Jakarta, 11 Oktober 2026</p>
+                    </div>
+                    <div class="bg-ivory-100/90 p-3.5 rounded-2xl border border-gold-300/50">
+                        <p class="text-[11px] uppercase tracking-wider text-gray-500">Tutup Usia</p>
+                        <p class="font-serif text-base sm:text-lg font-bold text-gold-600 mt-0.5">Pada Usia: 49 Tahun</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: WASIAT & PESAN ABADI PAPAH (SESUAI REVISI BUKU YASIN) -->
+        <section id="pesan-papah" class="relative z-10 py-8 px-4 max-w-2xl mx-auto reveal">
+            <div class="bg-gradient-to-br from-royal-900 via-royal-800 to-emerald-900 text-ivory-50 rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-gold-400 relative overflow-hidden">
+                <!-- Subtle Watermark Calligraphy -->
+                <div class="font-arabic text-[140px] text-gold-400/10 absolute -bottom-8 -right-4 select-none pointer-events-none">
+                    يسٓ
+                </div>
+
+                <div class="text-center mb-6">
+                    <span class="text-xs uppercase tracking-[0.25em] text-gold-300 font-semibold">Pesan & Wasiat Terakhir</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-1">Nasihat Abadi Sang Kepala Keluarga</h3>
+                    <div class="w-20 h-0.5 bg-gold-400 mx-auto mt-3"></div>
+                </div>
+
+                <div class="relative bg-white/5 backdrop-blur-sm rounded-2xl p-5 sm:p-7 border border-gold-300/30">
+                    <i data-lucide="quote" class="w-8 h-8 text-gold-400/50 mb-3"></i>
+                    <p class="font-serif text-lg sm:text-xl leading-relaxed text-ivory-100 italic">
+                        "Papah selalu berpesan kepada kami, bahwa kematian merupakan suatu hal yang <span class="text-gold-300 font-semibold not-italic">PASTI</span>, maka jangan pernah takut dan bersiaplah dengan apa yang menjadi bekal kita nanti. Sehingga berlomba-lombalah pada kebaikan, taat kepada Allah SWT, dan cintalah kepada Nabi Muhammad SAW."
+                    </p>
+                    <div class="mt-5 pt-5 border-t border-gold-300/20 text-sm sm:text-base text-ivory-200 leading-relaxed space-y-3">
+                        <p>
+                            Semoga Allah mengampuni segala kesalahan dan dosa semasa hidupnya. Kami yang ditinggalkan akan selalu mengenang kebaikan, ketulusan, dan pengorbanannya terhadap keluarga.
+                        </p>
+                        <p>
+                            Mohon keikhlasan doa agar Papah kami mendapatkan tempat terbaik, <span class="text-gold-300 font-semibold">khusnul khotimah</span>, dan dekat di sisi Allah SWT.
+                        </p>
+                        <p class="font-serif text-lg font-bold text-gold-300 pt-2">
+                            Aamiin Ya Rabbal Alamiin.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <p class="text-xs text-ivory-200/80">Kami yang mengasihi,</p>
+                    <p class="font-serif text-lg sm:text-xl font-bold text-gold-300 tracking-wider mt-0.5">
+                        KELUARGA BESAR DENI PRIYADI
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: PERJALANAN HIDUP & BIOGRAFI (TIMELINE) -->
+        <section id="perjalanan" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-[0.25em] text-emerald-800 font-semibold">Jejak Langkah Kehidupan</span>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-royal-900 mt-1">Biografi & Keteladanan</h3>
+                <p class="text-xs sm:text-sm text-gray-600 mt-2 max-w-md mx-auto">
+                    Mengenang perjalanan 49 tahun penuh dedikasi, kasih sayang, dan pengabdian kepada agama serta keluarga.
+                </p>
+            </div>
+
+            <!-- Interactive Filter / Tab -->
+            <div class="flex justify-center gap-2 mb-8">
+                <button onclick="filterTimeline('all')" class="timeline-tab active px-4 py-2 rounded-full text-xs font-semibold bg-royal-800 text-white shadow transition-all">Semua Fase</button>
+                <button onclick="filterTimeline('keluarga')" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Keluarga</button>
+                <button onclick="filterTimeline('spiritual')" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Spiritual</button>
+            </div>
+
+            <!-- Vertical Timeline -->
+            <div class="relative border-l-2 border-gold-400 ml-4 sm:ml-6 space-y-6">
+                <!-- Milestone 1 -->
+                <div class="timeline-item keluarga relative pl-7 sm:pl-9">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-ivory-100 shadow"></span>
+                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-gold-600 tracking-wider">17 JULI 1977</span>
+                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Awal Kehidupan di Jakarta</h4>
+                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                            Lahir di Jakarta sebagai putra dari Bapak Moeryadi. Sejak masa muda, beliau dikenal sebagai pribadi yang tangguh, ramah, ringan tangan membantu sesama, dan sangat menghormati orang tua.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="timeline-item keluarga relative pl-7 sm:pl-9">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-royal-800 border-4 border-ivory-100 shadow"></span>
+                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-royal-800 tracking-wider">MASA PENGABDIAN & KELUARGA</span>
+                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Sosok Suami & Ayah Panutan</h4>
+                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                            Membangun bahtera rumah tangga dengan penuh tanggung jawab dan kasih sayang tanpa batas. Papah selalu menempatkan kebahagiaan serta pendidikan agama keluarga di atas segalanya, menjadi tempat berteduh yang teduh bagi istri dan anak-anaknya.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="timeline-item spiritual relative pl-7 sm:pl-9">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-800 border-4 border-ivory-100 shadow"></span>
+                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-emerald-800 tracking-wider">PERJALANAN SPIRITUAL</span>
+                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Menunaikan Panggilan Baitullah</h4>
+                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                            Salah satu momen paling membahagiakan dalam hidup beliau adalah saat dapat bersujud langsung di hadapan Ka'bah, Makkah Al-Mukarramah. Keteguhan iman dan kecintaan beliau kepada Rasulullah SAW senantiasa menjadi teladan hidup bagi kami.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Milestone 4 -->
+                <div class="timeline-item spiritual keluarga relative pl-7 sm:pl-9">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-600 border-4 border-ivory-100 shadow"></span>
+                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-400 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-gold-600 tracking-wider">11 OKTOBER 2026 • USIA 49 TAHUN</span>
+                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Pulang ke Pangkuan Sang Khalik</h4>
+                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                            Setelah menunaikan tugas mulianya di dunia dengan penuh kesabaran dan keikhlasan, Papah berpulang dengan tenang di Jakarta. Selamat jalan Pah, warisan kebaikan dan nasihatmu akan abadi di hati kami selamanya.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: GALERI KENANGAN & KELUARGA -->
+        <section id="galeri" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Album Kenangan</span>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-royal-900 mt-1">Momen Indah Bersama Papah</h3>
+                <p class="text-xs sm:text-sm text-gray-600 mt-1">Ketuk foto untuk memperbesar kenangan</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                <!-- Photo Card 1 (Foto Papah dari Google Drive) -->
+                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1200', 'Potret Kenangan Almarhum Bapak Deni Priyadi bin Moeryadi')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
+                    <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1000" alt="Potret Almarhum Deni Priyadi" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
+                        <p class="text-xs text-ivory-50 font-medium">Potret Almarhum Papah</p>
+                    </div>
+                </div>
+
+                <!-- Photo Card 2 -->
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=85', 'Kebersamaan Hangat Keluarga Besar Deni Priyadi')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80" alt="Kebersamaan Keluarga" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x500/1E463B/DFC78C?text=Keluarga+Tercinta'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
+                        <p class="text-xs text-ivory-50 font-medium">Kebersamaan Keluarga</p>
+                    </div>
+                </div>
+
+                <!-- Photo Card 3 (Wide) -->
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=1000&q=85', 'Masjidil Haram — Tempat Penuh Kedamaian yang Selalu Dirindukan Papah')" class="col-span-2 group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[16/9] bg-ivory-200">
+                    <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=900&q=80" alt="Masjidil Haram" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x450/10233F/DFC78C?text=Kenangan+Abadi'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-royal-900/20 to-transparent flex items-end justify-between p-4">
+                        <div>
+                            <p class="text-xs sm:text-sm text-ivory-50 font-semibold">Kenangan Sepanjang Masa</p>
+                            <p class="text-[11px] text-gold-300">Selalu hidup dalam doa dan ingatan kami</p>
+                        </div>
+                        <span class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white">
+                            <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TAHLIL SINGKAT & DOA UNTUK ALMARHUM -->
+        <section class="relative z-10 py-8 px-4 max-w-2xl mx-auto reveal">
+            <div class="bg-ivory-50 gold-border-gradient rounded-3xl p-6 sm:p-8 shadow-lg text-center">
+                <span class="text-xs uppercase tracking-[0.2em] text-emerald-800 font-semibold">Untaian Doa</span>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-royal-900 mt-1 mb-4">Doa Khusus untuk Almarhum</h3>
+                
+                <div class="bg-ivory-100 rounded-2xl p-5 border border-gold-300/50 mb-4">
+                    <p class="font-arabic text-2xl sm:text-3xl text-royal-900 leading-loose mb-3" dir="rtl">
+                        اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ
+                    </p>
+                    <p class="text-xs sm:text-sm font-semibold text-gold-600 italic mb-2">
+                        "Allahummaghfirlahu warhamhu wa 'afihi wa'fu 'anhu"
+                    </p>
+                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        "Ya Allah, ampunilah beliau (Deni Priyadi bin Moeryadi), berilah rahmat kepadanya, selamatkanlah dia, dan maafkanlah segala kesalahannya."
+                    </p>
+                </div>
+
+                <button onclick="sendAlFatihah()" id="alfatihah-btn" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 hover:bg-emerald-900 text-ivory-50 text-xs sm:text-sm font-semibold shadow-md transition-all active:scale-95">
+                    <i data-lucide="heart" class="w-4 h-4 text-gold-300 fill-gold-300"></i>
+                    <span>Kirim Hadiah Al-Fatihah (<span id="alfatihah-count">142</span>)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION: BUKU TAMU & UCAPAN BELASUNGKAWA (INTERAKTIF) -->
+        <section id="doa-tamu" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
+            <div class="bg-ivory-50 rounded-3xl p-6 sm:p-8 border border-gold-300 shadow-xl">
+                <div class="text-center mb-6">
+                    <span class="text-xs uppercase tracking-[0.25em] text-royal-800 font-semibold">Buku Tamu Digital</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-royal-900 mt-1">Kirimkan Doa & Kenangan</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">
+                        Tuliskan doa terbaik atau kenangan manis Anda bersama almarhum Bapak Deni Priyadi.
+                    </p>
+                </div>
+
+                <!-- Prayer Form -->
+                <form id="prayer-form" onsubmit="submitPrayer(event)" class="space-y-4 mb-8">
+                    <div>
+                        <label class="block text-xs font-semibold text-royal-900 mb-1">Nama Anda</label>
+                        <input type="text" id="sender-name" required placeholder="Contoh: H. Ahmad Fauzi / Rekan Kerja" 
+                               class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-royal-900 mb-1">Hubungan / Keterangan</label>
+                        <input type="text" id="sender-relation" placeholder="Contoh: Sahabat SMA / Tetangga / Keluarga" 
+                               class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-royal-900 mb-1">Untaian Doa & Kenangan</label>
+                        <textarea id="sender-message" rows="3" required placeholder="Tuliskan doa khusnul khotimah atau kenangan indah bersama almarhum..." 
+                                  class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-royal-900 to-royal-800 text-ivory-50 font-semibold text-sm tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-gold-400/50">
+                        <i data-lucide="send" class="w-4 h-4 text-gold-300"></i>
+                        <span>Kirim Untaian Doa</span>
+                    </button>
+                </form>
+
+                <!-- Prayers List -->
+                <div class="space-y-3 max-h-96 overflow-y-auto pr-1" id="prayers-list">
+                    <!-- Pre-populated heartfelt tributes -->
+                    <div class="p-4 rounded-2xl bg-ivory-100 border border-gold-300/50">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div>
+                                <h5 class="font-bold text-sm text-royal-900">Keluarga Besar Moeryadi</h5>
+                                <span class="text-[11px] text-emerald-800 font-medium">Keluarga</span>
+                            </div>
+                            <span class="text-[10px] text-gray-400">Baru saja</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                            "Selamat jalan adik/kakak kami tercinta Deni Priyadi. InsyaAllah husnul khotimah, dilapangkan kuburnya, dan dikumpulkan bersama orang-orang shaleh di surga-Nya. Al-Fatihah."
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-ivory-100 border border-gold-300/50">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <div>
+                                <h5 class="font-bold text-sm text-royal-900">H. Ridwan & Rekan</h5>
+                                <span class="text-[11px] text-emerald-800 font-medium">Sahabat & Rekan Kerja</span>
+                            </div>
+                            <span class="text-[10px] text-gray-400">1 jam lalu</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                            "Beliau orang yang sangat baik, jujur, dan selalu mengingatkan kami dalam kebaikan. Semoga Allah menerima seluruh amal ibadah almarhum Pak Deni dan memberi ketabahan bagi keluarga yang ditinggalkan."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="relative z-10 text-center px-4 pt-6 pb-10 max-w-xl mx-auto">
+            <p class="font-arabic text-xl text-gold-600 mb-2">وَاللَّهُ خَيْرُ الرَّازِقِينَ</p>
+            <p class="text-xs text-gray-600 leading-relaxed">
+                Terima kasih atas kehadiran, perhatian, serta keikhlasan doa Bapak/Ibu/Saudara/i untuk almarhum Papah kami tercinta.
+            </p>
+            <p class="font-serif text-base font-bold text-royal-900 mt-3">
+                Keluarga Besar Deni Priyadi bin Moeryadi
+            </p>
+            <button onclick="toggleQrModal(true)" class="mt-5 inline-flex items-center gap-1.5 text-xs text-gold-600 font-semibold underline underline-offset-4 hover:text-royal-800">
+                <i data-lucide="qr-code" class="w-3.5 h-3.5"></i>
+                <span>Tampilkan QR Code untuk Cetak Buku Yasin</span>
+            </button>
+        </footer>
+    </main>
+
+    <!-- =====================================================================
+         5. MODAL: QR CODE GENERATOR UNTUK CETAK DI BUKU YASIN
+    ====================================================================== -->
+    <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-royal-900/80 backdrop-blur-sm p-4">
+        <div class="bg-ivory-50 gold-border-gradient rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative">
+            <button onclick="toggleQrModal(false)" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-ivory-200 text-gray-600 flex items-center justify-center hover:bg-gold-300 hover:text-royal-900 transition-colors">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            
+            <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold">Siap Cetak Buku Yasin</span>
+            <h4 class="font-serif text-2xl font-bold text-royal-900 mt-1">QR Code Biografi Digital</h4>
+            <p class="text-xs text-gray-600 mt-1 mb-4">
+                Sematkan QR Code ini di halaman dalam atau cover belakang buku Yasin. Saat di-scan HP, halaman ini akan langsung terbuka.
+            </p>
+
+            <!-- Generated High-Res QR Code -->
+            <div class="bg-white p-4 rounded-2xl border-2 border-gold-400 inline-block shadow-inner mb-4">
+                <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=10233F&bgcolor=FFFFFF&data=https://mengenang-deni-priyadi.id" 
+                     alt="QR Code Biografi Deni Priyadi" 
+                     class="w-44 h-44 mx-auto"
+                     onerror="this.src='https://placehold.co/250x250/FFFFFF/10233F?text=QR+Biografi+Papah'">
+                <p class="font-serif text-xs font-bold text-royal-900 mt-2 tracking-wider">SCAN BIOGRAFI ALMARHUM</p>
+                <p class="text-[10px] text-gold-600 font-semibold">Deni Priyadi bin Moeryadi</p>
+            </div>
+
+            <!-- Custom Link Input so User can paste their hosted URL -->
+            <div class="text-left mb-4">
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Sesuaikan Link Web Anda (Opsional):</label>
+                <div class="flex gap-2">
+                    <input type="text" id="custom-url-input" value="https://mengenang-deni-priyadi.id" 
+                           class="flex-1 px-3 py-2 rounded-xl bg-ivory-100 border border-gold-300 text-xs focus:outline-none">
+                    <button onclick="updateQrCode()" class="px-3 py-2 rounded-xl bg-royal-800 text-white text-xs font-semibold hover:bg-royal-900">
+                        Update
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="copyShareLink()" class="w-full py-2.5 rounded-xl bg-emerald-800 text-ivory-50 text-xs font-semibold flex items-center justify-center gap-2 hover:bg-emerald-900 transition-colors">
+                <i data-lucide="copy" class="w-3.5 h-3.5 text-gold-300"></i>
+                <span id="copy-btn-text">Salin Tautan Biografi</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         6. MODAL: LIGHTBOX GALLERY
+    ====================================================================== -->
+    <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="max-w-lg w-full text-center relative" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="mb-3 ml-auto w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/30">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Preview Kenangan" class="w-full max-h-[70vh] object-contain rounded-2xl border-2 border-gold-400 shadow-2xl mx-auto">
+            <p id="lightbox-caption" class="font-serif text-lg text-ivory-100 mt-4 italic"></p>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         7. CUSTOM TOAST NOTIFICATION (NO ALERT())
+    ====================================================================== -->
+    <div id="toast-box" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-royal-900 text-ivory-50 border border-gold-400 px-5 py-3 rounded-full shadow-2xl text-xs font-medium flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 -translate-y-4">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400"></i>
+        <span id="toast-message">Pesan terkirim</span>
+    </div>
+
+    <!-- =====================================================================
+         8. JAVASCRIPT INTERACTIVITY & BACKSOUND ENGINE (RAIHAN - DEMI MASA)
+    ====================================================================== -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // YouTube IFrame Player for Backsound: Raihan - Demi Masa
+        let ytPlayer = null;
+        let isPlaying = false;
+        let pendingPlay = false;
+
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('yt-backsound-player', {
+                height: '1',
+                width: '1',
+                playerVars: {
+                    listType: 'search',
+                    list: 'Raihan Demi Masa Official Audio',
+                    autoplay: 0,
+                    controls: 0,
+                    loop: 1,
+                    playsinline: 1
+                },
+                events: {
+                    onReady: function(event) {
+                        event.target.setVolume(75);
+                        if (pendingPlay) {
+                            event.target.playVideo();
+                            isPlaying = true;
+                            updateAudioIcon();
+                        }
+                    },
+                    onStateChange: function(event) {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            isPlaying = true;
+                            updateAudioIcon();
+                        } else if (event.data === YT.PlayerState.PAUSED) {
+                            isPlaying = false;
+                            updateAudioIcon();
+                        } else if (event.data === YT.PlayerState.ENDED) {
+                            event.target.playVideo(); // Loop continuously
+                        }
+                    }
+                }
+            });
+        }
+
+        function initAndPlayAudio() {
+            if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                ytPlayer.playVideo();
+                isPlaying = true;
+                updateAudioIcon();
+            } else {
+                pendingPlay = true;
+            }
+        }
+
+        function toggleAudio() {
+            if (!ytPlayer || typeof ytPlayer.playVideo !== 'function') {
+                pendingPlay = true;
+                showToast("Memuat audio Raihan - Demi Masa...");
+                return;
+            }
+            if (isPlaying) {
+                ytPlayer.pauseVideo();
+                isPlaying = false;
+                showToast("Backsound dijeda.");
+            } else {
+                ytPlayer.playVideo();
+                isPlaying = true;
+                showToast("Memutar: Raihan - Demi Masa");
+            }
+            updateAudioIcon();
+        }
+
+        function updateAudioIcon() {
+            const icon = document.getElementById('audio-icon');
+            const badge = document.getElementById('music-badge');
+            if (isPlaying) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                if (badge) badge.classList.remove('opacity-50');
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                if (badge) badge.classList.add('opacity-50');
+            }
+            lucide.createIcons();
+        }
+
+        // Open Cover Gate Transition
+        function openBiography() {
+            const gate = document.getElementById('cover-gate');
+            const nav = document.getElementById('bottom-nav');
+            const controls = document.getElementById('floating-controls');
+            
+            gate.classList.add('opened');
+            setTimeout(() => {
+                gate.style.display = 'none';
+                nav.classList.remove('opacity-0', 'pointer-events-none');
+                controls.classList.remove('opacity-0', 'pointer-events-none');
+                triggerScrollReveal();
+            }, 850);
+
+            // Start Raihan - Demi Masa backsound on user click
+            initAndPlayAudio();
+        }
+
+        // Scroll Reveal Observer
+        function triggerScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            reveals.forEach(el => observer.observe(el));
+        }
+
+        // Timeline Filter
+        function filterTimeline(category) {
+            const items = document.querySelectorAll('.timeline-item');
+            const tabs = document.querySelectorAll('.timeline-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-royal-800', 'text-white', 'shadow');
+                tab.classList.add('bg-ivory-50', 'text-royal-800', 'border', 'border-gold-300');
+            });
+            event.currentTarget.classList.remove('bg-ivory-50', 'text-royal-800', 'border', 'border-gold-300');
+            event.currentTarget.classList.add('bg-royal-800', 'text-white', 'shadow');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Al-Fatihah Counter
+        let alfatihahSent = false;
+        function sendAlFatihah() {
+            const countEl = document.getElementById('alfatihah-count');
+            const btnEl = document.getElementById('alfatihah-btn');
+            let current = parseInt(countEl.textContent, 10);
+
+            if (!alfatihahSent) {
+                countEl.textContent = current + 1;
+                alfatihahSent = true;
+                btnEl.classList.replace('bg-emerald-800', 'bg-royal-900');
+                showToast("Terima kasih, hadiah Al-Fatihah telah tercatat.");
+            } else {
+                showToast("Anda sudah mengirimkan hadiah Al-Fatihah.");
+            }
+        }
+
+        // Submit Guestbook Prayer
+        function submitPrayer(e) {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value.trim();
+            const relation = document.getElementById('sender-relation').value.trim() || 'Kerabat / Sahabat';
+            const message = document.getElementById('sender-message').value.trim();
+
+            if (!name || !message) return;
+
+            const list = document.getElementById('prayers-list');
+            const card = document.createElement('div');
+            card.className = 'p-4 rounded-2xl bg-ivory-100 border border-gold-400 shadow-sm transition-all';
+            
+            const header = document.createElement('div');
+            header.className = 'flex items-center justify-between mb-1.5';
+            
+            const info = document.createElement('div');
+            const h5 = document.createElement('h5');
+            h5.className = 'font-bold text-sm text-royal-900';
+            h5.textContent = name;
+            
+            const spanRel = document.createElement('span');
+            spanRel.className = 'text-[11px] text-emerald-800 font-medium';
+            spanRel.textContent = relation;
+            
+            info.appendChild(h5);
+            info.appendChild(spanRel);
+
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'text-[10px] text-gold-600 font-semibold';
+            timeSpan.textContent = 'Baru dikirim';
+
+            header.appendChild(info);
+            header.appendChild(timeSpan);
+
+            const p = document.createElement('p');
+            p.className = 'text-xs sm:text-sm text-gray-700 leading-relaxed';
+            p.textContent = `"${message}"`;
+
+            card.appendChild(header);
+            card.appendChild(p);
+
+            list.insertBefore(card, list.firstChild);
+            document.getElementById('prayer-form').reset();
+            showToast("Jazakallah khairan, doa Anda berhasil ditambahkan.");
+        }
+
+        // QR Modal Controls
+        function toggleQrModal(show) {
+            const modal = document.getElementById('qr-modal');
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function updateQrCode() {
+            const urlInput = document.getElementById('custom-url-input').value.trim();
+            if (!urlInput) return;
+            const qrImg = document.getElementById('qr-image');
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=10233F&bgcolor=FFFFFF&data=${encodeURIComponent(urlInput)}`;
+            showToast("QR Code berhasil diperbarui sesuai tautan Anda!");
+        }
+
+        function copyShareLink() {
+            const urlInput = document.getElementById('custom-url-input');
+            urlInput.select();
+            urlInput.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            showToast("Tautan biografi berhasil disalin ke clipboard!");
+        }
+
+        // Lightbox Controls
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightbox-modal');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').textContent = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Custom Toast Helper
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast-box');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3200);
+        }
+    </script>
+</body>
+</html>
