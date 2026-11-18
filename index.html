@@ -217,8 +217,8 @@
         </div>
     </div>
 
-    <!-- Local MP3 Audio Fallback (Jika file gala-bunga-matahari.mp3 diunggah ke GitHub) -->
-    <audio id="local-backsound-audio" src="gala-bunga-matahari.mp3" loop preload="auto"></audio>
+    <!-- Local MP3 Audio Fallback (Jika file gala-bunga-matahari.mp3.aac diunggah ke GitHub) -->
+    <audio id="local-backsound-audio" src="gala-bunga-matahari.mp3.aac" loop preload="auto"></audio>
 
     <!-- Hidden YouTube Player Container for Sal Priadi - Gala Bunga Matahari -->
     <div class="fixed -top-96 -left-96 w-1 h-1 opacity-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -789,7 +789,7 @@
         lucide.createIcons();
 
         // Hybrid Audio Engine:
-        // 1. Local MP3 ('gala-bunga-matahari.mp3') jika diunggah ke GitHub
+        // 1. Local MP3 ('gala-bunga-matahari.mp3.aac') jika diunggah ke GitHub
         // 2. YouTube IFrame Official Track ('9_31100C8eA' - Sal Priadi - Gala Bunga Matahari)
         // 3. Soft Ambient Piano Fallback (Web Audio API) jika video YouTube diblokir di jaringan
         const localAudio = document.getElementById('local-backsound-audio');
@@ -907,7 +907,7 @@
         }
 
         function initAndPlayAudio() {
-            // Prioritas 1: Coba putar file lokal gala-bunga-matahari.mp3 jika ada di repository
+            // Prioritas 1: Coba putar file lokal gala-bunga-matahari.mp3.aac jika ada di repository
             if (localAudio) {
                 localAudio.volume = 0.8;
                 const playPromise = localAudio.play();
