@@ -16,7 +16,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- YouTube IFrame API for Backsound "Raihan - Demi Masa" -->
+    <!-- YouTube IFrame API for Backsound "Sal Priadi - Gala Bunga Matahari" -->
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
@@ -201,12 +201,12 @@
         <!-- Now Playing Pill -->
         <div id="music-badge" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-royal-900/90 backdrop-blur-md text-ivory-100 border border-gold-400/60 shadow-lg text-[11px]">
             <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
-            <span class="font-medium text-gold-300">Raihan - Demi Masa</span>
+            <span id="music-title-label" class="font-medium text-gold-300">Sal Priadi - Gala Bunga Matahari</span>
         </div>
 
         <div class="flex flex-col gap-2.5">
             <!-- Audio Toggle -->
-            <button id="audio-btn" onclick="toggleAudio()" title="Putar/Jeda Raihan - Demi Masa" class="w-11 h-11 rounded-full bg-royal-900/90 backdrop-blur-md text-gold-300 border border-gold-400 shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+            <button id="audio-btn" onclick="toggleAudio()" title="Putar/Jeda Sal Priadi - Gala Bunga Matahari" class="w-11 h-11 rounded-full bg-royal-900/90 backdrop-blur-md text-gold-300 border border-gold-400 shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
                 <i id="audio-icon" data-lucide="volume-2" class="w-5 h-5"></i>
             </button>
             
@@ -217,7 +217,10 @@
         </div>
     </div>
 
-    <!-- Hidden YouTube Player Container for Raihan - Demi Masa -->
+    <!-- Local MP3 Audio Fallback (Jika file gala-bunga-matahari.mp3 diunggah ke GitHub) -->
+    <audio id="local-backsound-audio" src="gala-bunga-matahari.mp3" loop preload="auto"></audio>
+
+    <!-- Hidden YouTube Player Container for Sal Priadi - Gala Bunga Matahari -->
     <div class="fixed -top-96 -left-96 w-1 h-1 opacity-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div id="yt-backsound-player"></div>
     </div>
@@ -371,7 +374,7 @@
             </div>
         </section>
 
-        <!-- SECTION: PERJALANAN HIDUP & BIOGRAFI (TIMELINE) -->
+        <!-- SECTION: PERJALANAN HIDUP & BIOGRAFI (TIMELINE 6 KARTU + BACA SELENGKAPNYA) -->
         <section id="perjalanan" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
             <div class="text-center mb-8">
                 <span class="text-xs uppercase tracking-[0.25em] text-emerald-800 font-semibold">Jejak Langkah Kehidupan</span>
@@ -383,60 +386,185 @@
 
             <!-- Interactive Filter / Tab -->
             <div class="flex justify-center gap-2 mb-8">
-                <button onclick="filterTimeline('all')" class="timeline-tab active px-4 py-2 rounded-full text-xs font-semibold bg-royal-800 text-white shadow transition-all">Semua Fase</button>
-                <button onclick="filterTimeline('keluarga')" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Keluarga</button>
-                <button onclick="filterTimeline('spiritual')" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Spiritual</button>
+                <button onclick="filterTimeline('all', this)" class="timeline-tab active px-4 py-2 rounded-full text-xs font-semibold bg-royal-800 text-white shadow transition-all">Semua Fase</button>
+                <button onclick="filterTimeline('keluarga', this)" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Keluarga</button>
+                <button onclick="filterTimeline('spiritual', this)" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Spiritual</button>
             </div>
 
             <!-- Vertical Timeline -->
             <div class="relative border-l-2 border-gold-400 ml-4 sm:ml-6 space-y-6">
-                <!-- Milestone 1 -->
+                
+                <!-- KARTU 1: Masa Kecil & Cita-Cita Besar -->
                 <div class="timeline-item keluarga relative pl-7 sm:pl-9">
                     <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-gold-600 tracking-wider">17 JULI 1977</span>
-                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Awal Kehidupan di Jakarta</h4>
-                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-                            Lahir di Jakarta sebagai putra dari Bapak Moeryadi. Sejak masa muda, beliau dikenal sebagai pribadi yang tangguh, ramah, ringan tangan membantu sesama, dan sangat menghormati orang tua.
+                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-gold-600 tracking-wider">17 JULI 1977 • AWAL KEHIDUPAN</span>
+                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Masa Kecil & Cita-Cita Besar</h4>
+                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
+                            Papah merupakan putra bungsu dari sepuluh bersaudara. Beliau lahir di Jakarta dan tumbuh besar di bawah asuhan Bapak (Engkong) dan Ibu Emi (Nenek) di kediaman keluarga yang terletak di Jalan Merpati 1, tepat di sebelah kiri Masjid As-Salam, Cendrawasih 5.
                         </p>
+                        
+                        <div id="story-more-1" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
+                            <p>
+                                Semasa kecil, Papah sempat mengenyam pendidikan di SD Penmas sebelum akhirnya harus pindah mengikuti keluarga besar ke Sumedang, Jawa Barat. Di tanah Sunda inilah beliau menuntaskan pendidikan dasarnya di SDN Kertamulya Tanjungkerta, kemudian melanjutkan ke SMPN 1 Tanjungkerta, hingga lulus dari SMAN 1 Sumedang pada jurusan Biologi.
+                            </p>
+                            <p>
+                                Semasa duduk di bangku SMA, Papah dikenal sebagai remaja yang aktif, cerdas, dan berprestasi. Di bidang akademik, beliau pernah menjuarai lomba Karya Tulis Ilmiah tingkat Kemendikbud. Sementara di bidang non-akademik, beliau aktif sebagai pengurus OSIS serta meraih prestasi sebagai anggota Paskibraka tingkat daerah. Sejak muda, Papah adalah sosok yang visioner dan memiliki cita-cita tinggi; beliau kerap bercerita kepada anak-anaknya tentang impian besarnya untuk menjadi mahasiswa dan perwira di STPDN. Segala daya dan upaya telah beliau kerahkan, namun takdir Allah berkata lain. Meski belum berjodoh dengan kampus impiannya, semangat juang Papah tidak pernah surut.
+                            </p>
+                        </div>
+
+                        <button onclick="toggleStory('story-more-1', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
+                            <span>Baca Kisah Lengkap</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Milestone 2 -->
+                <!-- KARTU 2: Merantau & Pengorbanan untuk Keluarga -->
                 <div class="timeline-item keluarga relative pl-7 sm:pl-9">
                     <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-royal-800 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-royal-800 tracking-wider">MASA PENGABDIAN & KELUARGA</span>
-                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Sosok Suami & Ayah Panutan</h4>
-                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-                            Membangun bahtera rumah tangga dengan penuh tanggung jawab dan kasih sayang tanpa batas. Papah selalu menempatkan kebahagiaan serta pendidikan agama keluarga di atas segalanya, menjadi tempat berteduh yang teduh bagi istri dan anak-anaknya.
+                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-royal-800 tracking-wider">2005 – 2020 • PENGABDIAN KARIER</span>
+                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Merantau & Pengorbanan untuk Keluarga</h4>
+                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
+                            Beranjak dewasa, Papah memberanikan diri kembali merantau ke tanah kelahirannya di kawasan Cengkareng Barat, Jakarta. Tekadnya untuk menempuh pendidikan tinggi tidak pernah padam—beliau sempat melanjutkan kuliah Strata-1 (S1) jurusan Manajemen di Universitas Terbuka.
                         </p>
+
+                        <div id="story-more-2" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
+                            <p>
+                                Namun, di tengah perjalanan, kehidupan menghadapkan beliau pada dua pilihan besar: terus mengejar gelar sarjana, atau bekerja keras demi menopang ekonomi keluarga. Dengan penuh ketulusan dan rasa tanggung jawab, Papah memilih untuk mengutamakan keluarga di atas ambisi pribadinya.
+                            </p>
+                            <p>
+                                Langkah awal karier Papah di Jakarta dimulai di PT Global bersama kakak sulungnya (Wa Mul) dan Om Iyon. Tak berselang lama, beliau memutuskan mencari pengalaman baru dengan bekerja di Tarzan Photo pada bidang fotografi. Ketika anak pertamanya genap berusia satu tahun, Papah kembali mengambil langkah besar dengan bergabung di FIF Group (Astra).
+                            </p>
+                            <p>
+                                Di perusahaan inilah Papah benar-benar merintis karier dari titik paling dasar. Meski bidang pekerjaan tersebut awalnya tidak pernah terlintas di benaknya, beliau menjalaninya dengan penuh keikhlasan dan dedikasi tinggi demi kebahagiaan keluarga. Selama 15 tahun pengabdiannya sejak tahun 2005 hingga 2020, kerja keras Papah berbuah manis melalui berbagai pencapaian membanggakan—mulai dari meraih predikat karyawan terbaik hingga dipercaya mewakili perusahaan dalam berbagai kegiatan sosial (<em>Corporate Social Responsibility</em> / CSR). Bagi Papah, bekerja bukan sekadar mencari nafkah, melainkan jalan untuk memberi manfaat seluas-luasnya bagi sesama, hingga banyak rekan kerja yang sudah seperti saudara kandung sendiri.
+                            </p>
+                        </div>
+
+                        <button onclick="toggleStory('story-more-2', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
+                            <span>Baca Kisah Lengkap</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Milestone 3 -->
+                <!-- KARTU 3: Pertemuan Dua Cahaya Keluarga -->
+                <div class="timeline-item keluarga relative pl-7 sm:pl-9">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-ivory-100 shadow"></span>
+                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-gold-600 tracking-wider">KISAH CINTA & RUMAH TANGGA</span>
+                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Pertemuan Dua Cahaya Keluarga</h4>
+                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
+                            Kisah cinta Papah dan Mamah ibarat pepatah "jodoh yang hanya berjarak lima langkah dari rumah". Semasa muda, Papah dikenal sebagai remaja yang sangat aktif di lingkungan Cendrawasih, baik dalam kegiatan kepemudaan warga maupun syiar keislaman.
+                        </p>
+
+                        <div id="story-more-3" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
+                            <p>
+                                Banyak warga dan sesepuh setempat mengenal Papah sebagai pribadi yang taat dan selalu dapat diandalkan—mulai dari mengumandangkan azan sebagai muazin hingga dipercaya menjadi imam salat berjamaah di masjid. Ketulusan dan kiprahnya di masyarakat meninggalkan kesan mendalam di hati banyak orang, termasuk menumbuhkan kekaguman di hati Mamah.
+                            </p>
+                            <p>
+                                Sebaliknya, Papah pun menaruh rasa hormat dan kekaguman yang luar biasa kepada Mamah. Beliau kerap bercerita kepada anak-anaknya bahwa Mamah adalah sosok perempuan mandiri, pekerja keras yang selalu berjuang demi keluarga besarnya, sekaligus pribadi yang haus akan ilmu agama. Salah satu kenangan manis yang sering Papah kisahkan adalah saat beliau mengajak Mamah menghadiri majelis pengajian hingga ke kawasan Kwitang, Jakarta Pusat.
+                            </p>
+                            <p>
+                                Bagi kami, Papah dan Mamah laksana dua cahaya yang senantiasa menerangi langkah keluarga. Berbekal rekam jejak masa muda yang penuh keteladanan serta kematangan ilmu agama, keduanya bahu-membahu menanamkan fondasi iman yang kokoh kepada anak-anaknya, sekaligus selalu mengarahkan kami pada lingkungan pergaulan yang positif.
+                            </p>
+                        </div>
+
+                        <button onclick="toggleStory('story-more-3', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
+                            <span>Baca Kisah Lengkap</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KARTU 4: Tradisi Ba'da Magrib & Pesan Kematian -->
                 <div class="timeline-item spiritual relative pl-7 sm:pl-9">
                     <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-800 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-emerald-800 tracking-wider">PERJALANAN SPIRITUAL</span>
-                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Menunaikan Panggilan Baitullah</h4>
-                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-                            Salah satu momen paling membahagiakan dalam hidup beliau adalah saat dapat bersujud langsung di hadapan Ka'bah, Makkah Al-Mukarramah. Keteguhan iman dan kecintaan beliau kepada Rasulullah SAW senantiasa menjadi teladan hidup bagi kami.
+                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-emerald-800 tracking-wider">PENDIDIKAN IMAN KELUARGA</span>
+                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Tradisi Ba’da Magrib & Pesan Kematian</h4>
+                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
+                            Ketegasan sekaligus kasih sayang Papah sebagai kepala keluarga paling terasa melalui satu tradisi wajib di rumah kami setiap waktu ba’da Magrib. Ketika anak-anak sebaya di luar sana bebas menonton televisi atau bermain, Papah justru selalu mengumpulkan Mamah dan kami semua di ruang belakang untuk bertadarus bersama.
                         </p>
+
+                        <div id="story-more-4" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
+                            <p>
+                                Dengan penuh kesabaran, beliau membimbing kami membaca Al-Qur’an sesuai kaidah tajwid dan <em>makharijul huruf</em> yang tepat, hingga mengajarkan tata cara gerakan serta bacaan salat yang benar secara rinci.
+                            </p>
+                            <p>
+                                Seusai tadarus bersama, Papah selalu menutup pertemuan dengan tausiah singkat yang membangun jiwa kami. Ada satu pesan fundamental yang hampir selalu beliau tekankan di awal nasihatnya: <em>"Kematian adalah sebuah kepastian. Anak-anak Papah tidak perlu takut menghadapi kematian, karena setiap yang bernyawa pasti akan merasakannya. Tugas kalian adalah bersiap dan berjuang agar kelak berpulang dalam keadaan husnul khotimah."</em>
+                            </p>
+                            <p>
+                                Kalimat itu begitu sering berdengung di telinga kami—bahkan sempat terasa berulang-ulang di masa kecil. Semasa kecil pula, tak jarang kami merajuk atau mencoba menghindar dari rutinitas tersebut karena ingin bermain layaknya anak-anak lain. Namun, Papah tetap teguh mewajibkan kebersamaan ba’da Magrib itu tanpa kompromi. Kini, ketika takdir kepulangan itu benar-benar terjadi pada diri beliau sendiri, barulah kami menyadari sepenuhnya makna di balik ketegasan Papah. Disiplin ibadah dan nasihat tentang kematian itulah yang menjadi warisan terindah yang kini menguatkan hati kami.
+                            </p>
+                        </div>
+
+                        <button onclick="toggleStory('story-more-4', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
+                            <span>Baca Kisah Lengkap</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Milestone 4 -->
-                <div class="timeline-item spiritual keluarga relative pl-7 sm:pl-9">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-600 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 rounded-2xl border border-gold-400 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-gold-600 tracking-wider">11 OKTOBER 2026 • USIA 49 TAHUN</span>
-                        <h4 class="font-serif text-xl font-bold text-royal-900 mt-0.5">Pulang ke Pangkuan Sang Khalik</h4>
-                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-                            Setelah menunaikan tugas mulianya di dunia dengan penuh kesabaran dan keikhlasan, Papah berpulang dengan tenang di Jakarta. Selamat jalan Pah, warisan kebaikan dan nasihatmu akan abadi di hati kami selamanya.
+                <!-- KARTU 5: Kejutan Manis Menuju Baitullah -->
+                <div class="timeline-item spiritual relative pl-7 sm:pl-9">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-800 border-4 border-ivory-100 shadow"></span>
+                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-emerald-800 tracking-wider">PERJALANAN SPIRITUAL</span>
+                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Kejutan Manis Menuju Baitullah</h4>
+                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
+                            Ibadah umrah bersama menjadi salah satu lembaran perjalanan paling berkesan dalam kehidupan rumah tangga Papah dan Mamah. Kala itu, diam-diam Papah bertanya kepada saya—selaku anak pertamanya—mengenai persiapan umrah, lalu mengajak Mamah berdandan rapi tanpa memberi tahu bahwa mereka hendak mengurus pembuatan paspor ke Tanah Suci.
                         </p>
+
+                        <div id="story-more-5" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
+                            <p>
+                                Seketika Mamah tak mampu berkata-kata selain memanjatkan rasa syukur yang mendalam atas rezeki dan ketulusan seorang suami yang ingin membawanya bertamu ke rumah Allah SWT. Hari-hari menjelang keberangkatan dipenuhi suasana haru; Papah sigap mengurus dokumen utama sementara Mamah menyiapkan perlengkapan pribadi. Sebagai anak sulung, saya pun turut membantu membelikan perlengkapan pendukung serta sedikit bekal materiil demi kenyamanan keduanya di Tanah Suci.
+                            </p>
+                            <p>
+                                Tibalah hari keberangkatan umrah pertama mereka yang diantar hangat oleh keluarga besar hingga ke bandara. Alhamdulillah, keduanya tiba di Tanah Suci dalam keadaan sehat walafiat dan menjalankan ibadah dengan khusyuk. Namun, di tengah perjalanan setelah ibadah wajib, kondisi fisik Mamah sempat menurun drastis hingga mewajibkan Papah sigap mencarikan obat dan membawanya ke rumah sakit setempat.
+                            </p>
+                            <p>
+                                Berdasarkan pemeriksaan, Mamah membutuhkan istirahat tenang yang terpisah dari keramaian jemaah lain. Tanpa berpikir panjang atau memperhitungkan besarnya biaya, Papah langsung mengambil keputusan menyewakan kamar khusus yang nyaman demi kesembuhan istri tercintanya. Berkat kasih sayang Papah, Mamah kembali pulih dan keduanya menuntaskan seluruh rangkaian ibadah umrah dengan penuh semangat dan ketawadhuan.
+                            </p>
+                        </div>
+
+                        <button onclick="toggleStory('story-more-5', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
+                            <span>Baca Kisah Lengkap</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                        </button>
                     </div>
                 </div>
+
+                <!-- KARTU 6: Berpulang di Pangkuan Tercinta -->
+                <div class="timeline-item spiritual keluarga relative pl-7 sm:pl-9">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-600 border-4 border-ivory-100 shadow"></span>
+                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-400 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-gold-600 tracking-wider">11 OKTOBER 2026 • HUSNUL KHOTIMAH</span>
+                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Berpulang di Pangkuan Tercinta</h4>
+                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
+                            Selama ini, kami sekeluarga tidak pernah mendapati riwayat penyakit serius pada diri Papah selain keluhan pengapuran lutut dalam beberapa bulan terakhir. Pada siang hari itu, Papah mengeluhkan nyeri di dada dan sempat memeriksakan diri ke puskesmas bersama Mamah dengan diagnosis awal gangguan lambung.
+                        </p>
+
+                        <div id="story-more-6" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
+                            <p>
+                                Menjelang waktu Asar, untuk pertama kalinya Papah merasa tubuhnya belum sanggup melangkah ke masjid untuk salat berjamaah. Beliau pun melaksanakan salat Asar di kamar dengan didampingi Mamah. Sepanjang salat berlangsung, Papah tampak tenang tanpa menunjukkan gelagat kesakitan sedikit pun. Seusai salam, beliau bersimpuh di atas sajadah dan memanjatkan doa dalam rentang waktu yang cukup lama.
+                            </p>
+                            <p>
+                                Ketika hendak beranjak bangun dari sajadahnya, Papah menoleh kepada Mamah yang saat itu sedang khusyuk membaca zikir petang, lalu berucap lirih, <em>"Mah, kepala Papah pusing."</em> Tepat setelah kalimat itu terucap, tubuh Papah langsung jatuh terbaring lembut di pangkuan Mamah. Tanpa sepatah kata lagi, pada usia 49 tahun, Papah berpulang menghadap Allah SWT dengan begitu tenang—laksana seseorang yang terlelap tidur, sebuah cara berpulang yang damai dan didambakan setiap insan beriman.
+                            </p>
+                            <p>
+                                Peristiwa itu menyadarkan kami sepenuhnya bahwa kematian tidak menunggu usia tua, jabatan, maupun derajat manusia; hanya amal saleh yang setia menemani di alam kubur. Kami bersaksi bahwa Papah adalah sosok suami dan ayah yang sangat bertanggung jawab dalam mendidik keluarga di atas jalan agama. Selamat jalan Pah, kami berjanji akan senantiasa berbakti kepada Mamah, terus mengalirkan doa terbaik untukmu, serta teguh menjalankan perintah Allah SWT hingga kelak kita dipertemukan kembali di Jannah-Nya.
+                            </p>
+                        </div>
+
+                        <button onclick="toggleStory('story-more-6', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
+                            <span>Baca Kisah Lengkap</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -605,7 +733,7 @@
 
             <!-- Generated High-Res QR Code -->
             <div class="bg-white p-4 rounded-2xl border-2 border-gold-400 inline-block shadow-inner mb-4">
-                <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=10233F&bgcolor=FFFFFF&data=https://mengenang-deni-priyadi.id" 
+                <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=10233F&bgcolor=FFFFFF&data=https://azzam-learn.github.io/Biografi_Papahh/" 
                      alt="QR Code Biografi Deni Priyadi" 
                      class="w-44 h-44 mx-auto"
                      onerror="this.src='https://placehold.co/250x250/FFFFFF/10233F?text=QR+Biografi+Papah'">
@@ -613,11 +741,11 @@
                 <p class="text-[10px] text-gold-600 font-semibold">Deni Priyadi bin Moeryadi</p>
             </div>
 
-            <!-- Custom Link Input so User can paste their hosted URL -->
+            <!-- Custom Link Input -->
             <div class="text-left mb-4">
-                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Sesuaikan Link Web Anda (Opsional):</label>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Link Website Permanen:</label>
                 <div class="flex gap-2">
-                    <input type="text" id="custom-url-input" value="https://mengenang-deni-priyadi.id" 
+                    <input type="text" id="custom-url-input" value="https://azzam-learn.github.io/Biografi_Papahh/" 
                            class="flex-1 px-3 py-2 rounded-xl bg-ivory-100 border border-gold-300 text-xs focus:outline-none">
                     <button onclick="updateQrCode()" class="px-3 py-2 rounded-xl bg-royal-800 text-white text-xs font-semibold hover:bg-royal-900">
                         Update
@@ -646,7 +774,7 @@
     </div>
 
     <!-- =====================================================================
-         7. CUSTOM TOAST NOTIFICATION (NO ALERT())
+         7. CUSTOM TOAST NOTIFICATION
     ====================================================================== -->
     <div id="toast-box" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-royal-900 text-ivory-50 border border-gold-400 px-5 py-3 rounded-full shadow-2xl text-xs font-medium flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 -translate-y-4">
         <i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400"></i>
@@ -654,47 +782,124 @@
     </div>
 
     <!-- =====================================================================
-         8. JAVASCRIPT INTERACTIVITY & BACKSOUND ENGINE (RAIHAN - DEMI MASA)
+         8. JAVASCRIPT INTERACTIVITY & BACKSOUND ENGINE (SAL PRIADI - GALA BUNGA MATAHARI)
     ====================================================================== -->
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // YouTube IFrame Player for Backsound: Raihan - Demi Masa
+        // Hybrid Audio Engine:
+        // 1. Local MP3 ('gala-bunga-matahari.mp3') jika diunggah ke GitHub
+        // 2. YouTube IFrame Official Track ('9_31100C8eA' - Sal Priadi - Gala Bunga Matahari)
+        // 3. Soft Ambient Piano Fallback (Web Audio API) jika video YouTube diblokir di jaringan
+        const localAudio = document.getElementById('local-backsound-audio');
         let ytPlayer = null;
+        let activeAudioMode = 'none'; // 'local' | 'youtube' | 'ambient'
         let isPlaying = false;
         let pendingPlay = false;
+
+        // Web Audio Ambient Piano Fallback
+        let audioCtx = null;
+        let ambientInterval = null;
+
+        function startAmbientFallback() {
+            try {
+                if (!audioCtx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContext();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                if (ambientInterval) clearInterval(ambientInterval);
+
+                // Warm contemplative chord progression (Cmaj7 -> Am7 -> Fmaj7 -> G6)
+                const chords = [
+                    [261.63, 329.63, 392.00, 493.88],
+                    [220.00, 261.63, 329.63, 392.00],
+                    [174.61, 220.00, 261.63, 329.63],
+                    [196.00, 246.94, 293.66, 329.63]
+                ];
+                let step = 0;
+
+                const playChord = () => {
+                    if (!isPlaying || activeAudioMode !== 'ambient') return;
+                    const now = audioCtx.currentTime;
+                    const freqs = chords[step % chords.length];
+                    freqs.forEach((freq, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+                        gain.gain.setValueAtTime(0.0001, now + idx * 0.12);
+                        gain.gain.exponentialRampToValueAtTime(0.035, now + idx * 0.12 + 0.6);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + 4.2);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.12);
+                        osc.stop(now + 4.3);
+                    });
+                    step++;
+                };
+
+                activeAudioMode = 'ambient';
+                isPlaying = true;
+                playChord();
+                ambientInterval = setInterval(playChord, 4200);
+                const labelEl = document.getElementById('music-title-label');
+                if (labelEl) labelEl.textContent = 'Sal Priadi - Gala Bunga Matahari (Instrumen)';
+                updateAudioIcon();
+            } catch (e) {
+                console.warn('Ambient fallback unavailable', e);
+            }
+        }
+
+        function stopAmbientFallback() {
+            if (ambientInterval) {
+                clearInterval(ambientInterval);
+                ambientInterval = null;
+            }
+        }
 
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('yt-backsound-player', {
                 height: '1',
                 width: '1',
+                videoId: '9_31100C8eA', // Sal Priadi - Gala Bunga Matahari
                 playerVars: {
-                    listType: 'search',
-                    list: 'Raihan Demi Masa Official Audio',
                     autoplay: 0,
                     controls: 0,
                     loop: 1,
-                    playsinline: 1
+                    playlist: '9_31100C8eA',
+                    playsinline: 1,
+                    rel: 0
                 },
                 events: {
                     onReady: function(event) {
-                        event.target.setVolume(75);
-                        if (pendingPlay) {
+                        event.target.setVolume(80);
+                        if (pendingPlay && activeAudioMode !== 'local') {
                             event.target.playVideo();
+                            activeAudioMode = 'youtube';
                             isPlaying = true;
                             updateAudioIcon();
                         }
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.PLAYING) {
+                            stopAmbientFallback();
+                            activeAudioMode = 'youtube';
                             isPlaying = true;
-                            updateAudioIcon();
-                        } else if (event.data === YT.PlayerState.PAUSED) {
-                            isPlaying = false;
+                            const labelEl = document.getElementById('music-title-label');
+                            if (labelEl) labelEl.textContent = 'Sal Priadi - Gala Bunga Matahari';
                             updateAudioIcon();
                         } else if (event.data === YT.PlayerState.ENDED) {
-                            event.target.playVideo(); // Loop continuously
+                            event.target.playVideo();
+                        }
+                    },
+                    onError: function() {
+                        // Jika video YouTube diblokir di jaringan/region tertentu, otomatis beralih ke instrumen penenang
+                        if (pendingPlay || isPlaying) {
+                            startAmbientFallback();
                         }
                     }
                 }
@@ -702,31 +907,75 @@
         }
 
         function initAndPlayAudio() {
+            // Prioritas 1: Coba putar file lokal gala-bunga-matahari.mp3 jika ada di repository
+            if (localAudio) {
+                localAudio.volume = 0.8;
+                const playPromise = localAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        activeAudioMode = 'local';
+                        isPlaying = true;
+                        updateAudioIcon();
+                    }).catch(() => {
+                        // Prioritas 2: Putar via YouTube IFrame API (Sal Priadi - Gala Bunga Matahari)
+                        playViaYouTubeOrFallback();
+                    });
+                    return;
+                }
+            }
+            playViaYouTubeOrFallback();
+        }
+
+        function playViaYouTubeOrFallback() {
             if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
                 ytPlayer.playVideo();
+                activeAudioMode = 'youtube';
                 isPlaying = true;
                 updateAudioIcon();
+
+                // Cek setelah 3 detik: jika YouTube gagal mulai karena restriksi jaringan, jalankan instrumen penenang
+                setTimeout(() => {
+                    if (isPlaying && activeAudioMode === 'youtube' && typeof ytPlayer.getPlayerState === 'function') {
+                        const state = ytPlayer.getPlayerState();
+                        if (state !== YT.PlayerState.PLAYING && state !== YT.PlayerState.BUFFERING) {
+                            startAmbientFallback();
+                        }
+                    }
+                }, 3000);
             } else {
                 pendingPlay = true;
+                setTimeout(() => {
+                    if (pendingPlay && activeAudioMode === 'none') {
+                        startAmbientFallback();
+                    }
+                }, 3000);
             }
         }
 
         function toggleAudio() {
-            if (!ytPlayer || typeof ytPlayer.playVideo !== 'function') {
-                pendingPlay = true;
-                showToast("Memuat audio Raihan - Demi Masa...");
-                return;
-            }
             if (isPlaying) {
-                ytPlayer.pauseVideo();
+                if (activeAudioMode === 'local' && localAudio) {
+                    localAudio.pause();
+                } else if (activeAudioMode === 'youtube' && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+                    ytPlayer.pauseVideo();
+                } else if (activeAudioMode === 'ambient') {
+                    stopAmbientFallback();
+                }
                 isPlaying = false;
+                updateAudioIcon();
                 showToast("Backsound dijeda.");
             } else {
-                ytPlayer.playVideo();
-                isPlaying = true;
-                showToast("Memutar: Raihan - Demi Masa");
+                if (activeAudioMode === 'local' && localAudio) {
+                    localAudio.play();
+                    isPlaying = true;
+                    updateAudioIcon();
+                } else if (activeAudioMode === 'ambient') {
+                    startAmbientFallback();
+                } else {
+                    initAndPlayAudio();
+                }
+                showToast("Memutar: Sal Priadi - Gala Bunga Matahari");
             }
-            updateAudioIcon();
         }
 
         function updateAudioIcon() {
@@ -740,6 +989,23 @@
                 if (badge) badge.classList.add('opacity-50');
             }
             lucide.createIcons();
+        }
+
+        // Expand / Collapse Story Card ("Baca Kisah Lengkap")
+        function toggleStory(contentId, btn) {
+            const contentEl = document.getElementById(contentId);
+            const labelEl = btn.querySelector('span');
+            const iconEl = btn.querySelector('svg, i');
+
+            if (contentEl.classList.contains('hidden')) {
+                contentEl.classList.remove('hidden');
+                labelEl.textContent = 'Tutup Kisah';
+                if (iconEl) iconEl.style.transform = 'rotate(180deg)';
+            } else {
+                contentEl.classList.add('hidden');
+                labelEl.textContent = 'Baca Kisah Lengkap';
+                if (iconEl) iconEl.style.transform = 'rotate(0deg)';
+            }
         }
 
         // Open Cover Gate Transition
@@ -756,7 +1022,7 @@
                 triggerScrollReveal();
             }, 850);
 
-            // Start Raihan - Demi Masa backsound on user click
+            // Start Sal Priadi - Gala Bunga Matahari backsound on user click
             initAndPlayAudio();
         }
 
@@ -775,7 +1041,7 @@
         }
 
         // Timeline Filter
-        function filterTimeline(category) {
+        function filterTimeline(category, clickedTab) {
             const items = document.querySelectorAll('.timeline-item');
             const tabs = document.querySelectorAll('.timeline-tab');
 
@@ -783,8 +1049,10 @@
                 tab.classList.remove('bg-royal-800', 'text-white', 'shadow');
                 tab.classList.add('bg-ivory-50', 'text-royal-800', 'border', 'border-gold-300');
             });
-            event.currentTarget.classList.remove('bg-ivory-50', 'text-royal-800', 'border', 'border-gold-300');
-            event.currentTarget.classList.add('bg-royal-800', 'text-white', 'shadow');
+            if (clickedTab) {
+                clickedTab.classList.remove('bg-ivory-50', 'text-royal-800', 'border', 'border-gold-300');
+                clickedTab.classList.add('bg-royal-800', 'text-white', 'shadow');
+            }
 
             items.forEach(item => {
                 if (category === 'all' || item.classList.contains(category)) {
