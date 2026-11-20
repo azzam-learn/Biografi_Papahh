@@ -1012,7 +1012,9 @@
 
         // =====================================================================
         // GOOGLE SHEETS DATABASE (BUKU TAMU LINTAS PERANGKAT)
-        // ========================================================const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
+        // ========================================================
+        
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
 
         async function loadPrayers() {
             const list = document.getElementById('prayers-list');
@@ -1077,24 +1079,24 @@
             btnSpan.textContent = 'Mengirim Doa...';
 
             try {
-                const formData = new URLSearchParams();
-                formData.append('nama', name);
-                formData.append('hubungan', relation);
-                formData.append('pesan', message);
-
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
+                const params = new URLSearchParams({
+                    action: 'add',
+                    nama: name,
+                    hubungan: relation,
+                    pesan: message,
+                    t: new Date().getTime()
                 });
 
-                document.getElementById('prayer-form').reset();
-                showToast("Jazakallah khairan, doa Anda telah tersimpan.");
+                const res = await fetch(`${SCRIPT_URL}?${params.toString()}`);
+                const data = await res.json();
 
-                // Tunggu 1.5 detik agar Google Sheets selesai mencatat, lalu muat ulang daftar doa
-                setTimeout(() => {
-                    loadPrayers();
-                }, 1500);
+                if (data.status === 'success') {
+                    document.getElementById('prayer-form').reset();
+                    await loadPrayers();
+                    showToast("Jazakallah khairan, doa Anda telah tersimpan.");
+                } else {
+                    showToast("Gagal menyimpan doa, silakan coba lagi.");
+                }
             } catch (err) {
                 showToast("Terjadi kendala koneksi, silakan coba lagi.");
             } finally {
