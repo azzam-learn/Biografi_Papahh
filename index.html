@@ -1012,13 +1012,12 @@
 
         // =====================================================================
         // GOOGLE SHEETS DATABASE (BUKU TAMU LINTAS PERANGKAT)
-        // =====================================================================
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
+        // ========================================================const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
 
         async function loadPrayers() {
             const list = document.getElementById('prayers-list');
             try {
-                const res = await fetch(SCRIPT_URL);
+                const res = await fetch(SCRIPT_URL + "?t=" + new Date().getTime());
                 const prayers = await res.json();
                 list.innerHTML = '';
                 prayers.forEach(item => {
@@ -1078,13 +1077,24 @@
             btnSpan.textContent = 'Mengirim Doa...';
 
             try {
+                const formData = new URLSearchParams();
+                formData.append('nama', name);
+                formData.append('hubungan', relation);
+                formData.append('pesan', message);
+
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ nama: name, hubungan: relation, pesan: message })
+                    mode: 'no-cors',
+                    body: formData
                 });
+
                 document.getElementById('prayer-form').reset();
-                await loadPrayers();
                 showToast("Jazakallah khairan, doa Anda telah tersimpan.");
+
+                // Tunggu 1.5 detik agar Google Sheets selesai mencatat, lalu muat ulang daftar doa
+                setTimeout(() => {
+                    loadPrayers();
+                }, 1500);
             } catch (err) {
                 showToast("Terjadi kendala koneksi, silakan coba lagi.");
             } finally {
