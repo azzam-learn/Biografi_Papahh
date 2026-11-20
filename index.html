@@ -658,24 +658,33 @@
                     </p>
                 </div>
 
+                <!-- Hidden Iframe & Form Anti-CORS -->
+                <iframe name="hidden_gsheet_iframe" id="hidden_gsheet_iframe" style="display:none;"></iframe>
+
                 <!-- Prayer Form -->
-                <form id="prayer-form" onsubmit="submitPrayer(event)" class="space-y-4 mb-8">
+                <form id="prayer-form" 
+                      action="https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec" 
+                      method="GET" 
+                      target="hidden_gsheet_iframe" 
+                      onsubmit="handleFormSubmit()" 
+                      class="space-y-4 mb-8">
+                    <input type="hidden" name="action" value="add">
                     <div>
                         <label class="block text-xs font-semibold text-royal-900 mb-1">Nama Anda</label>
-                        <input type="text" id="sender-name" required placeholder="Contoh: H. Ahmad Fauzi / Rekan Kerja" 
+                        <input type="text" name="nama" id="sender-name" required placeholder="Contoh: H. Ahmad Fauzi / Rekan Kerja" 
                                class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-royal-900 mb-1">Hubungan / Keterangan</label>
-                        <input type="text" id="sender-relation" placeholder="Contoh: Sahabat SMA / Tetangga / Keluarga" 
+                        <input type="text" name="hubungan" id="sender-relation" placeholder="Contoh: Sahabat SMA / Tetangga / Keluarga" 
                                class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-royal-900 mb-1">Untaian Doa & Kenangan</label>
-                        <textarea id="sender-message" rows="3" required placeholder="Tuliskan doa khusnul khotimah atau kenangan indah bersama almarhum..." 
+                        <textarea name="pesan" id="sender-message" rows="3" required placeholder="Tuliskan doa khusnul khotimah atau kenangan indah bersama almarhum..." 
                                   class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"></textarea>
                     </div>
-                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-royal-900 to-royal-800 text-ivory-50 font-semibold text-sm tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-gold-400/50">
+                    <button type="submit" id="submit-prayer-btn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-royal-900 to-royal-800 text-ivory-50 font-semibold text-sm tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-gold-400/50">
                         <i data-lucide="send" class="w-4 h-4 text-gold-300"></i>
                         <span>Kirim Untaian Doa</span>
                     </button>
@@ -1012,23 +1021,38 @@
 
         // =====================================================================
         // GOOGLE SHEETS DATABASE (BUKU TAMU LINTAS PERANGKAT)
-        // ========================================================
-        
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
+        // =====================================================================
+        const SHEET_ID = "1uQ18d5cdJuX6y_ZTyN27qQaBKx8zAJB_GvqG2-IjXYA";
 
-        async function loadPrayers() {
-            const list = document.getElementById('prayers-list');
-            try {
-                const res = await fetch(SCRIPT_URL + "?t=" + new Date().getTime());
-                const prayers = await res.json();
-                list.innerHTML = '';
-                prayers.forEach(item => {
-                    renderPrayerCard(list, item.nama, item.hubungan, item.pesan, item.waktu);
-                });
-            } catch (err) {
-                console.warn('Gagal memuat doa:', err);
-            }
+        function loadPrayers() {
+            const oldScript = document.getElementById('gsheet-jsonp');
+            if (oldScript) oldScript.remove();
+
+            const script = document.createElement('script');
+            script.id = 'gsheet-jsonp';
+            script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=responseHandler:renderSheetPrayers&t=${Date.now()}`;
+            document.body.appendChild(script);
         }
+
+        window.renderSheetPrayers = function(response) {
+            const list = document.getElementById('prayers-list');
+            if (!response || !response.table || !response.table.rows) return;
+
+            list.innerHTML = '';
+            const rows = response.table.rows.slice().reverse();
+
+            rows.forEach(row => {
+                const cells = row.c || [];
+                const waktu = cells[0] ? (cells[0].f || cells[0].v || '') : '';
+                const nama = cells[1] ? (cells[1].v || '') : '';
+                const hubungan = cells[2] ? (cells[2].v || 'Kerabat / Sahabat') : 'Kerabat / Sahabat';
+                const pesan = cells[3] ? (cells[3].v || '') : '';
+
+                if (nama && pesan && nama !== 'Nama') {
+                    renderPrayerCard(list, nama, hubungan, pesan, waktu);
+                }
+            });
+        };
 
         function renderPrayerCard(list, name, relation, message, timeText) {
             const card = document.createElement('div');
@@ -1065,44 +1089,27 @@
             list.appendChild(card);
         }
 
-        async function submitPrayer(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
+        function handleFormSubmit() {
+            const btn = document.getElementById('submit-prayer-btn');
             const btnSpan = btn.querySelector('span');
             const name = document.getElementById('sender-name').value.trim();
             const relation = document.getElementById('sender-relation').value.trim() || 'Kerabat / Sahabat';
             const message = document.getElementById('sender-message').value.trim();
 
-            if (!name || !message) return;
-
-            btn.disabled = true;
             btnSpan.textContent = 'Mengirim Doa...';
 
-            try {
-                const params = new URLSearchParams({
-                    action: 'add',
-                    nama: name,
-                    hubungan: relation,
-                    pesan: message,
-                    t: new Date().getTime()
-                });
-
-                const res = await fetch(`${SCRIPT_URL}?${params.toString()}`);
-                const data = await res.json();
-
-                if (data.status === 'success') {
-                    document.getElementById('prayer-form').reset();
-                    await loadPrayers();
-                    showToast("Jazakallah khairan, doa Anda telah tersimpan.");
-                } else {
-                    showToast("Gagal menyimpan doa, silakan coba lagi.");
-                }
-            } catch (err) {
-                showToast("Terjadi kendala koneksi, silakan coba lagi.");
-            } finally {
-                btn.disabled = false;
-                btnSpan.textContent = 'Kirim Untaian Doa';
+            const list = document.getElementById('prayers-list');
+            renderPrayerCard(list, name, relation, message, 'Baru dikirim');
+            if (list.lastChild) {
+                list.insertBefore(list.lastChild, list.firstChild);
             }
+
+            setTimeout(() => {
+                document.getElementById('prayer-form').reset();
+                btnSpan.textContent = 'Kirim Untaian Doa';
+                showToast("Jazakallah khairan, doa Anda telah tersimpan.");
+                loadPrayers();
+            }, 1800);
         }
 
         document.addEventListener('DOMContentLoaded', loadPrayers);
