@@ -662,26 +662,20 @@
                 <iframe name="hidden_gsheet_iframe" id="hidden_gsheet_iframe" style="display:none;"></iframe>
 
                 <!-- Prayer Form -->
-                <form id="prayer-form" 
-                      action="https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec" 
-                      method="GET" 
-                      target="hidden_gsheet_iframe" 
-                      onsubmit="handleFormSubmit()" 
-                      class="space-y-4 mb-8">
-                    <input type="hidden" name="action" value="add">
+                <form id="prayer-form" onsubmit="submitPrayer(event)" class="space-y-4 mb-8">
                     <div>
                         <label class="block text-xs font-semibold text-royal-900 mb-1">Nama Anda</label>
-                        <input type="text" name="nama" id="sender-name" required placeholder="Contoh: H. Ahmad Fauzi / Rekan Kerja" 
+                        <input type="text" id="sender-name" required placeholder="Contoh: H. Ahmad Fauzi / Rekan Kerja" 
                                class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-royal-900 mb-1">Hubungan / Keterangan</label>
-                        <input type="text" name="hubungan" id="sender-relation" placeholder="Contoh: Sahabat SMA / Tetangga / Keluarga" 
+                        <input type="text" id="sender-relation" placeholder="Contoh: Sahabat SMA / Tetangga / Keluarga" 
                                class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-royal-900 mb-1">Untaian Doa & Kenangan</label>
-                        <textarea name="pesan" id="sender-message" rows="3" required placeholder="Tuliskan doa khusnul khotimah atau kenangan indah bersama almarhum..." 
+                        <textarea id="sender-message" rows="3" required placeholder="Tuliskan doa khusnul khotimah atau kenangan indah bersama almarhum..." 
                                   class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"></textarea>
                     </div>
                     <button type="submit" id="submit-prayer-btn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-royal-900 to-royal-800 text-ivory-50 font-semibold text-sm tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-gold-400/50">
@@ -1022,8 +1016,9 @@
 // =====================================================================
         // GOOGLE SHEETS DATABASE (BUKU TAMU LINTAS PERANGKAT)
         // =====================================================================
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzCqIX_qxFfuiWmQt2U2GyTHQa3Bkfyvb85LR4XjFfT6ib9Kg1MxArJNDs2-u046dwRnA/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6ESRXJij3FhsmA5smlJE6P14FNvm9Q4vf1z97CWGUpJ5FZ6hVjwAq97oaXr6bxIPiCA/exec";
 
+        // Muat semua doa dari Google Sheets saat web dibuka siapa saja
         function loadPrayers() {
             const oldScript = document.getElementById('apps-script-jsonp');
             if (oldScript) oldScript.remove();
@@ -1036,7 +1031,7 @@
 
         window.renderSheetPrayers = function(prayers) {
             const list = document.getElementById('prayers-list');
-            if (!Array.isArray(prayers) || prayers.length === 0) return;
+            if (!Array.isArray(prayers)) return;
 
             list.innerHTML = '';
             prayers.forEach(item => {
@@ -1081,31 +1076,50 @@
             list.appendChild(card);
         }
 
-        function handleFormSubmit() {
+        function submitPrayer(e) {
+            e.preventDefault();
             const btn = document.getElementById('submit-prayer-btn');
             const btnSpan = btn.querySelector('span');
             const name = document.getElementById('sender-name').value.trim();
             const relation = document.getElementById('sender-relation').value.trim() || 'Kerabat / Sahabat';
             const message = document.getElementById('sender-message').value.trim();
 
-            btnSpan.textContent = 'Mengirim Doa...';
+            if (!name || !message) return;
 
+            btn.disabled = true;
+            btnSpan.textContent = 'Menyimpan Doa...';
+
+            // Kirim langsung ke Google Apps Script via Image Ping (100% tembus tanpa terpotong reset form)
+            const query = new URLSearchParams({
+                action: 'add',
+                nama: name,
+                hubungan: relation,
+                pesan: message,
+                t: Date.now()
+            }).toString();
+
+            const beacon = new Image();
+            beacon.src = `${SCRIPT_URL}?${query}`;
+
+            // Tampilkan langsung di layar pengirim
             const list = document.getElementById('prayers-list');
             renderPrayerCard(list, name, relation, message, 'Baru dikirim');
             if (list.lastChild) {
                 list.insertBefore(list.lastChild, list.firstChild);
             }
 
+            document.getElementById('prayer-form').reset();
+            showToast("Jazakallah khairan, doa Anda telah tersimpan.");
+
+            // Sinkronkan ulang dari Google Sheets setelah 3 detik
             setTimeout(() => {
-                document.getElementById('prayer-form').reset();
+                btn.disabled = false;
                 btnSpan.textContent = 'Kirim Untaian Doa';
-                showToast("Jazakallah khairan, doa Anda telah tersimpan.");
                 loadPrayers();
-            }, 2500);
+            }, 3000);
         }
 
         document.addEventListener('DOMContentLoaded', loadPrayers);
-
         // Lightbox Controls
         function openLightbox(src, caption) {
             const modal = document.getElementById('lightbox-modal');
