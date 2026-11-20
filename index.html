@@ -195,7 +195,7 @@
     </div>
 
     <!-- =====================================================================
-         2. FLOATING AUDIO & QR SHARE CONTROLS
+         2. FLOATING AUDIO CONTROLS
     ====================================================================== -->
     <div id="floating-controls" class="fixed bottom-20 right-4 z-40 flex flex-col items-end gap-2.5 opacity-0 pointer-events-none transition-opacity duration-700">
         <!-- Now Playing Pill -->
@@ -209,15 +209,10 @@
             <button id="audio-btn" onclick="toggleAudio()" title="Putar/Jeda Sal Priadi - Gala Bunga Matahari" class="w-11 h-11 rounded-full bg-royal-900/90 backdrop-blur-md text-gold-300 border border-gold-400 shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
                 <i id="audio-icon" data-lucide="volume-2" class="w-5 h-5"></i>
             </button>
-            
-            <!-- QR Code Modal Trigger (Untuk Cetak di Buku Yasin) -->
-            <button onclick="toggleQrModal(true)" title="Lihat QR Barcode Buku Yasin" class="w-11 h-11 rounded-full bg-ivory-50/95 backdrop-blur-md text-royal-900 border border-gold-400 shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
-                <i data-lucide="qr-code" class="w-5 h-5 text-gold-600"></i>
-            </button>
         </div>
     </div>
 
-    <!-- Local MP3 Audio Fallback (Jika file gala-bunga-matahari.mp3.aac diunggah ke GitHub) -->
+    <!-- Local Audio File (gala-bunga-matahari.mp3.aac) -->
     <audio id="local-backsound-audio" src="gala-bunga-matahari.mp3.aac" loop preload="auto"></audio>
 
     <!-- Hidden YouTube Player Container for Sal Priadi - Gala Bunga Matahari -->
@@ -333,7 +328,7 @@
             </div>
         </section>
 
-        <!-- SECTION: WASIAT & PESAN ABADI PAPAH (SESUAI REVISI BUKU YASIN) -->
+        <!-- SECTION: WASIAT & PESAN ABADI PAPAH -->
         <section id="pesan-papah" class="relative z-10 py-8 px-4 max-w-2xl mx-auto reveal">
             <div class="bg-gradient-to-br from-royal-900 via-royal-800 to-emerald-900 text-ivory-50 rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-gold-400 relative overflow-hidden">
                 <!-- Subtle Watermark Calligraphy -->
@@ -401,7 +396,7 @@
                         <span class="text-xs font-bold text-gold-600 tracking-wider">17 JULI 1977 • AWAL KEHIDUPAN</span>
                         <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Masa Kecil & Cita-Cita Besar</h4>
                         <p class="text-sm text-gray-700 mt-2 leading-relaxed">
-                            Papah merupakan putra bungsu dari sepuluh bersaudara. Beliau lahir di Jakarta dan tumbuh besar di bawah asuhan Bapak (Engkong) dan Ibu Emi (Nenek) di kediaman keluarga yang terletak di Jalan Merpati 1, tepat di sebelah kiri Masjid As-Salam, Cendrawasih 5.
+                            Papah merupakan putra bungsu dari sepuluh bersaudara. Beliau lahir di Jakarta dan tumbuh besar di bawah asuhan Bapak Moeryadi (Engkong) dan Ibu Omih (Nenek/Emi) di kediaman keluarga yang terletak di Jalan Merpati 1, tepat di sebelah kiri Masjid As-Salam, Cendrawasih 5.
                         </p>
                         
                         <div id="story-more-1" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
@@ -427,7 +422,7 @@
                         <span class="text-xs font-bold text-royal-800 tracking-wider">2005 – 2020 • PENGABDIAN KARIER</span>
                         <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Merantau & Pengorbanan untuk Keluarga</h4>
                         <p class="text-sm text-gray-700 mt-2 leading-relaxed">
-                            Beranjak dewasa, Papah memberanikan diri kembali merantau ke tanah kelahirannya di kawasan Cengkareng Barat, Jakarta. Tekadnya untuk menempuh pendidikan tinggi tidak pernah padam—beliau sempat melanjutkan kuliah Strata-1 (S1) jurusan Manajemen di Universitas Terbuka.
+                            Beranjak dewasa, Papah memberanikan diri kembali merantau ke tanah kelahirannya di kawasan Cengkareng Barat, Jakarta. Tekadnya untuk menempuh pendidikan tinggi tidak pernah padam, beliau sempat melanjutkan kuliah Strata-1 (S1) jurusan Manajemen di Universitas Terbuka.
                         </p>
 
                         <div id="story-more-2" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
@@ -438,7 +433,7 @@
                                 Langkah awal karier Papah di Jakarta dimulai di PT Global bersama kakak sulungnya (Wa Mul) dan Om Iyon. Tak berselang lama, beliau memutuskan mencari pengalaman baru dengan bekerja di Tarzan Photo pada bidang fotografi. Ketika anak pertamanya genap berusia satu tahun, Papah kembali mengambil langkah besar dengan bergabung di FIF Group (Astra).
                             </p>
                             <p>
-                                Di perusahaan inilah Papah benar-benar merintis karier dari titik paling dasar. Meski bidang pekerjaan tersebut awalnya tidak pernah terlintas di benaknya, beliau menjalaninya dengan penuh keikhlasan dan dedikasi tinggi demi kebahagiaan keluarga. Selama 15 tahun pengabdiannya sejak tahun 2005 hingga 2020, kerja keras Papah berbuah manis melalui berbagai pencapaian membanggakan—mulai dari meraih predikat karyawan terbaik hingga dipercaya mewakili perusahaan dalam berbagai kegiatan sosial (<em>Corporate Social Responsibility</em> / CSR). Bagi Papah, bekerja bukan sekadar mencari nafkah, melainkan jalan untuk memberi manfaat seluas-luasnya bagi sesama, hingga banyak rekan kerja yang sudah seperti saudara kandung sendiri.
+                                Di perusahaan inilah Papah benar-benar merintis karier dari titik paling dasar. Meski bidang pekerjaan tersebut awalnya tidak pernah terlintas di benaknya, beliau menjalaninya dengan penuh keikhlasan dan dedikasi tinggi demi kebahagiaan keluarga. Selama 15 tahun pengabdiannya sejak tahun 2005 hingga 2020, kerja keras Papah berbuah manis melalui berbagai pencapaian membanggakan, mulai dari meraih predikat karyawan terbaik hingga dipercaya mewakili perusahaan dalam berbagai kegiatan sosial (<em>Corporate Social Responsibility</em> / CSR). Bagi Papah, bekerja bukan sekadar mencari nafkah, melainkan jalan untuk memberi manfaat seluas-luasnya bagi sesama, hingga banyak rekan kerja yang sudah seperti saudara kandung sendiri.
                             </p>
                         </div>
 
@@ -577,33 +572,51 @@
             </div>
 
             <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                <!-- Photo Card 1 (Foto Papah dari Google Drive) -->
+                <!-- Photo Card 1: Potret Almarhum Papah -->
                 <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1200', 'Potret Kenangan Almarhum Bapak Deni Priyadi bin Moeryadi')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
                     <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1000" alt="Potret Almarhum Deni Priyadi" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
                     <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
                         <p class="text-xs text-ivory-50 font-medium">Potret Almarhum Papah</p>
                     </div>
                 </div>
-
-                <!-- Photo Card 2 -->
-                <div onclick="openLightbox('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=85', 'Kebersamaan Hangat Keluarga Besar Deni Priyadi')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
-                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80" alt="Kebersamaan Keluarga" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x500/1E463B/DFC78C?text=Keluarga+Tercinta'">
+                
+                <!-- Photo Card 3: Potret Dengan Istri Tercinta -->
+                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1200', 'Potret Dengan Istri Tercinta')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
+                    <img src="https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1000" alt="Potret Dengan Istri Tercinta" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn';">
                     <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
-                        <p class="text-xs text-ivory-50 font-medium">Kebersamaan Keluarga</p>
+                        <p class="text-xs text-ivory-50 font-medium">Potret Dengan Istri Tercinta</p>
+                    </div>
+                </div>
+        
+                <!-- Photo Card 4: Mengantar Papah Mamah ke Baitullah -->
+                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1400', 'Mengantar Papah Mamah ke Baitullah')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
+                    <img src="https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1000" alt="Mengantar Papah Mamah ke Baitullah" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-transparent to-transparent flex items-end p-3.5">
+                        <p class="text-xs text-ivory-50 font-medium leading-snug">Mengantar Papah Mamah ke Baitullah</p>
                     </div>
                 </div>
 
-                <!-- Photo Card 3 (Wide) -->
-                <div onclick="openLightbox('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=1000&q=85', 'Masjidil Haram — Tempat Penuh Kedamaian yang Selalu Dirindukan Papah')" class="col-span-2 group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[16/9] bg-ivory-200">
-                    <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=900&q=80" alt="Masjidil Haram" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x450/10233F/DFC78C?text=Kenangan+Abadi'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-royal-900/20 to-transparent flex items-end justify-between p-4">
-                        <div>
-                            <p class="text-xs sm:text-sm text-ivory-50 font-semibold">Kenangan Sepanjang Masa</p>
-                            <p class="text-[11px] text-gold-300">Selalu hidup dalam doa dan ingatan kami</p>
-                        </div>
-                        <span class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white">
-                            <i data-lucide="maximize-2" class="w-4 h-4"></i>
-                        </span>
+                <!-- Photo Card 5: Lebaran Terakhir Bersama Papah -->
+                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1400', 'Lebaran Terakhir Bersama Papah')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
+                    <img src="https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1000" alt="Lebaran Terakhir Bersama Papah" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-transparent to-transparent flex items-end p-3.5">
+                        <p class="text-xs text-ivory-50 font-medium leading-snug">Lebaran Terakhir Bersama Papah</p>
+                    </div>
+                </div>
+
+                <!-- Photo Card 6: Pengantaran Terakhir Papah -->
+                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1400', 'Pengantaran Terakhir Papah')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
+                    <img src="https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1000" alt="Pengantaran Terakhir Papah" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-transparent to-transparent flex items-end p-3.5">
+                        <p class="text-xs text-ivory-50 font-medium leading-snug">Pengantaran Terakhir Papah</p>
+                    </div>
+                </div>
+
+                <!-- Photo Card 2: Foto Papah SMA -->
+                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1200', 'Foto Papah SMA — Masa Muda di SMAN 1 Sumedang')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
+                    <img src="https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1000" alt="Foto Papah SMA" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
+                        <p class="text-xs text-ivory-50 font-medium">Foto Papah SMA</p>
                     </div>
                 </div>
             </div>
@@ -634,7 +647,7 @@
             </div>
         </section>
 
-        <!-- SECTION: BUKU TAMU & UCAPAN BELASUNGKAWA (INTERAKTIF) -->
+        <!-- SECTION: BUKU TAMU & UCAPAN BELASUNGKAWA (TERHUBUNG GOOGLE SHEETS) -->
         <section id="doa-tamu" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
             <div class="bg-ivory-50 rounded-3xl p-6 sm:p-8 border border-gold-300 shadow-xl">
                 <div class="text-center mb-6">
@@ -668,34 +681,8 @@
                     </button>
                 </form>
 
-                <!-- Prayers List -->
+                <!-- Prayers List (Otomatis dimuat dari Google Sheets) -->
                 <div class="space-y-3 max-h-96 overflow-y-auto pr-1" id="prayers-list">
-                    <!-- Pre-populated heartfelt tributes -->
-                    <div class="p-4 rounded-2xl bg-ivory-100 border border-gold-300/50">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <div>
-                                <h5 class="font-bold text-sm text-royal-900">Keluarga Besar Moeryadi</h5>
-                                <span class="text-[11px] text-emerald-800 font-medium">Keluarga</span>
-                            </div>
-                            <span class="text-[10px] text-gray-400">Baru saja</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                            "Selamat jalan adik/kakak kami tercinta Deni Priyadi. InsyaAllah husnul khotimah, dilapangkan kuburnya, dan dikumpulkan bersama orang-orang shaleh di surga-Nya. Al-Fatihah."
-                        </p>
-                    </div>
-
-                    <div class="p-4 rounded-2xl bg-ivory-100 border border-gold-300/50">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <div>
-                                <h5 class="font-bold text-sm text-royal-900">H. Ridwan & Rekan</h5>
-                                <span class="text-[11px] text-emerald-800 font-medium">Sahabat & Rekan Kerja</span>
-                            </div>
-                            <span class="text-[10px] text-gray-400">1 jam lalu</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                            "Beliau orang yang sangat baik, jujur, dan selalu mengingatkan kami dalam kebaikan. Semoga Allah menerima seluruh amal ibadah almarhum Pak Deni dan memberi ketabahan bagi keluarga yang ditinggalkan."
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -709,59 +696,11 @@
             <p class="font-serif text-base font-bold text-royal-900 mt-3">
                 Keluarga Besar Deni Priyadi bin Moeryadi
             </p>
-            <button onclick="toggleQrModal(true)" class="mt-5 inline-flex items-center gap-1.5 text-xs text-gold-600 font-semibold underline underline-offset-4 hover:text-royal-800">
-                <i data-lucide="qr-code" class="w-3.5 h-3.5"></i>
-                <span>Tampilkan QR Code untuk Cetak Buku Yasin</span>
-            </button>
         </footer>
     </main>
 
     <!-- =====================================================================
-         5. MODAL: QR CODE GENERATOR UNTUK CETAK DI BUKU YASIN
-    ====================================================================== -->
-    <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-royal-900/80 backdrop-blur-sm p-4">
-        <div class="bg-ivory-50 gold-border-gradient rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative">
-            <button onclick="toggleQrModal(false)" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-ivory-200 text-gray-600 flex items-center justify-center hover:bg-gold-300 hover:text-royal-900 transition-colors">
-                <i data-lucide="x" class="w-4 h-4"></i>
-            </button>
-            
-            <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold">Siap Cetak Buku Yasin</span>
-            <h4 class="font-serif text-2xl font-bold text-royal-900 mt-1">QR Code Biografi Digital</h4>
-            <p class="text-xs text-gray-600 mt-1 mb-4">
-                Sematkan QR Code ini di halaman dalam atau cover belakang buku Yasin. Saat di-scan HP, halaman ini akan langsung terbuka.
-            </p>
-
-            <!-- Generated High-Res QR Code -->
-            <div class="bg-white p-4 rounded-2xl border-2 border-gold-400 inline-block shadow-inner mb-4">
-                <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=10233F&bgcolor=FFFFFF&data=https://azzam-learn.github.io/Biografi_Papahh/" 
-                     alt="QR Code Biografi Deni Priyadi" 
-                     class="w-44 h-44 mx-auto"
-                     onerror="this.src='https://placehold.co/250x250/FFFFFF/10233F?text=QR+Biografi+Papah'">
-                <p class="font-serif text-xs font-bold text-royal-900 mt-2 tracking-wider">SCAN BIOGRAFI ALMARHUM</p>
-                <p class="text-[10px] text-gold-600 font-semibold">Deni Priyadi bin Moeryadi</p>
-            </div>
-
-            <!-- Custom Link Input -->
-            <div class="text-left mb-4">
-                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Link Website Permanen:</label>
-                <div class="flex gap-2">
-                    <input type="text" id="custom-url-input" value="https://azzam-learn.github.io/Biografi_Papahh/" 
-                           class="flex-1 px-3 py-2 rounded-xl bg-ivory-100 border border-gold-300 text-xs focus:outline-none">
-                    <button onclick="updateQrCode()" class="px-3 py-2 rounded-xl bg-royal-800 text-white text-xs font-semibold hover:bg-royal-900">
-                        Update
-                    </button>
-                </div>
-            </div>
-
-            <button onclick="copyShareLink()" class="w-full py-2.5 rounded-xl bg-emerald-800 text-ivory-50 text-xs font-semibold flex items-center justify-center gap-2 hover:bg-emerald-900 transition-colors">
-                <i data-lucide="copy" class="w-3.5 h-3.5 text-gold-300"></i>
-                <span id="copy-btn-text">Salin Tautan Biografi</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- =====================================================================
-         6. MODAL: LIGHTBOX GALLERY
+         5. MODAL: LIGHTBOX GALLERY
     ====================================================================== -->
     <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
         <div class="max-w-lg w-full text-center relative" onclick="event.stopPropagation()">
@@ -774,7 +713,7 @@
     </div>
 
     <!-- =====================================================================
-         7. CUSTOM TOAST NOTIFICATION
+         6. CUSTOM TOAST NOTIFICATION
     ====================================================================== -->
     <div id="toast-box" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-royal-900 text-ivory-50 border border-gold-400 px-5 py-3 rounded-full shadow-2xl text-xs font-medium flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 -translate-y-4">
         <i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400"></i>
@@ -782,16 +721,13 @@
     </div>
 
     <!-- =====================================================================
-         8. JAVASCRIPT INTERACTIVITY & BACKSOUND ENGINE (SAL PRIADI - GALA BUNGA MATAHARI)
+         7. JAVASCRIPT INTERACTIVITY, AUDIO & GOOGLE SHEETS DATABASE
     ====================================================================== -->
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Hybrid Audio Engine:
-        // 1. Local MP3 ('gala-bunga-matahari.mp3.aac') jika diunggah ke GitHub
-        // 2. YouTube IFrame Official Track ('9_31100C8eA' - Sal Priadi - Gala Bunga Matahari)
-        // 3. Soft Ambient Piano Fallback (Web Audio API) jika video YouTube diblokir di jaringan
+        // Hybrid Audio Engine (gala-bunga-matahari.mp3.aac -> YouTube -> Ambient Fallback)
         const localAudio = document.getElementById('local-backsound-audio');
         let ytPlayer = null;
         let activeAudioMode = 'none'; // 'local' | 'youtube' | 'ambient'
@@ -813,7 +749,6 @@
                 }
                 if (ambientInterval) clearInterval(ambientInterval);
 
-                // Warm contemplative chord progression (Cmaj7 -> Am7 -> Fmaj7 -> G6)
                 const chords = [
                     [261.63, 329.63, 392.00, 493.88],
                     [220.00, 261.63, 329.63, 392.00],
@@ -865,7 +800,7 @@
             ytPlayer = new YT.Player('yt-backsound-player', {
                 height: '1',
                 width: '1',
-                videoId: '9_31100C8eA', // Sal Priadi - Gala Bunga Matahari
+                videoId: '9_31100C8eA',
                 playerVars: {
                     autoplay: 0,
                     controls: 0,
@@ -897,7 +832,6 @@
                         }
                     },
                     onError: function() {
-                        // Jika video YouTube diblokir di jaringan/region tertentu, otomatis beralih ke instrumen penenang
                         if (pendingPlay || isPlaying) {
                             startAmbientFallback();
                         }
@@ -907,7 +841,6 @@
         }
 
         function initAndPlayAudio() {
-            // Prioritas 1: Coba putar file lokal gala-bunga-matahari.mp3.aac jika ada di repository
             if (localAudio) {
                 localAudio.volume = 0.8;
                 const playPromise = localAudio.play();
@@ -917,7 +850,6 @@
                         isPlaying = true;
                         updateAudioIcon();
                     }).catch(() => {
-                        // Prioritas 2: Putar via YouTube IFrame API (Sal Priadi - Gala Bunga Matahari)
                         playViaYouTubeOrFallback();
                     });
                     return;
@@ -933,7 +865,6 @@
                 isPlaying = true;
                 updateAudioIcon();
 
-                // Cek setelah 3 detik: jika YouTube gagal mulai karena restriksi jaringan, jalankan instrumen penenang
                 setTimeout(() => {
                     if (isPlaying && activeAudioMode === 'youtube' && typeof ytPlayer.getPlayerState === 'function') {
                         const state = ytPlayer.getPlayerState();
@@ -1022,7 +953,6 @@
                 triggerScrollReveal();
             }, 850);
 
-            // Start Sal Priadi - Gala Bunga Matahari backsound on user click
             initAndPlayAudio();
         }
 
@@ -1080,18 +1010,28 @@
             }
         }
 
-        // Submit Guestbook Prayer
-        function submitPrayer(e) {
-            e.preventDefault();
-            const name = document.getElementById('sender-name').value.trim();
-            const relation = document.getElementById('sender-relation').value.trim() || 'Kerabat / Sahabat';
-            const message = document.getElementById('sender-message').value.trim();
+        // =====================================================================
+        // GOOGLE SHEETS DATABASE (BUKU TAMU LINTAS PERANGKAT)
+        // =====================================================================
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
 
-            if (!name || !message) return;
-
+        async function loadPrayers() {
             const list = document.getElementById('prayers-list');
+            try {
+                const res = await fetch(SCRIPT_URL);
+                const prayers = await res.json();
+                list.innerHTML = '';
+                prayers.forEach(item => {
+                    renderPrayerCard(list, item.nama, item.hubungan, item.pesan, item.waktu);
+                });
+            } catch (err) {
+                console.warn('Gagal memuat doa:', err);
+            }
+        }
+
+        function renderPrayerCard(list, name, relation, message, timeText) {
             const card = document.createElement('div');
-            card.className = 'p-4 rounded-2xl bg-ivory-100 border border-gold-400 shadow-sm transition-all';
+            card.className = 'p-4 rounded-2xl bg-ivory-100 border border-gold-300/50 shadow-sm transition-all';
             
             const header = document.createElement('div');
             header.className = 'flex items-center justify-between mb-1.5';
@@ -1103,14 +1043,14 @@
             
             const spanRel = document.createElement('span');
             spanRel.className = 'text-[11px] text-emerald-800 font-medium';
-            spanRel.textContent = relation;
+            spanRel.textContent = relation || 'Kerabat / Sahabat';
             
             info.appendChild(h5);
             info.appendChild(spanRel);
 
             const timeSpan = document.createElement('span');
             timeSpan.className = 'text-[10px] text-gold-600 font-semibold';
-            timeSpan.textContent = 'Baru dikirim';
+            timeSpan.textContent = timeText || 'Baru dikirim';
 
             header.appendChild(info);
             header.appendChild(timeSpan);
@@ -1121,39 +1061,39 @@
 
             card.appendChild(header);
             card.appendChild(p);
-
-            list.insertBefore(card, list.firstChild);
-            document.getElementById('prayer-form').reset();
-            showToast("Jazakallah khairan, doa Anda berhasil ditambahkan.");
+            list.appendChild(card);
         }
 
-        // QR Modal Controls
-        function toggleQrModal(show) {
-            const modal = document.getElementById('qr-modal');
-            if (show) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            } else {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
+        async function submitPrayer(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const btnSpan = btn.querySelector('span');
+            const name = document.getElementById('sender-name').value.trim();
+            const relation = document.getElementById('sender-relation').value.trim() || 'Kerabat / Sahabat';
+            const message = document.getElementById('sender-message').value.trim();
+
+            if (!name || !message) return;
+
+            btn.disabled = true;
+            btnSpan.textContent = 'Mengirim Doa...';
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ nama: name, hubungan: relation, pesan: message })
+                });
+                document.getElementById('prayer-form').reset();
+                await loadPrayers();
+                showToast("Jazakallah khairan, doa Anda telah tersimpan.");
+            } catch (err) {
+                showToast("Terjadi kendala koneksi, silakan coba lagi.");
+            } finally {
+                btn.disabled = false;
+                btnSpan.textContent = 'Kirim Untaian Doa';
             }
         }
 
-        function updateQrCode() {
-            const urlInput = document.getElementById('custom-url-input').value.trim();
-            if (!urlInput) return;
-            const qrImg = document.getElementById('qr-image');
-            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=10233F&bgcolor=FFFFFF&data=${encodeURIComponent(urlInput)}`;
-            showToast("QR Code berhasil diperbarui sesuai tautan Anda!");
-        }
-
-        function copyShareLink() {
-            const urlInput = document.getElementById('custom-url-input');
-            urlInput.select();
-            urlInput.setSelectionRange(0, 99999);
-            document.execCommand('copy');
-            showToast("Tautan biografi berhasil disalin ke clipboard!");
-        }
+        document.addEventListener('DOMContentLoaded', loadPrayers);
 
         // Lightbox Controls
         function openLightbox(src, caption) {
