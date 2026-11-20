@@ -1019,37 +1019,29 @@
             }
         }
 
-        // =====================================================================
+// =====================================================================
         // GOOGLE SHEETS DATABASE (BUKU TAMU LINTAS PERANGKAT)
         // =====================================================================
-        const SHEET_ID = "1uQ18d5cdJuX6y_ZTyN27qQaBKx8zAJB_GvqG2-IjXYA";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
 
         function loadPrayers() {
-            const oldScript = document.getElementById('gsheet-jsonp');
+            const oldScript = document.getElementById('apps-script-jsonp');
             if (oldScript) oldScript.remove();
 
             const script = document.createElement('script');
-            script.id = 'gsheet-jsonp';
-            script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=responseHandler:renderSheetPrayers&t=${Date.now()}`;
+            script.id = 'apps-script-jsonp';
+            script.src = `${SCRIPT_URL}?callback=renderSheetPrayers&t=${Date.now()}`;
             document.body.appendChild(script);
         }
 
-        window.renderSheetPrayers = function(response) {
+        window.renderSheetPrayers = function(prayers) {
             const list = document.getElementById('prayers-list');
-            if (!response || !response.table || !response.table.rows) return;
+            if (!Array.isArray(prayers) || prayers.length === 0) return;
 
             list.innerHTML = '';
-            const rows = response.table.rows.slice().reverse();
-
-            rows.forEach(row => {
-                const cells = row.c || [];
-                const waktu = cells[0] ? (cells[0].f || cells[0].v || '') : '';
-                const nama = cells[1] ? (cells[1].v || '') : '';
-                const hubungan = cells[2] ? (cells[2].v || 'Kerabat / Sahabat') : 'Kerabat / Sahabat';
-                const pesan = cells[3] ? (cells[3].v || '') : '';
-
-                if (nama && pesan && nama !== 'Nama') {
-                    renderPrayerCard(list, nama, hubungan, pesan, waktu);
+            prayers.forEach(item => {
+                if (item.nama && item.pesan) {
+                    renderPrayerCard(list, item.nama, item.hubungan, item.pesan, item.waktu);
                 }
             });
         };
@@ -1109,7 +1101,7 @@
                 btnSpan.textContent = 'Kirim Untaian Doa';
                 showToast("Jazakallah khairan, doa Anda telah tersimpan.");
                 loadPrayers();
-            }, 1800);
+            }, 2500);
         }
 
         document.addEventListener('DOMContentLoaded', loadPrayers);
