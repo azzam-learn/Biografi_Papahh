@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mengenang 40 Hari Almarhum Deni Priyadi bin Moeryadi</title>
+    <title>Dokumenter Kehidupan — Almarhum Deni Priyadi bin Moeryadi</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- YouTube IFrame API for Backsound "Sal Priadi - Gala Bunga Matahari" -->
+    <!-- YouTube IFrame API for Backsound Fallback -->
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
@@ -24,11 +24,15 @@
             theme: {
                 extend: {
                     colors: {
+                        cinema: {
+                            950: '#070B12',
+                            900: '#0C1320',
+                            800: '#131E31',
+                        },
                         ivory: {
                             50: '#FDFBF7',
                             100: '#F9F5EC',
                             200: '#F2EAD8',
-                            300: '#E6D8BC',
                         },
                         royal: {
                             800: '#1B365D',
@@ -57,761 +61,754 @@
 
     <style>
         body {
-            background-color: #F9F5EC;
-            color: #1F2937;
+            background-color: #070B12;
+            color: #F9F5EC;
             overflow-x: hidden;
         }
 
-        /* Subtle Islamic Geometric Pattern Overlay */
-        .bg-islamic-pattern {
-            background-image: radial-gradient(#C5A059 0.75px, transparent 0.75px), radial-gradient(#1B365D 0.75px, #F9F5EC 0.75px);
-            background-size: 32px 32px;
-            background-position: 0 0, 16px 16px;
-            opacity: 0.08;
+        /* Film Grain Subtle Texture */
+        .film-grain {
+            background-image: radial-gradient(rgba(223, 199, 140, 0.08) 1px, transparent 0);
+            background-size: 24px 24px;
         }
 
         /* Gold Foil Shimmer Text */
         .gold-foil-text {
-            background: linear-gradient(135deg, #8F6C2C 0%, #C5A059 35%, #E8D29B 50%, #B08A44 75%, #8F6C2C 100%);
+            background: linear-gradient(135deg, #B08A44 0%, #DFC78C 35%, #FFF3D1 50%, #C5A059 75%, #8F6C2C 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
-            animation: shine 6s linear infinite;
+            animation: shine 7s linear infinite;
         }
 
         @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+            to { background-position: 200% center; }
         }
 
-        /* Slow Mandala Rotation */
-        .spin-slow {
-            animation: spin 45s linear infinite;
+        /* Cinematic Parallax Layer */
+        .parallax-bg {
+            will-change: transform;
+            transition: transform 0.12s linear;
         }
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* Ken Burns Slow Zoom for Documentary Slides */
+        @keyframes kenBurns {
+            0% { transform: scale(1.0) translate(0, 0); }
+            50% { transform: scale(1.09) translate(-1%, -1%); }
+            100% { transform: scale(1.0) translate(0, 0); }
+        }
+        .ken-burns {
+            animation: kenBurns 24s ease-in-out infinite;
         }
 
-        /* Mihrab Arch Frame */
-        .mihrab-arch {
-            border-radius: 9999px 9999px 16px 16px;
-        }
-
-        /* Gold Ornate Border */
-        .gold-border-gradient {
-            border: 1.5px solid transparent;
-            background: linear-gradient(#FDFBF7, #FDFBF7) padding-box,
-                        linear-gradient(135deg, #C5A059, #1B365D, #1E463B, #C5A059) border-box;
-        }
-
-        /* Smooth Fade-Up Reveal */
-        .reveal {
+        /* Staggered Documentary Narration Reveal */
+        .doc-reveal {
             opacity: 0;
-            transform: translateY(24px);
-            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
-        .reveal.active {
+        .doc-reveal.delay-1 { transition-delay: 0.15s; }
+        .doc-reveal.delay-2 { transition-delay: 0.3s; }
+        .doc-reveal.delay-3 { transition-delay: 0.45s; }
+        .doc-reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Cover Gate Curtain Transition */
-        #cover-gate {
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+        /* Cover Curtain */
+        #opening-curtain {
+            transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.9s ease;
         }
-        #cover-gate.opened {
+        #opening-curtain.lifted {
             transform: translateY(-100%);
             opacity: 0;
             pointer-events: none;
         }
+
+        /* Custom Scrollbar for Horizontal Timeline */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Glass Documentary Card */
+        .doc-glass {
+            background: rgba(12, 19, 32, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(197, 160, 89, 0.32);
+        }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-gold-300 selection:text-royal-900">
+<body class="font-sans antialiased selection:bg-gold-400 selection:text-cinema-950">
 
     <!-- =====================================================================
-         1. COVER GATE (LAYAR PEMBUKA KHIDMAT SAAT QR DI-SCAN)
+         0. OPENING FILM CURTAIN (LAYAR PEMBUKA DOKUMENTER)
     ====================================================================== -->
-    <div id="cover-gate" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ivory-100 px-5 py-8 text-center overflow-hidden">
-        <!-- Ambient Background Pattern -->
-        <div class="absolute inset-0 bg-islamic-pattern pointer-events-none"></div>
-        
-        <!-- Decorative Top & Bottom Gold Bars -->
-        <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-royal-900 via-gold-400 to-emerald-900"></div>
-        <div class="absolute bottom-0 inset-x-0 h-2 bg-gradient-to-r from-emerald-900 via-gold-400 to-royal-900"></div>
+    <div id="opening-curtain" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-cinema-950 px-5 text-center overflow-hidden">
+        <!-- Ambient Portrait Backdrop -->
+        <div class="absolute inset-0 opacity-25">
+            <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1200" 
+                 alt="" class="w-full h-full object-cover object-top ken-burns"
+                 onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
+            <div class="absolute inset-0 bg-gradient-to-t from-cinema-950 via-cinema-950/80 to-cinema-950"></div>
+        </div>
 
-        <!-- Outer Ornamental Card -->
-        <div class="relative z-10 w-full max-w-md bg-ivory-50/95 backdrop-blur-sm gold-border-gradient rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col items-center">
-            
-            <!-- Basmalah -->
-            <p class="font-arabic text-2xl sm:text-3xl text-gold-600 mb-1" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-            <span class="text-[11px] uppercase tracking-[0.25em] text-royal-800 font-semibold mb-4">Biografi & Ruang Kenangan</span>
+        <div class="relative z-10 max-w-lg w-full flex flex-col items-center">
+            <p class="font-arabic text-2xl sm:text-3xl text-gold-300 mb-2" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+            <span class="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-gold-400/90 font-semibold mb-6">
+                Sebuah Dokumenter Kehidupan • 1977 – 2026
+            </span>
 
-            <!-- Portrait with Rotating Mandala Ring -->
-            <div class="relative w-40 h-40 sm:w-44 sm:h-44 flex items-center justify-center mb-5">
-                <!-- SVG Mandala Ring -->
-                <svg class="absolute inset-0 w-full h-full text-gold-400 spin-slow opacity-85" viewBox="0 0 200 200" fill="none">
-                    <circle cx="100" cy="100" r="92" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
-                    <circle cx="100" cy="100" r="84" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M100 4 L106 18 L120 12 L120 26 L135 25 L130 39 L145 43 L135 55 L148 64 L135 72 L144 85 L129 88 L134 102 L119 100 L119 115 L106 108 L100 122 L94 108 L81 115 L81 100 L66 102 L71 88 L56 85 L65 72 L52 64 L65 55 L55 43 L70 39 L65 25 L80 26 L80 12 L94 18 Z" stroke="currentColor" stroke-width="0.6" opacity="0.45"/>
-                </svg>
-                
-                <!-- Portrait Container -->
-                <div class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-gold-400 shadow-inner bg-ivory-200">
+            <!-- Framed Portrait -->
+            <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1 bg-gradient-to-tr from-gold-600 via-gold-300 to-gold-500 shadow-[0_0_50px_rgba(197,160,89,0.28)] mb-6">
+                <div class="w-full h-full rounded-full overflow-hidden bg-cinema-900">
                     <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1000" 
                          alt="Almarhum Deni Priyadi bin Moeryadi" 
                          class="w-full h-full object-cover object-top"
                          onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/20 to-transparent"></div>
                 </div>
             </div>
 
-            <p class="font-serif italic text-base sm:text-lg text-emerald-800 mb-1">Mengenang 40 Hari Kepergian Papah Kami Tercinta</p>
-            <h1 class="font-serif text-3xl sm:text-4xl font-bold gold-foil-text tracking-wide leading-tight">
+            <p class="font-serif italic text-base sm:text-lg text-ivory-200/80 mb-1">
+                Mengenang 40 Hari Kepergian Papah Kami Tercinta
+            </p>
+            <h1 class="font-serif text-4xl sm:text-5xl font-bold gold-foil-text tracking-wider leading-tight">
                 DENI PRIYADI
             </h1>
-            <p class="font-serif text-lg sm:text-xl font-semibold text-royal-800 tracking-widest mt-0.5 mb-4">
+            <p class="font-serif text-lg sm:text-xl text-gold-300 tracking-[0.25em] mt-1 mb-5">
                 BIN MOERYADI
             </p>
 
-            <!-- Dates Badge -->
-            <div class="w-full py-2.5 px-4 bg-ivory-100 rounded-xl border border-gold-300/60 text-xs sm:text-sm text-gray-700 space-y-0.5 mb-7">
-                <p><span class="font-semibold text-royal-800">Lahir:</span> Jakarta, 17 Juli 1977</p>
-                <p><span class="font-semibold text-royal-800">Wafat:</span> Jakarta, 11 Oktober 2026</p>
-                <p class="text-gold-600 font-semibold pt-0.5">Pada Usia: 49 Tahun</p>
+            <div class="flex items-center justify-center gap-4 text-xs text-ivory-200/75 border-y border-gold-400/25 py-2.5 px-6 mb-8">
+                <span>Jakarta, 17 Juli 1977</span>
+                <span class="text-gold-400">•</span>
+                <span>Jakarta, 11 Oktober 2026</span>
+                <span class="text-gold-400">•</span>
+                <span class="text-gold-300 font-semibold">49 Tahun</span>
             </div>
 
-            <!-- Open Button -->
-            <button onclick="openBiography()" class="group relative inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-gradient-to-r from-royal-900 via-royal-800 to-emerald-900 text-ivory-50 rounded-full font-medium text-sm tracking-wider shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 border border-gold-400">
-                <i data-lucide="book-open" class="w-4 h-4 text-gold-300 group-hover:rotate-12 transition-transform"></i>
-                <span>Buka Biografi & Kenangan</span>
+            <button onclick="startDocumentary()" class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-cinema-950 font-bold text-xs sm:text-sm uppercase tracking-[0.2em] shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:scale-105 active:scale-95 transition-all">
+                <i data-lucide="play" class="w-4 h-4 fill-cinema-950"></i>
+                <span>Mulai Menyusuri Kisah</span>
             </button>
-            
-            <p class="text-[11px] text-gray-400 mt-4">Ketuk tombol di atas untuk membaca kisah hidup beliau</p>
         </div>
     </div>
 
     <!-- =====================================================================
-         2. FLOATING AUDIO CONTROLS
+         1. TOP CINEMATIC PROGRESS BAR & HORIZONTAL CHAPTER TIMELINE
     ====================================================================== -->
-    <div id="floating-controls" class="fixed bottom-20 right-4 z-40 flex flex-col items-end gap-2.5 opacity-0 pointer-events-none transition-opacity duration-700">
-        <!-- Now Playing Pill -->
-        <div id="music-badge" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-royal-900/90 backdrop-blur-md text-ivory-100 border border-gold-400/60 shadow-lg text-[11px]">
-            <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
-            <span id="music-title-label" class="font-medium text-gold-300">Sal Priadi - Gala Bunga Matahari</span>
+    <header id="cinema-hud" class="fixed top-0 inset-x-0 z-40 opacity-0 pointer-events-none transition-opacity duration-700">
+        <!-- Scroll Progress Line -->
+        <div class="w-full h-1 bg-white/10">
+            <div id="scroll-progress" class="h-full bg-gradient-to-r from-gold-600 via-gold-300 to-gold-400 w-0 transition-all duration-150"></div>
         </div>
 
-        <div class="flex flex-col gap-2.5">
-            <!-- Audio Toggle -->
-            <button id="audio-btn" onclick="toggleAudio()" title="Putar/Jeda Sal Priadi - Gala Bunga Matahari" class="w-11 h-11 rounded-full bg-royal-900/90 backdrop-blur-md text-gold-300 border border-gold-400 shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
-                <i id="audio-icon" data-lucide="volume-2" class="w-5 h-5"></i>
-            </button>
+        <!-- Horizontal Chapter Timeline Strip -->
+        <div class="bg-cinema-950/85 backdrop-blur-md border-b border-gold-400/20 px-3 py-2.5">
+            <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
+                <div class="hidden md:flex items-center gap-2 shrink-0">
+                    <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+                    <span class="font-serif text-sm font-bold text-gold-300 tracking-wider">DENI PRIYADI</span>
+                </div>
+
+                <!-- Horizontal Scrollable Chapters -->
+                <nav id="horizontal-timeline" class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 text-[11px]">
+                    <a href="#bab-1" data-chapter="bab-1" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">01. Awal Perjalanan</a>
+                    <a href="#bab-2" data-chapter="bab-2" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">02. Masa Muda</a>
+                    <a href="#bab-3" data-chapter="bab-3" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">03. Karier & Perjuangan</a>
+                    <a href="#bab-4" data-chapter="bab-4" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">04. Pertemuan Keluarga</a>
+                    <a href="#bab-5" data-chapter="bab-5" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">05. Suami & Ayah</a>
+                    <a href="#bab-6" data-chapter="bab-6" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">06. Kebersamaan</a>
+                    <a href="#bab-7" data-chapter="bab-7" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">07. Warisan Hidup</a>
+                    <a href="#tribute-akhir" data-chapter="tribute-akhir" class="chapter-pill shrink-0 px-3 py-1 rounded-full border border-gold-400/30 text-ivory-200/75 hover:text-gold-300 transition-all">Tribute & Doa</a>
+                </nav>
+            </div>
         </div>
+    </header>
+
+    <!-- =====================================================================
+         2. FLOATING BACKGROUND MUSIC CONTROLLER (PLAY / PAUSE)
+    ====================================================================== -->
+    <div id="audio-hud" class="fixed bottom-5 right-4 z-40 flex items-center gap-2.5 opacity-0 pointer-events-none transition-opacity duration-700">
+        <div id="music-pill" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full bg-cinema-900/90 backdrop-blur-md border border-gold-400/40 shadow-xl text-[11px] text-ivory-100">
+            <span id="music-dot" class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
+            <span id="music-label" class="text-gold-300 font-medium">Sal Priadi - Gala Bunga Matahari</span>
+        </div>
+        <button id="audio-toggle-btn" onclick="toggleAudio()" title="Putar / Jeda Musik Latar" class="w-12 h-12 rounded-full bg-cinema-900/95 backdrop-blur-md border border-gold-400 text-gold-300 shadow-[0_0_25px_rgba(0,0,0,0.6)] flex items-center justify-center hover:scale-110 active:scale-95 transition-transform">
+            <i id="audio-icon" data-lucide="pause" class="w-5 h-5"></i>
+        </button>
     </div>
 
-    <!-- Local Audio File (gala-bunga-matahari.mp3.aac) -->
+    <!-- Local Backsound File -->
     <audio id="local-backsound-audio" src="gala-bunga-matahari.mp3.aac" loop preload="auto"></audio>
 
-    <!-- Hidden YouTube Player Container for Sal Priadi - Gala Bunga Matahari -->
+    <!-- Hidden YouTube Fallback -->
     <div class="fixed -top-96 -left-96 w-1 h-1 opacity-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div id="yt-backsound-player"></div>
     </div>
 
     <!-- =====================================================================
-         3. BOTTOM NAVIGATION BAR (MOBILE-FIRST INTERACTIVE MENU)
+         3. VERTICAL TIMELINE DOTS INDICATOR (DESKTOP)
     ====================================================================== -->
-    <nav id="bottom-nav" class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-md bg-royal-900/95 backdrop-blur-md border border-gold-400/60 rounded-full px-3 py-2 shadow-2xl opacity-0 pointer-events-none transition-opacity duration-700">
-        <ul class="flex items-center justify-around text-[11px] text-ivory-200">
-            <li>
-                <a href="#profil" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
-                    <i data-lucide="user-check" class="w-4 h-4 text-gold-400"></i>
-                    <span>Profil</span>
-                </a>
-            </li>
-            <li>
-                <a href="#perjalanan" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
-                    <i data-lucide="compass" class="w-4 h-4 text-gold-400"></i>
-                    <span>Kisah</span>
-                </a>
-            </li>
-            <li>
-                <a href="#pesan-papah" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
-                    <i data-lucide="heart-handshake" class="w-4 h-4 text-gold-400"></i>
-                    <span>Wasiat</span>
-                </a>
-            </li>
-            <li>
-                <a href="#galeri" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
-                    <i data-lucide="image" class="w-4 h-4 text-gold-400"></i>
-                    <span>Galeri</span>
-                </a>
-            </li>
-            <li>
-                <a href="#doa-tamu" class="flex flex-col items-center gap-0.5 p-1.5 hover:text-gold-300 transition-colors">
-                    <i data-lucide="message-square-heart" class="w-4 h-4 text-gold-400"></i>
-                    <span>Kirim Doa</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <aside id="vertical-dots" class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-3 opacity-0 pointer-events-none transition-opacity duration-700">
+        <a href="#bab-1" data-dot="bab-1" title="Bab 1: Awal Perjalanan" class="v-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-gold-300 transition-all"></a>
+        <a href="#bab-2" data-dot="bab-2" title="Bab 2: Masa Muda" class="v-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-gold-300 transition-all"></a>
+        <a href="#bab-3" data-dot="bab-3" title="Bab 3: Perjalanan Karier & Perjuangan" class="v-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-gold-300 transition-all"></a>
+        <a href="#bab-4" data-dot="bab-4" title="Bab 4: Pertemuan dengan Keluarga" class="v-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-gold-300 transition-all"></a>
+        <a href="#bab-5" data-dot="bab-5" title="Bab 5: Menjadi Suami & Ayah" class="v-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-gold-300 transition-all"></a>
+        <a href="#bab-6" data-dot="bab-6" title="Bab 6: Momen Kebersamaan" class="v-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-gold-300 transition-all"></a>
+        <a href="#bab-7" data-dot="bab-7" title="Bab 7: Warisan Kehidupan" class="v-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-gold-300 transition-all"></a>
+    </aside>
 
     <!-- =====================================================================
-         4. MAIN CONTENT AREA
+         4. FULL-SCREEN DOCUMENTARY CHAPTERS (7 BAB KEHIDUPAN)
     ====================================================================== -->
-    <main id="main-content" class="relative pb-28">
-        <!-- Subtle Background Pattern -->
-        <div class="fixed inset-0 bg-islamic-pattern pointer-events-none z-0"></div>
+    <main class="relative film-grain">
 
-        <!-- HEADER / HERO SECTION -->
-        <section id="profil" class="relative z-10 pt-10 pb-14 px-4 max-w-2xl mx-auto text-center">
-            <!-- Top Ornamental Frame -->
-            <div class="bg-ivory-50 gold-border-gradient rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
-                <!-- Floral Corner Accents -->
-                <div class="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-royal-800/20 rounded-tl-3xl pointer-events-none"></div>
-                <div class="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-emerald-800/20 rounded-tr-3xl pointer-events-none"></div>
-                
-                <p class="font-arabic text-2xl sm:text-3xl text-gold-600 mb-3">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</p>
-                <p class="text-xs sm:text-sm italic text-gray-600 max-w-md mx-auto mb-6 leading-relaxed">
+        <!-- PROLOGUE HERO SCREEN -->
+        <section class="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-16 overflow-hidden border-b border-gold-400/20">
+            <div class="parallax-bg absolute inset-0 opacity-30" data-speed="0.25">
+                <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1400" 
+                     alt="Potret Almarhum Deni Priyadi" 
+                     class="w-full h-full object-cover object-top"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-cinema-950/80 via-cinema-950/75 to-cinema-950"></div>
+
+            <div class="relative z-10 max-w-3xl mx-auto text-center">
+                <p class="doc-reveal font-arabic text-2xl sm:text-4xl text-gold-300 mb-3">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</p>
+                <p class="doc-reveal delay-1 text-xs sm:text-sm italic text-ivory-200/80 max-w-lg mx-auto mb-8">
                     "Sesungguhnya kami adalah milik Allah dan kepada-Nya-lah kami kembali."
                 </p>
 
-                <!-- Arched Portrait -->
-                <div class="relative mx-auto w-48 h-60 sm:w-56 sm:h-68 mihrab-arch p-1.5 bg-gradient-to-b from-gold-400 via-royal-800 to-emerald-800 shadow-lg mb-6">
-                    <div class="w-full h-full mihrab-arch overflow-hidden bg-ivory-200 relative">
+                <div class="doc-reveal delay-2 relative mx-auto w-44 h-56 sm:w-52 sm:h-64 rounded-t-full rounded-b-2xl p-1 bg-gradient-to-b from-gold-300 via-gold-500 to-royal-800 shadow-2xl mb-7">
+                    <div class="w-full h-full rounded-t-full rounded-b-xl overflow-hidden bg-cinema-900">
                         <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1000" 
                              alt="Potret Kenangan Almarhum Deni Priyadi" 
                              class="w-full h-full object-cover object-top"
                              onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-royal-900/45 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-3 left-0 right-0 text-[11px] text-ivory-100 font-medium tracking-wider uppercase">
-                            Kenangan Almarhum Papah
-                        </span>
                     </div>
                 </div>
 
-                <span class="inline-block px-4 py-1 rounded-full bg-royal-800/10 text-royal-800 text-xs font-semibold tracking-wider uppercase mb-2">
-                    Mengenang 40 Hari Kepergian
-                </span>
-                
-                <h2 class="font-serif text-3xl sm:text-5xl font-bold gold-foil-text tracking-wide">
+                <h2 class="doc-reveal delay-2 font-serif text-4xl sm:text-6xl font-bold gold-foil-text tracking-wide">
                     DENI PRIYADI
                 </h2>
-                <p class="font-serif text-xl sm:text-2xl font-semibold text-royal-800 tracking-widest mt-1">
+                <p class="doc-reveal delay-3 font-serif text-xl sm:text-2xl text-gold-300 tracking-[0.25em] mt-1">
                     BIN MOERYADI
                 </p>
-
-                <!-- Divider -->
-                <div class="flex items-center justify-center gap-3 my-5">
-                    <span class="h-[1px] w-16 bg-gold-400"></span>
-                    <i data-lucide="sparkles" class="w-4 h-4 text-gold-500"></i>
-                    <span class="h-[1px] w-16 bg-gold-400"></span>
-                </div>
-
-                <!-- Vital Info Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center mt-4">
-                    <div class="bg-ivory-100/90 p-3.5 rounded-2xl border border-gold-300/50">
-                        <p class="text-[11px] uppercase tracking-wider text-gray-500">Kelahiran</p>
-                        <p class="font-serif text-base sm:text-lg font-bold text-royal-900 mt-0.5">Jakarta, 17 Juli 1977</p>
-                    </div>
-                    <div class="bg-ivory-100/90 p-3.5 rounded-2xl border border-gold-300/50">
-                        <p class="text-[11px] uppercase tracking-wider text-gray-500">Berpulang</p>
-                        <p class="font-serif text-base sm:text-lg font-bold text-emerald-900 mt-0.5">Jakarta, 11 Oktober 2026</p>
-                    </div>
-                    <div class="bg-ivory-100/90 p-3.5 rounded-2xl border border-gold-300/50">
-                        <p class="text-[11px] uppercase tracking-wider text-gray-500">Tutup Usia</p>
-                        <p class="font-serif text-base sm:text-lg font-bold text-gold-600 mt-0.5">Pada Usia: 49 Tahun</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: WASIAT & PESAN ABADI PAPAH -->
-        <section id="pesan-papah" class="relative z-10 py-8 px-4 max-w-2xl mx-auto reveal">
-            <div class="bg-gradient-to-br from-royal-900 via-royal-800 to-emerald-900 text-ivory-50 rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-gold-400 relative overflow-hidden">
-                <!-- Subtle Watermark Calligraphy -->
-                <div class="font-arabic text-[140px] text-gold-400/10 absolute -bottom-8 -right-4 select-none pointer-events-none">
-                    يسٓ
-                </div>
-
-                <div class="text-center mb-6">
-                    <span class="text-xs uppercase tracking-[0.25em] text-gold-300 font-semibold">Pesan & Wasiat Terakhir</span>
-                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-1">Nasihat Abadi Sang Kepala Keluarga</h3>
-                    <div class="w-20 h-0.5 bg-gold-400 mx-auto mt-3"></div>
-                </div>
-
-                <div class="relative bg-white/5 backdrop-blur-sm rounded-2xl p-5 sm:p-7 border border-gold-300/30">
-                    <i data-lucide="quote" class="w-8 h-8 text-gold-400/50 mb-3"></i>
-                    <p class="font-serif text-lg sm:text-xl leading-relaxed text-ivory-100 italic">
-                        "Papah selalu berpesan kepada kami, bahwa kematian merupakan suatu hal yang <span class="text-gold-300 font-semibold not-italic">PASTI</span>, maka jangan pernah takut dan bersiaplah dengan apa yang menjadi bekal kita nanti. Sehingga berlomba-lombalah pada kebaikan, taat kepada Allah SWT, dan cintalah kepada Nabi Muhammad SAW."
-                    </p>
-                    <div class="mt-5 pt-5 border-t border-gold-300/20 text-sm sm:text-base text-ivory-200 leading-relaxed space-y-3">
-                        <p>
-                            Semoga Allah mengampuni segala kesalahan dan dosa semasa hidupnya. Kami yang ditinggalkan akan selalu mengenang kebaikan, ketulusan, dan pengorbanannya terhadap keluarga.
-                        </p>
-                        <p>
-                            Mohon keikhlasan doa agar Papah kami mendapatkan tempat terbaik, <span class="text-gold-300 font-semibold">khusnul khotimah</span>, dan dekat di sisi Allah SWT.
-                        </p>
-                        <p class="font-serif text-lg font-bold text-gold-300 pt-2">
-                            Aamiin Ya Rabbal Alamiin.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="text-center mt-6">
-                    <p class="text-xs text-ivory-200/80">Kami yang mengasihi,</p>
-                    <p class="font-serif text-lg sm:text-xl font-bold text-gold-300 tracking-wider mt-0.5">
-                        KELUARGA BESAR DENI PRIYADI
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: PERJALANAN HIDUP & BIOGRAFI (TIMELINE 6 KARTU + BACA SELENGKAPNYA) -->
-        <section id="perjalanan" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
-            <div class="text-center mb-8">
-                <span class="text-xs uppercase tracking-[0.25em] text-emerald-800 font-semibold">Jejak Langkah Kehidupan</span>
-                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-royal-900 mt-1">Biografi & Keteladanan</h3>
-                <p class="text-xs sm:text-sm text-gray-600 mt-2 max-w-md mx-auto">
-                    Mengenang perjalanan 49 tahun penuh dedikasi, kasih sayang, dan pengabdian kepada agama serta keluarga.
+                <p class="doc-reveal delay-3 text-xs sm:text-sm text-ivory-200/75 mt-3">
+                    Lahir di Jakarta, 17 Juli 1977 — Berpulang di Jakarta, 11 Oktober 2026 (Usia 49 Tahun)
                 </p>
-            </div>
 
-            <!-- Interactive Filter / Tab -->
-            <div class="flex justify-center gap-2 mb-8">
-                <button onclick="filterTimeline('all', this)" class="timeline-tab active px-4 py-2 rounded-full text-xs font-semibold bg-royal-800 text-white shadow transition-all">Semua Fase</button>
-                <button onclick="filterTimeline('keluarga', this)" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Keluarga</button>
-                <button onclick="filterTimeline('spiritual', this)" class="timeline-tab px-4 py-2 rounded-full text-xs font-semibold bg-ivory-50 text-royal-800 border border-gold-300 hover:bg-ivory-200 transition-all">Spiritual</button>
+                <div class="doc-reveal delay-3 mt-10 flex flex-col items-center gap-2 text-gold-300/80">
+                    <span class="text-[10px] uppercase tracking-[0.3em]">Gulir ke bawah untuk menyusuri 7 bab kehidupan</span>
+                    <i data-lucide="chevrons-down" class="w-5 h-5 animate-bounce"></i>
+                </div>
             </div>
+        </section>
 
-            <!-- Vertical Timeline -->
-            <div class="relative border-l-2 border-gold-400 ml-4 sm:ml-6 space-y-6">
-                
-                <!-- KARTU 1: Masa Kecil & Cita-Cita Besar -->
-                <div class="timeline-item keluarga relative pl-7 sm:pl-9">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-gold-600 tracking-wider">17 JULI 1977 • AWAL KEHIDUPAN</span>
-                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Masa Kecil & Cita-Cita Besar</h4>
-                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
-                            Papah merupakan putra bungsu dari sepuluh bersaudara. Beliau lahir di Jakarta dan tumbuh besar di bawah asuhan Bapak Moeryadi (Engkong) dan Ibu Omih (Nenek/Emi) di kediaman keluarga yang terletak di Jalan Merpati 1, tepat di sebelah kiri Masjid As-Salam, Cendrawasih 5.
+        <!-- =================================================================
+             BAB 1: AWAL PERJALANAN
+        ================================================================== -->
+        <section id="bab-1" class="chapter-section relative min-h-screen flex items-center py-24 px-4 overflow-hidden border-b border-gold-400/15">
+            <!-- Parallax Backdrop -->
+            <div class="parallax-bg absolute inset-0 opacity-25" data-speed="0.2">
+                <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1400" 
+                     alt="Bab 1 Awal Perjalanan" class="w-full h-full object-cover object-center"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-cinema-950 via-cinema-950/90 to-cinema-950/75"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto w-full">
+                <div class="border-l-2 border-gold-400/60 pl-5 sm:pl-8 space-y-5">
+                    <div class="doc-reveal">
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-gold-400">Bab 01 • 17 Juli 1977</span>
+                        <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Awal Perjalanan</h3>
+                    </div>
+
+                    <div class="doc-glass rounded-3xl p-6 sm:p-9 space-y-4 text-sm sm:text-base text-ivory-100/90 leading-relaxed shadow-2xl">
+                        <p class="doc-reveal delay-1">
+                            Papah merupakan putra bungsu dari sepuluh bersaudara. Beliau lahir di Jakarta pada 17 Juli 1977 dan tumbuh besar di bawah asuhan Bapak Moeryadi (Engkong) dan Ibu Omih (Nenek/Emi) di kediaman keluarga yang terletak di Jalan Merpati 1, tepat di sebelah kiri Masjid As-Salam, Cendrawasih 5.
                         </p>
-                        
-                        <div id="story-more-1" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
-                            <p>
-                                Semasa kecil, Papah sempat mengenyam pendidikan di SD Penmas sebelum akhirnya harus pindah mengikuti keluarga besar ke Sumedang, Jawa Barat. Di tanah Sunda inilah beliau menuntaskan pendidikan dasarnya di SDN Kertamulya Tanjungkerta, kemudian melanjutkan ke SMPN 1 Tanjungkerta, hingga lulus dari SMAN 1 Sumedang pada jurusan Biologi.
-                            </p>
-                            <p>
-                                Semasa duduk di bangku SMA, Papah dikenal sebagai remaja yang aktif, cerdas, dan berprestasi. Di bidang akademik, beliau pernah menjuarai lomba Karya Tulis Ilmiah tingkat Kemendikbud. Sementara di bidang non-akademik, beliau aktif sebagai pengurus OSIS serta meraih prestasi sebagai anggota Paskibraka tingkat daerah. Sejak muda, Papah adalah sosok yang visioner dan memiliki cita-cita tinggi; beliau kerap bercerita kepada anak-anaknya tentang impian besarnya untuk menjadi mahasiswa dan perwira di STPDN. Segala daya dan upaya telah beliau kerahkan, namun takdir Allah berkata lain. Meski belum berjodoh dengan kampus impiannya, semangat juang Papah tidak pernah surut.
-                            </p>
-                        </div>
+                        <p class="doc-reveal delay-2">
+                            Semasa kecil, Papah sempat mengenyam pendidikan di SD Penmas sebelum akhirnya harus pindah mengikuti keluarga besar ke Sumedang, Jawa Barat. Di tanah Sunda inilah beliau menuntaskan pendidikan dasarnya di SDN Kertamulya Tanjungkerta, kemudian melanjutkan ke SMPN 1 Tanjungkerta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <button onclick="toggleStory('story-more-1', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
-                            <span>Baca Kisah Lengkap</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
-                        </button>
+        <!-- =================================================================
+             BAB 2: MASA MUDA (FOTO ASLI: FOTO PAPAH SMA)
+        ================================================================== -->
+        <section id="bab-2" class="chapter-section relative min-h-screen flex items-center py-24 px-4 overflow-hidden border-b border-gold-400/15">
+            <!-- Parallax Backdrop -->
+            <div class="parallax-bg absolute inset-0 opacity-25" data-speed="0.22">
+                <img src="https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1400" 
+                     alt="Foto Papah SMA" class="w-full h-full object-cover object-top"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-l from-cinema-950 via-cinema-950/90 to-cinema-950/75"></div>
+
+            <div class="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Photo Frame -->
+                <div class="lg:col-span-5 doc-reveal">
+                    <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1200', 'Foto Papah SMA — Masa Muda di SMAN 1 Sumedang')" class="cursor-pointer group relative rounded-3xl overflow-hidden border-2 border-gold-400/60 shadow-2xl aspect-[4/5] max-w-sm mx-auto bg-cinema-900">
+                        <img src="https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1000" 
+                             alt="Foto Papah SMA" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cinema-950/85 via-transparent to-transparent flex items-end p-5">
+                            <div>
+                                <p class="text-xs font-semibold text-gold-300 uppercase tracking-wider">Arsip Kenangan</p>
+                                <p class="font-serif text-lg text-white">Foto Papah SMA — SMAN 1 Sumedang</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- KARTU 2: Merantau & Pengorbanan untuk Keluarga -->
-                <div class="timeline-item keluarga relative pl-7 sm:pl-9">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-royal-800 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-royal-800 tracking-wider">2005 – 2020 • PENGABDIAN KARIER</span>
-                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Merantau & Pengorbanan untuk Keluarga</h4>
-                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
-                            Beranjak dewasa, Papah memberanikan diri kembali merantau ke tanah kelahirannya di kawasan Cengkareng Barat, Jakarta. Tekadnya untuk menempuh pendidikan tinggi tidak pernah padam, beliau sempat melanjutkan kuliah Strata-1 (S1) jurusan Manajemen di Universitas Terbuka.
+                <!-- Narration -->
+                <div class="lg:col-span-7 border-l-2 border-gold-400/60 pl-5 sm:pl-8 space-y-5">
+                    <div class="doc-reveal">
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-gold-400">Bab 02 • SMAN 1 Sumedang</span>
+                        <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Masa Muda</h3>
+                    </div>
+
+                    <div class="doc-glass rounded-3xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-ivory-100/90 leading-relaxed shadow-2xl">
+                        <p class="doc-reveal delay-1">
+                            Beliau menamatkan pendidikan menengah atas di SMAN 1 Sumedang pada jurusan Biologi. Semasa duduk di bangku SMA, Papah dikenal sebagai remaja yang aktif, cerdas, dan berprestasi.
                         </p>
+                        <p class="doc-reveal delay-2">
+                            Di bidang akademik, beliau pernah menjuarai lomba Karya Tulis Ilmiah tingkat Kemendikbud. Sementara di bidang non-akademik, beliau aktif sebagai pengurus OSIS serta meraih prestasi sebagai anggota Paskibraka tingkat daerah.
+                        </p>
+                        <p class="doc-reveal delay-3">
+                            Sejak muda, Papah adalah sosok yang visioner dan memiliki cita-cita tinggi; beliau kerap bercerita kepada anak-anaknya tentang impian besarnya untuk menjadi mahasiswa dan perwira di STPDN. Segala daya dan upaya telah beliau kerahkan, namun takdir Allah berkata lain. Meski belum berjodoh dengan kampus impiannya, semangat juang Papah tidak pernah surut.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <div id="story-more-2" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
-                            <p>
-                                Namun, di tengah perjalanan, kehidupan menghadapkan beliau pada dua pilihan besar: terus mengejar gelar sarjana, atau bekerja keras demi menopang ekonomi keluarga. Dengan penuh ketulusan dan rasa tanggung jawab, Papah memilih untuk mengutamakan keluarga di atas ambisi pribadinya.
-                            </p>
-                            <p>
-                                Langkah awal karier Papah di Jakarta dimulai di PT Global bersama kakak sulungnya (Wa Mul) dan Om Iyon. Tak berselang lama, beliau memutuskan mencari pengalaman baru dengan bekerja di Tarzan Photo pada bidang fotografi. Ketika anak pertamanya genap berusia satu tahun, Papah kembali mengambil langkah besar dengan bergabung di FIF Group (Astra).
-                            </p>
-                            <p>
-                                Di perusahaan inilah Papah benar-benar merintis karier dari titik paling dasar. Meski bidang pekerjaan tersebut awalnya tidak pernah terlintas di benaknya, beliau menjalaninya dengan penuh keikhlasan dan dedikasi tinggi demi kebahagiaan keluarga. Selama 15 tahun pengabdiannya sejak tahun 2005 hingga 2020, kerja keras Papah berbuah manis melalui berbagai pencapaian membanggakan, mulai dari meraih predikat karyawan terbaik hingga dipercaya mewakili perusahaan dalam berbagai kegiatan sosial (<em>Corporate Social Responsibility</em> / CSR). Bagi Papah, bekerja bukan sekadar mencari nafkah, melainkan jalan untuk memberi manfaat seluas-luasnya bagi sesama, hingga banyak rekan kerja yang sudah seperti saudara kandung sendiri.
-                            </p>
+        <!-- =================================================================
+             BAB 3: PERJALANAN KARIER DAN PERJUANGAN
+        ================================================================== -->
+        <section id="bab-3" class="chapter-section relative min-h-screen flex items-center py-24 px-4 overflow-hidden border-b border-gold-400/15">
+            <div class="parallax-bg absolute inset-0 opacity-20" data-speed="0.2">
+                <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1400" 
+                     alt="Perjalanan Karier Papah" class="w-full h-full object-cover object-top"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-cinema-950 via-cinema-950/92 to-cinema-950/80"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto w-full">
+                <div class="border-l-2 border-gold-400/60 pl-5 sm:pl-8 space-y-5">
+                    <div class="doc-reveal">
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-gold-400">Bab 03 • 2005 – 2020</span>
+                        <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Perjalanan Karier dan Perjuangan</h3>
+                    </div>
+
+                    <div class="doc-glass rounded-3xl p-6 sm:p-9 space-y-4 text-sm sm:text-base text-ivory-100/90 leading-relaxed shadow-2xl">
+                        <p class="doc-reveal delay-1">
+                            Beranjak dewasa, Papah memberanikan diri kembali merantau ke tanah kelahirannya di kawasan Cengkareng Barat, Jakarta. Tekadnya untuk menempuh pendidikan tinggi tidak pernah padam—beliau sempat melanjutkan kuliah Strata-1 (S1) jurusan Manajemen di Universitas Terbuka. Namun, di tengah perjalanan, kehidupan menghadapkan beliau pada dua pilihan besar: terus mengejar gelar sarjana, atau bekerja keras demi menopang ekonomi keluarga. Dengan penuh ketulusan dan rasa tanggung jawab, Papah memilih untuk mengutamakan keluarga di atas ambisi pribadinya.
+                        </p>
+                        <p class="doc-reveal delay-2">
+                            Langkah awal karier Papah di Jakarta dimulai di PT Global bersama kakak sulungnya (Wa Mul) dan Om Iyon. Tak berselang lama, beliau memutuskan mencari pengalaman baru dengan bekerja di Tarzan Photo pada bidang fotografi. Ketika anak pertamanya genap berusia satu tahun, Papah kembali mengambil langkah besar dengan bergabung di FIF Group (Astra).
+                        </p>
+                        <p class="doc-reveal delay-3">
+                            Di perusahaan inilah Papah benar-benar merintis karier dari titik paling dasar. Meski bidang pekerjaan tersebut awalnya tidak pernah terlintas di benaknya, beliau menjalaninya dengan penuh keikhlasan dan dedikasi tinggi demi kebahagiaan keluarga. Selama 15 tahun pengabdiannya sejak tahun 2005 hingga 2020, kerja keras Papah berbuah manis melalui berbagai pencapaian membanggakan—mulai dari meraih predikat karyawan terbaik hingga dipercaya mewakili perusahaan dalam berbagai kegiatan sosial (<em>Corporate Social Responsibility</em> / CSR). Bagi Papah, bekerja bukan sekadar mencari nafkah, melainkan jalan untuk memberi manfaat seluas-luasnya bagi sesama, hingga banyak rekan kerja yang sudah seperti saudara kandung sendiri.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             BAB 4: PERTEMUAN DENGAN KELUARGA (FOTO ASLI: POTRET DENGAN ISTRI TERCINTA)
+        ================================================================== -->
+        <section id="bab-4" class="chapter-section relative min-h-screen flex items-center py-24 px-4 overflow-hidden border-b border-gold-400/15">
+            <div class="parallax-bg absolute inset-0 opacity-25" data-speed="0.22">
+                <img src="https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1400" 
+                     alt="Potret Dengan Istri Tercinta" class="w-full h-full object-cover object-top"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-l from-cinema-950 via-cinema-950/90 to-cinema-950/75"></div>
+
+            <div class="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 lg:order-2 doc-reveal">
+                    <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1200', 'Potret Dengan Istri Tercinta')" class="cursor-pointer group relative rounded-3xl overflow-hidden border-2 border-gold-400/60 shadow-2xl aspect-[4/5] max-w-sm mx-auto bg-cinema-900">
+                        <img src="https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1000" 
+                             alt="Potret Dengan Istri Tercinta" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cinema-950/85 via-transparent to-transparent flex items-end p-5">
+                            <div>
+                                <p class="text-xs font-semibold text-gold-300 uppercase tracking-wider">Dua Cahaya Keluarga</p>
+                                <p class="font-serif text-lg text-white">Potret Dengan Istri Tercinta</p>
+                            </div>
                         </div>
-
-                        <button onclick="toggleStory('story-more-2', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
-                            <span>Baca Kisah Lengkap</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
-                        </button>
                     </div>
                 </div>
 
-                <!-- KARTU 3: Pertemuan Dua Cahaya Keluarga -->
-                <div class="timeline-item keluarga relative pl-7 sm:pl-9">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-gold-600 tracking-wider">KISAH CINTA & RUMAH TANGGA</span>
-                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Pertemuan Dua Cahaya Keluarga</h4>
-                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
+                <div class="lg:col-span-7 lg:order-1 border-l-2 border-gold-400/60 pl-5 sm:pl-8 space-y-5">
+                    <div class="doc-reveal">
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-gold-400">Bab 04 • Cendrawasih</span>
+                        <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Pertemuan dengan Keluarga</h3>
+                    </div>
+
+                    <div class="doc-glass rounded-3xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-ivory-100/90 leading-relaxed shadow-2xl">
+                        <p class="doc-reveal delay-1">
                             Kisah cinta Papah dan Mamah ibarat pepatah "jodoh yang hanya berjarak lima langkah dari rumah". Semasa muda, Papah dikenal sebagai remaja yang sangat aktif di lingkungan Cendrawasih, baik dalam kegiatan kepemudaan warga maupun syiar keislaman.
                         </p>
+                        <p class="doc-reveal delay-2">
+                            Banyak warga dan sesepuh setempat mengenal Papah sebagai pribadi yang taat dan selalu dapat diandalkan—mulai dari mengumandangkan azan sebagai muazin hingga dipercaya menjadi imam salat berjamaah di masjid. Ketulusan dan kiprahnya di masyarakat meninggalkan kesan mendalam di hati banyak orang, termasuk menumbuhkan kekaguman di hati Mamah.
+                        </p>
+                        <p class="doc-reveal delay-3">
+                            Sebaliknya, Papah pun menaruh rasa hormat dan kekaguman yang luar biasa kepada Mamah. Beliau kerap bercerita kepada anak-anaknya bahwa Mamah adalah sosok perempuan mandiri, pekerja keras yang selalu berjuang demi keluarga besarnya, sekaligus pribadi yang haus akan ilmu agama. Salah satu kenangan manis yang sering Papah kisahkan adalah saat beliau mengajak Mamah menghadiri majelis pengajian hingga ke kawasan Kwitang, Jakarta Pusat. Bagi kami, Papah dan Mamah laksana dua cahaya yang senantiasa menerangi langkah keluarga.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <div id="story-more-3" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
-                            <p>
-                                Banyak warga dan sesepuh setempat mengenal Papah sebagai pribadi yang taat dan selalu dapat diandalkan—mulai dari mengumandangkan azan sebagai muazin hingga dipercaya menjadi imam salat berjamaah di masjid. Ketulusan dan kiprahnya di masyarakat meninggalkan kesan mendalam di hati banyak orang, termasuk menumbuhkan kekaguman di hati Mamah.
-                            </p>
-                            <p>
-                                Sebaliknya, Papah pun menaruh rasa hormat dan kekaguman yang luar biasa kepada Mamah. Beliau kerap bercerita kepada anak-anaknya bahwa Mamah adalah sosok perempuan mandiri, pekerja keras yang selalu berjuang demi keluarga besarnya, sekaligus pribadi yang haus akan ilmu agama. Salah satu kenangan manis yang sering Papah kisahkan adalah saat beliau mengajak Mamah menghadiri majelis pengajian hingga ke kawasan Kwitang, Jakarta Pusat.
-                            </p>
-                            <p>
-                                Bagi kami, Papah dan Mamah laksana dua cahaya yang senantiasa menerangi langkah keluarga. Berbekal rekam jejak masa muda yang penuh keteladanan serta kematangan ilmu agama, keduanya bahu-membahu menanamkan fondasi iman yang kokoh kepada anak-anaknya, sekaligus selalu mengarahkan kami pada lingkungan pergaulan yang positif.
-                            </p>
+        <!-- =================================================================
+             BAB 5: MENJADI SEORANG SUAMI DAN AYAH
+        ================================================================== -->
+        <section id="bab-5" class="chapter-section relative min-h-screen flex items-center py-24 px-4 overflow-hidden border-b border-gold-400/15">
+            <div class="parallax-bg absolute inset-0 opacity-20" data-speed="0.2">
+                <img src="https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1400" 
+                     alt="Menjadi Suami dan Ayah" class="w-full h-full object-cover object-center"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-cinema-950 via-cinema-950/92 to-cinema-950/80"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto w-full">
+                <div class="border-l-2 border-gold-400/60 pl-5 sm:pl-8 space-y-5">
+                    <div class="doc-reveal">
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-gold-400">Bab 05 • Pendidikan Iman</span>
+                        <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Menjadi Seorang Suami dan Ayah</h3>
+                    </div>
+
+                    <div class="doc-glass rounded-3xl p-6 sm:p-9 space-y-4 text-sm sm:text-base text-ivory-100/90 leading-relaxed shadow-2xl">
+                        <p class="doc-reveal delay-1">
+                            Ketegasan sekaligus kasih sayang Papah sebagai kepala keluarga paling terasa melalui satu tradisi wajib di rumah kami setiap waktu ba’da Magrib. Ketika anak-anak sebaya di luar sana bebas menonton televisi atau bermain, Papah justru selalu mengumpulkan Mamah dan kami semua di ruang belakang untuk bertadarus bersama. Dengan penuh kesabaran, beliau membimbing kami membaca Al-Qur’an sesuai kaidah tajwid dan <em>makharijul huruf</em> yang tepat, hingga mengajarkan tata cara gerakan serta bacaan salat yang benar secara rinci.
+                        </p>
+                        <p class="doc-reveal delay-2">
+                            Seusai tadarus bersama, Papah selalu menutup pertemuan dengan tausiah singkat yang membangun jiwa kami. Ada satu pesan fundamental yang hampir selalu beliau tekankan di awal nasihatnya: <em class="text-gold-300">"Kematian adalah sebuah kepastian. Anak-anak Papah tidak perlu takut menghadapi kematian, karena setiap yang bernyawa pasti akan merasakannya. Tugas kalian adalah bersiap dan berjuang agar kelak berpulang dalam keadaan husnul khotimah."</em>
+                        </p>
+                        <p class="doc-reveal delay-3">
+                            Kalimat itu begitu sering berdengung di telinga kami—bahkan sempat terasa berulang-ulang di masa kecil. Semasa kecil pula, tak jarang kami merajuk atau mencoba menghindar dari rutinitas tersebut karena ingin bermain layaknya anak-anak lain. Namun, Papah tetap teguh mewajibkan kebersamaan ba’da Magrib itu tanpa kompromi. Kini, ketika takdir kepulangan itu benar-benar terjadi pada diri beliau sendiri, barulah kami menyadari sepenuhnya makna di balik ketegasan Papah. Disiplin ibadah dan nasihat tentang kematian itulah yang menjadi warisan terindah yang kini menguatkan hati kami.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             BAB 6: MOMEN KEBERSAMAAN (FOTO ASLI BAITULLAH & LEBARAN TERAKHIR)
+        ================================================================== -->
+        <section id="bab-6" class="chapter-section relative min-h-screen flex items-center py-24 px-4 overflow-hidden border-b border-gold-400/15">
+            <div class="parallax-bg absolute inset-0 opacity-22" data-speed="0.22">
+                <img src="https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1400" 
+                     alt="Mengantar Papah Mamah ke Baitullah" class="w-full h-full object-cover object-center"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-cinema-950/92 via-cinema-950/88 to-cinema-950"></div>
+
+            <div class="relative z-10 max-w-5xl mx-auto w-full space-y-8">
+                <div class="border-l-2 border-gold-400/60 pl-5 sm:pl-8 doc-reveal">
+                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-gold-400">Bab 06 • Perjalanan Suci & Hangat Keluarga</span>
+                    <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Momen Kebersamaan</h3>
+                </div>
+
+                <!-- Two Authentic Memory Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 doc-reveal delay-1">
+                    <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1400', 'Mengantar Papah Mamah ke Baitullah')" class="cursor-pointer group relative rounded-3xl overflow-hidden border border-gold-400/50 shadow-xl aspect-[16/11] bg-cinema-900">
+                        <img src="https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1000" 
+                             alt="Mengantar Papah Mamah ke Baitullah" 
+                             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cinema-950/90 via-transparent to-transparent flex items-end p-4">
+                            <p class="font-serif text-base sm:text-lg text-ivory-50">Mengantar Papah Mamah ke Baitullah</p>
                         </div>
+                    </div>
 
-                        <button onclick="toggleStory('story-more-3', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
-                            <span>Baca Kisah Lengkap</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
-                        </button>
+                    <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1400', 'Lebaran Terakhir Bersama Papah')" class="cursor-pointer group relative rounded-3xl overflow-hidden border border-gold-400/50 shadow-xl aspect-[16/11] bg-cinema-900">
+                        <img src="https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1000" 
+                             alt="Lebaran Terakhir Bersama Papah" 
+                             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cinema-950/90 via-transparent to-transparent flex items-end p-4">
+                            <p class="font-serif text-base sm:text-lg text-ivory-50">Lebaran Terakhir Bersama Papah</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- KARTU 4: Tradisi Ba'da Magrib & Pesan Kematian -->
-                <div class="timeline-item spiritual relative pl-7 sm:pl-9">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-800 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-emerald-800 tracking-wider">PENDIDIKAN IMAN KELUARGA</span>
-                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Tradisi Ba’da Magrib & Pesan Kematian</h4>
-                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
-                            Ketegasan sekaligus kasih sayang Papah sebagai kepala keluarga paling terasa melalui satu tradisi wajib di rumah kami setiap waktu ba’da Magrib. Ketika anak-anak sebaya di luar sana bebas menonton televisi atau bermain, Papah justru selalu mengumpulkan Mamah dan kami semua di ruang belakang untuk bertadarus bersama.
-                        </p>
+                <!-- Narration -->
+                <div class="doc-glass rounded-3xl p-6 sm:p-9 space-y-4 text-sm sm:text-base text-ivory-100/90 leading-relaxed shadow-2xl">
+                    <p class="doc-reveal delay-1">
+                        Ibadah umrah bersama menjadi salah satu lembaran perjalanan paling berkesan dalam kehidupan rumah tangga Papah dan Mamah. Kala itu, diam-diam Papah bertanya kepada saya—selaku anak pertamanya—mengenai persiapan umrah, lalu mengajak Mamah berdandan rapi tanpa memberi tahu bahwa mereka hendak mengurus pembuatan paspor ke Tanah Suci. Seketika Mamah tak mampu berkata-kata selain memanjatkan rasa syukur yang mendalam atas rezeki dan ketulusan seorang suami yang ingin membawanya bertamu ke rumah Allah SWT.
+                    </p>
+                    <p class="doc-reveal delay-2">
+                        Hari-hari menjelang keberangkatan dipenuhi suasana haru; Papah sigap mengurus dokumen utama sementara Mamah menyiapkan perlengkapan pribadi. Sebagai anak sulung, saya pun turut membantu membelikan perlengkapan pendukung serta sedikit bekal materiil demi kenyamanan keduanya di Tanah Suci. Tibalah hari keberangkatan umrah pertama mereka yang diantar hangat oleh keluarga besar hingga ke bandara.
+                    </p>
+                    <p class="doc-reveal delay-3">
+                        Alhamdulillah, keduanya tiba di Tanah Suci dalam keadaan sehat walafiat dan menjalankan ibadah dengan khusyuk. Namun, di tengah perjalanan setelah ibadah wajib, kondisi fisik Mamah sempat menurun drastis hingga mewajibkan Papah sigap mencarikan obat dan membawanya ke rumah sakit setempat. Berdasarkan pemeriksaan, Mamah membutuhkan istirahat tenang yang terpisah dari keramaian jemaah lain. Tanpa berpikir panjang atau memperhitungkan besarnya biaya, Papah langsung mengambil keputusan menyewakan kamar khusus yang nyaman demi kesembuhan istri tercintanya. Berkat kasih sayang Papah, Mamah kembali pulih dan keduanya menuntaskan seluruh rangkaian ibadah umrah dengan penuh semangat dan ketawadhuan.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-                        <div id="story-more-4" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
-                            <p>
-                                Dengan penuh kesabaran, beliau membimbing kami membaca Al-Qur’an sesuai kaidah tajwid dan <em>makharijul huruf</em> yang tepat, hingga mengajarkan tata cara gerakan serta bacaan salat yang benar secara rinci.
-                            </p>
-                            <p>
-                                Seusai tadarus bersama, Papah selalu menutup pertemuan dengan tausiah singkat yang membangun jiwa kami. Ada satu pesan fundamental yang hampir selalu beliau tekankan di awal nasihatnya: <em>"Kematian adalah sebuah kepastian. Anak-anak Papah tidak perlu takut menghadapi kematian, karena setiap yang bernyawa pasti akan merasakannya. Tugas kalian adalah bersiap dan berjuang agar kelak berpulang dalam keadaan husnul khotimah."</em>
-                            </p>
-                            <p>
-                                Kalimat itu begitu sering berdengung di telinga kami—bahkan sempat terasa berulang-ulang di masa kecil. Semasa kecil pula, tak jarang kami merajuk atau mencoba menghindar dari rutinitas tersebut karena ingin bermain layaknya anak-anak lain. Namun, Papah tetap teguh mewajibkan kebersamaan ba’da Magrib itu tanpa kompromi. Kini, ketika takdir kepulangan itu benar-benar terjadi pada diri beliau sendiri, barulah kami menyadari sepenuhnya makna di balik ketegasan Papah. Disiplin ibadah dan nasihat tentang kematian itulah yang menjadi warisan terindah yang kini menguatkan hati kami.
-                            </p>
-                        </div>
+        <!-- =================================================================
+             BAB 7: WARISAN KEHIDUPAN (11 OKTOBER 2026 & WASIAT ABADI)
+        ================================================================== -->
+        <section id="bab-7" class="chapter-section relative min-h-screen flex items-center py-24 px-4 overflow-hidden border-b border-gold-400/20">
+            <div class="parallax-bg absolute inset-0 opacity-22" data-speed="0.2">
+                <img src="https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1400" 
+                     alt="Pengantaran Terakhir Papah" class="w-full h-full object-cover object-center"
+                     onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY';">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-cinema-950 via-cinema-950/90 to-cinema-950/85"></div>
 
-                        <button onclick="toggleStory('story-more-4', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
-                            <span>Baca Kisah Lengkap</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
-                        </button>
-                    </div>
+            <div class="relative z-10 max-w-5xl mx-auto w-full space-y-8">
+                <div class="border-l-2 border-gold-400/60 pl-5 sm:pl-8 doc-reveal">
+                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-gold-400">Bab 07 • 11 Oktober 2026 • Husnul Khotimah</span>
+                    <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Warisan Kehidupan</h3>
                 </div>
 
-                <!-- KARTU 5: Kejutan Manis Menuju Baitullah -->
-                <div class="timeline-item spiritual relative pl-7 sm:pl-9">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-800 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-300/60 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-emerald-800 tracking-wider">PERJALANAN SPIRITUAL</span>
-                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Kejutan Manis Menuju Baitullah</h4>
-                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
-                            Ibadah umrah bersama menjadi salah satu lembaran perjalanan paling berkesan dalam kehidupan rumah tangga Papah dan Mamah. Kala itu, diam-diam Papah bertanya kepada saya—selaku anak pertamanya—mengenai persiapan umrah, lalu mengajak Mamah berdandan rapi tanpa memberi tahu bahwa mereka hendak mengurus pembuatan paspor ke Tanah Suci.
-                        </p>
-
-                        <div id="story-more-5" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
-                            <p>
-                                Seketika Mamah tak mampu berkata-kata selain memanjatkan rasa syukur yang mendalam atas rezeki dan ketulusan seorang suami yang ingin membawanya bertamu ke rumah Allah SWT. Hari-hari menjelang keberangkatan dipenuhi suasana haru; Papah sigap mengurus dokumen utama sementara Mamah menyiapkan perlengkapan pribadi. Sebagai anak sulung, saya pun turut membantu membelikan perlengkapan pendukung serta sedikit bekal materiil demi kenyamanan keduanya di Tanah Suci.
-                            </p>
-                            <p>
-                                Tibalah hari keberangkatan umrah pertama mereka yang diantar hangat oleh keluarga besar hingga ke bandara. Alhamdulillah, keduanya tiba di Tanah Suci dalam keadaan sehat walafiat dan menjalankan ibadah dengan khusyuk. Namun, di tengah perjalanan setelah ibadah wajib, kondisi fisik Mamah sempat menurun drastis hingga mewajibkan Papah sigap mencarikan obat dan membawanya ke rumah sakit setempat.
-                            </p>
-                            <p>
-                                Berdasarkan pemeriksaan, Mamah membutuhkan istirahat tenang yang terpisah dari keramaian jemaah lain. Tanpa berpikir panjang atau memperhitungkan besarnya biaya, Papah langsung mengambil keputusan menyewakan kamar khusus yang nyaman demi kesembuhan istri tercintanya. Berkat kasih sayang Papah, Mamah kembali pulih dan keduanya menuntaskan seluruh rangkaian ibadah umrah dengan penuh semangat dan ketawadhuan.
-                            </p>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Final Farewell Photo -->
+                    <div class="lg:col-span-5 doc-reveal delay-1">
+                        <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1400', 'Pengantaran Terakhir Papah')" class="cursor-pointer group relative rounded-3xl overflow-hidden border-2 border-gold-400/60 shadow-2xl aspect-[4/5] max-w-sm mx-auto bg-cinema-900">
+                            <img src="https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1000" 
+                                 alt="Pengantaran Terakhir Papah" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                                 onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cinema-950/90 via-transparent to-transparent flex items-end p-5">
+                                <div>
+                                    <p class="text-xs font-semibold text-gold-300 uppercase tracking-wider">11 Oktober 2026</p>
+                                    <p class="font-serif text-lg text-white">Pengantaran Terakhir Papah</p>
+                                </div>
+                            </div>
                         </div>
-
-                        <button onclick="toggleStory('story-more-5', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
-                            <span>Baca Kisah Lengkap</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
-                        </button>
                     </div>
-                </div>
 
-                <!-- KARTU 6: Berpulang di Pangkuan Tercinta -->
-                <div class="timeline-item spiritual keluarga relative pl-7 sm:pl-9">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-600 border-4 border-ivory-100 shadow"></span>
-                    <div class="bg-ivory-50 p-5 sm:p-6 rounded-2xl border border-gold-400 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="text-xs font-bold text-gold-600 tracking-wider">11 OKTOBER 2026 • HUSNUL KHOTIMAH</span>
-                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-royal-900 mt-0.5">Berpulang di Pangkuan Tercinta</h4>
-                        <p class="text-sm text-gray-700 mt-2 leading-relaxed">
-                            Selama ini, kami sekeluarga tidak pernah mendapati riwayat penyakit serius pada diri Papah selain keluhan pengapuran lutut dalam beberapa bulan terakhir. Pada siang hari itu, Papah mengeluhkan nyeri di dada dan sempat memeriksakan diri ke puskesmas bersama Mamah dengan diagnosis awal gangguan lambung.
-                        </p>
-
-                        <div id="story-more-6" class="hidden mt-3 pt-3 border-t border-gold-300/40 text-sm text-gray-700 space-y-3 leading-relaxed">
-                            <p>
+                    <!-- Final Chapter Narration & Eternal Will -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="doc-glass rounded-3xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-ivory-100/90 leading-relaxed shadow-2xl">
+                            <p class="doc-reveal delay-1">
+                                Selama ini, kami sekeluarga tidak pernah mendapati riwayat penyakit serius pada diri Papah selain keluhan pengapuran lutut dalam beberapa bulan terakhir. Pada siang hari itu, Papah mengeluhkan nyeri di dada dan sempat memeriksakan diri ke puskesmas bersama Mamah dengan diagnosis awal gangguan lambung.
+                            </p>
+                            <p class="doc-reveal delay-2">
                                 Menjelang waktu Asar, untuk pertama kalinya Papah merasa tubuhnya belum sanggup melangkah ke masjid untuk salat berjamaah. Beliau pun melaksanakan salat Asar di kamar dengan didampingi Mamah. Sepanjang salat berlangsung, Papah tampak tenang tanpa menunjukkan gelagat kesakitan sedikit pun. Seusai salam, beliau bersimpuh di atas sajadah dan memanjatkan doa dalam rentang waktu yang cukup lama.
                             </p>
-                            <p>
-                                Ketika hendak beranjak bangun dari sajadahnya, Papah menoleh kepada Mamah yang saat itu sedang khusyuk membaca zikir petang, lalu berucap lirih, <em>"Mah, kepala Papah pusing."</em> Tepat setelah kalimat itu terucap, tubuh Papah langsung jatuh terbaring lembut di pangkuan Mamah. Tanpa sepatah kata lagi, pada usia 49 tahun, Papah berpulang menghadap Allah SWT dengan begitu tenang—laksana seseorang yang terlelap tidur, sebuah cara berpulang yang damai dan didambakan setiap insan beriman.
+                            <p class="doc-reveal delay-2">
+                                Ketika hendak beranjak bangun dari sajadahnya, Papah menoleh kepada Mamah yang saat itu sedang khusyuk membaca zikir petang, lalu berucap lirih, <em class="text-gold-300">"Mah, kepala Papah pusing."</em> Tepat setelah kalimat itu terucap, tubuh Papah langsung jatuh terbaring lembut di pangkuan Mamah. Tanpa sepatah kata lagi, pada usia 49 tahun, Papah berpulang menghadap Allah SWT dengan begitu tenang—laksana seseorang yang terlelap tidur, sebuah cara berpulang yang damai dan didambakan setiap insan beriman.
                             </p>
-                            <p>
+                            <p class="doc-reveal delay-3">
                                 Peristiwa itu menyadarkan kami sepenuhnya bahwa kematian tidak menunggu usia tua, jabatan, maupun derajat manusia; hanya amal saleh yang setia menemani di alam kubur. Kami bersaksi bahwa Papah adalah sosok suami dan ayah yang sangat bertanggung jawab dalam mendidik keluarga di atas jalan agama. Selamat jalan Pah, kami berjanji akan senantiasa berbakti kepada Mamah, terus mengalirkan doa terbaik untukmu, serta teguh menjalankan perintah Allah SWT hingga kelak kita dipertemukan kembali di Jannah-Nya.
                             </p>
                         </div>
 
-                        <button onclick="toggleStory('story-more-6', this)" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-royal-800 hover:text-gold-600 transition-colors">
-                            <span>Baca Kisah Lengkap</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: GALERI KENANGAN & KELUARGA -->
-        <section id="galeri" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
-            <div class="text-center mb-8">
-                <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Album Kenangan</span>
-                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-royal-900 mt-1">Momen Indah Bersama Papah</h3>
-                <p class="text-xs sm:text-sm text-gray-600 mt-1">Ketuk foto untuk memperbesar kenangan</p>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                <!-- Photo Card 1: Potret Almarhum Papah -->
-                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1200', 'Potret Kenangan Almarhum Bapak Deni Priyadi bin Moeryadi')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
-                    <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1000" alt="Potret Almarhum Deni Priyadi" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
-                        <p class="text-xs text-ivory-50 font-medium">Potret Almarhum Papah</p>
-                    </div>
-                </div>
-                
-                <!-- Photo Card 3: Potret Dengan Istri Tercinta -->
-                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1200', 'Potret Dengan Istri Tercinta')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
-                    <img src="https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1000" alt="Potret Dengan Istri Tercinta" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
-                        <p class="text-xs text-ivory-50 font-medium">Potret Dengan Istri Tercinta</p>
-                    </div>
-                </div>
-        
-                <!-- Photo Card 4: Mengantar Papah Mamah ke Baitullah -->
-                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1400', 'Mengantar Papah Mamah ke Baitullah')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
-                    <img src="https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1000" alt="Mengantar Papah Mamah ke Baitullah" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-transparent to-transparent flex items-end p-3.5">
-                        <p class="text-xs text-ivory-50 font-medium leading-snug">Mengantar Papah Mamah ke Baitullah</p>
-                    </div>
-                </div>
-
-                <!-- Photo Card 5: Lebaran Terakhir Bersama Papah -->
-                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1400', 'Lebaran Terakhir Bersama Papah')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
-                    <img src="https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1000" alt="Lebaran Terakhir Bersama Papah" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-transparent to-transparent flex items-end p-3.5">
-                        <p class="text-xs text-ivory-50 font-medium leading-snug">Lebaran Terakhir Bersama Papah</p>
-                    </div>
-                </div>
-
-                <!-- Photo Card 6: Pengantaran Terakhir Papah -->
-                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1400', 'Pengantaran Terakhir Papah')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
-                    <img src="https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1000" alt="Pengantaran Terakhir Papah" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/85 via-transparent to-transparent flex items-end p-3.5">
-                        <p class="text-xs text-ivory-50 font-medium leading-snug">Pengantaran Terakhir Papah</p>
-                    </div>
-                </div>
-
-                <!-- Photo Card 2: Foto Papah SMA -->
-                <div onclick="openLightbox('https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1200', 'Foto Papah SMA — Masa Muda di SMAN 1 Sumedang')" class="group cursor-pointer relative rounded-2xl overflow-hidden border-2 border-gold-300/70 shadow-md aspect-[4/5] bg-ivory-200">
-                    <img src="https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1000" alt="Foto Papah SMA" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900/80 via-transparent to-transparent flex items-end p-3.5">
-                        <p class="text-xs text-ivory-50 font-medium">Foto Papah SMA</p>
+                        <!-- Wasiat Abadi Box -->
+                        <div class="doc-reveal delay-3 rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-royal-900/90 via-cinema-900 to-emerald-900/90 border border-gold-400/70 shadow-2xl">
+                            <span class="text-[11px] uppercase tracking-[0.25em] text-gold-300 font-semibold">Wasiat Terakhir Sang Kepala Keluarga</span>
+                            <p class="font-serif text-lg sm:text-xl italic text-ivory-50 leading-relaxed mt-3">
+                                "Papah selalu berpesan kepada kami, bahwa kematian merupakan suatu hal yang <span class="text-gold-300 font-bold not-italic">PASTI</span>, maka jangan pernah takut dan bersiaplah dengan apa yang menjadi bekal kita nanti. Sehingga berlomba-lombalah pada kebaikan, taat kepada Allah SWT, dan cintalah kepada Nabi Muhammad SAW."
+                            </p>
+                            <p class="font-serif text-base font-bold text-gold-300 mt-4">
+                                Aamiin Ya Rabbal Alamiin. — Keluarga Besar Deni Priyadi
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: TAHLIL SINGKAT & DOA UNTUK ALMARHUM -->
-        <section class="relative z-10 py-8 px-4 max-w-2xl mx-auto reveal">
-            <div class="bg-ivory-50 gold-border-gradient rounded-3xl p-6 sm:p-8 shadow-lg text-center">
-                <span class="text-xs uppercase tracking-[0.2em] text-emerald-800 font-semibold">Untaian Doa</span>
-                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-royal-900 mt-1 mb-4">Doa Khusus untuk Almarhum</h3>
-                
-                <div class="bg-ivory-100 rounded-2xl p-5 border border-gold-300/50 mb-4">
-                    <p class="font-arabic text-2xl sm:text-3xl text-royal-900 leading-loose mb-3" dir="rtl">
-                        اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ
-                    </p>
-                    <p class="text-xs sm:text-sm font-semibold text-gold-600 italic mb-2">
-                        "Allahummaghfirlahu warhamhu wa 'afihi wa'fu 'anhu"
-                    </p>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                        "Ya Allah, ampunilah beliau (Deni Priyadi bin Moeryadi), berilah rahmat kepadanya, selamatkanlah dia, dan maafkanlah segala kesalahannya."
-                    </p>
-                </div>
+        <!-- =================================================================
+             5. VIDEO TRIBUTE & ARSIP FOTO KENANGAN
+        ================================================================== -->
+        <section id="tribute-akhir" class="chapter-section relative py-20 px-4 max-w-4xl mx-auto">
+            <div class="text-center mb-10 doc-reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold">Tayangan Kenangan</span>
+                <h3 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">Video Tribute Almarhum Papah</h3>
+                <p class="text-xs sm:text-sm text-ivory-200/75 mt-2">
+                    Rangkaian visual perjalanan hidup Bapak Deni Priyadi bin Moeryadi
+                </p>
+            </div>
 
-                <button onclick="sendAlFatihah()" id="alfatihah-btn" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 hover:bg-emerald-900 text-ivory-50 text-xs sm:text-sm font-semibold shadow-md transition-all active:scale-95">
-                    <i data-lucide="heart" class="w-4 h-4 text-gold-300 fill-gold-300"></i>
-                    <span>Kirim Hadiah Al-Fatihah (<span id="alfatihah-count">142</span>)</span>
+            <!-- Video Player / Automatic Cinematic Photo Reel Fallback -->
+            <div class="doc-reveal delay-1 rounded-3xl overflow-hidden border-2 border-gold-400/60 bg-cinema-900 shadow-[0_20px_60px_rgba(0,0,0,0.8)] aspect-video relative">
+                <!-- Native HTML5 Video (Otomatis aktif jika file video-tribute.mp4 diunggah ke repo GitHub) -->
+                <video id="tribute-video" controls playsinline preload="metadata"
+                       poster="https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1400"
+                       class="w-full h-full object-cover"
+                       onerror="activatePhotoReelFallback()">
+                    <source src="video-tribute.mp4" type="video/mp4">
+                </video>
+
+                <!-- Cinematic Auto-Slideshow Fallback (Jika video-tribute.mp4 belum diunggah) -->
+                <div id="photo-reel-fallback" class="hidden absolute inset-0 bg-cinema-950">
+                    <img id="reel-image" src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1400" 
+                         alt="Tayangan Kenangan Papah" 
+                         class="w-full h-full object-cover object-center ken-burns transition-opacity duration-1000">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cinema-950 via-cinema-950/25 to-cinema-950/50 flex flex-col justify-between p-5 sm:p-8">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-cinema-950/75 border border-gold-400/50 text-[11px] text-gold-300 tracking-wider uppercase">
+                                Dokumenter Visual • 1977 – 2026
+                            </span>
+                            <span id="reel-counter" class="text-xs text-ivory-200/80 font-mono">01 / 06</span>
+                        </div>
+                        <div>
+                            <p id="reel-caption" class="font-serif text-xl sm:text-3xl font-bold text-white">
+                                Potret Almarhum Deni Priyadi bin Moeryadi
+                            </p>
+                            <p class="text-xs text-gold-300 mt-1">Selalu hidup dalam doa dan ingatan kami</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 Authentic Photo Thumbnails Strip -->
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2.5 sm:gap-3 mt-5 doc-reveal delay-2">
+                <button onclick="openLightbox('https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1200', 'Potret Almarhum Papah')" class="group relative rounded-xl overflow-hidden border border-gold-400/50 aspect-square bg-cinema-900">
+                    <img src="https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w600" alt="Potret Almarhum Papah" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+                </button>
+                <button onclick="openLightbox('https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1200', 'Foto Papah SMA')" class="group relative rounded-xl overflow-hidden border border-gold-400/50 aspect-square bg-cinema-900">
+                    <img src="https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w600" alt="Foto Papah SMA" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+                </button>
+                <button onclick="openLightbox('https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1200', 'Potret Dengan Istri Tercinta')" class="group relative rounded-xl overflow-hidden border border-gold-400/50 aspect-square bg-cinema-900">
+                    <img src="https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w600" alt="Potret Dengan Istri Tercinta" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+                </button>
+                <button onclick="openLightbox('https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1400', 'Mengantar Papah Mamah ke Baitullah')" class="group relative rounded-xl overflow-hidden border border-gold-400/50 aspect-square bg-cinema-900">
+                    <img src="https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w600" alt="Mengantar Papah Mamah ke Baitullah" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500">
+                </button>
+                <button onclick="openLightbox('https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1400', 'Lebaran Terakhir Bersama Papah')" class="group relative rounded-xl overflow-hidden border border-gold-400/50 aspect-square bg-cinema-900">
+                    <img src="https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w600" alt="Lebaran Terakhir Bersama Papah" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500">
+                </button>
+                <button onclick="openLightbox('https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1400', 'Pengantaran Terakhir Papah')" class="group relative rounded-xl overflow-hidden border border-gold-400/50 aspect-square bg-cinema-900">
+                    <img src="https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w600" alt="Pengantaran Terakhir Papah" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500">
                 </button>
             </div>
         </section>
 
-        <!-- SECTION: BUKU TAMU & UCAPAN BELASUNGKAWA (TERHUBUNG GOOGLE SHEETS) -->
-        <section id="doa-tamu" class="relative z-10 py-10 px-4 max-w-2xl mx-auto reveal">
-            <div class="bg-ivory-50 rounded-3xl p-6 sm:p-8 border border-gold-300 shadow-xl">
+        <!-- =================================================================
+             6. DOA ALMARHUM & BUKU TAMU DIGITAL (GOOGLE SHEETS)
+        ================================================================== -->
+        <section id="doa-tamu" class="relative py-16 px-4 max-w-2xl mx-auto space-y-10">
+            <!-- Doa & Hadiah Al-Fatihah -->
+            <div class="doc-glass rounded-3xl p-6 sm:p-9 text-center shadow-2xl doc-reveal">
+                <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Untaian Doa</span>
+                <h3 class="font-serif text-2xl sm:text-4xl font-bold text-white mt-1 mb-5">Doa Khusus untuk Almarhum</h3>
+                
+                <div class="bg-cinema-950/70 rounded-2xl p-5 border border-gold-400/30 mb-6">
+                    <p class="font-arabic text-2xl sm:text-3xl text-gold-300 leading-loose mb-3" dir="rtl">
+                        اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ
+                    </p>
+                    <p class="text-xs sm:text-sm font-semibold text-gold-400 italic mb-2">
+                        "Allahummaghfirlahu warhamhu wa 'afihi wa'fu 'anhu"
+                    </p>
+                    <p class="text-xs sm:text-sm text-ivory-200/80 leading-relaxed">
+                        "Ya Allah, ampunilah beliau (Deni Priyadi bin Moeryadi), berilah rahmat kepadanya, selamatkanlah dia, dan maafkanlah segala kesalahannya."
+                    </p>
+                </div>
+
+                <button onclick="sendAlFatihah()" id="alfatihah-btn" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-emerald-800 to-emerald-900 hover:from-emerald-700 hover:to-emerald-800 text-ivory-50 text-xs sm:text-sm font-semibold border border-gold-400/50 shadow-lg transition-all active:scale-95">
+                    <i data-lucide="heart" class="w-4 h-4 text-gold-300 fill-gold-300"></i>
+                    <span>Kirim Hadiah Al-Fatihah (<span id="alfatihah-count">142</span>)</span>
+                </button>
+            </div>
+
+            <!-- Buku Tamu Digital -->
+            <div class="doc-glass rounded-3xl p-6 sm:p-9 shadow-2xl doc-reveal">
                 <div class="text-center mb-6">
-                    <span class="text-xs uppercase tracking-[0.25em] text-royal-800 font-semibold">Buku Tamu Digital</span>
-                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-royal-900 mt-1">Kirimkan Doa & Kenangan</h3>
-                    <p class="text-xs sm:text-sm text-gray-600 mt-1">
+                    <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Buku Tamu Digital</span>
+                    <h3 class="font-serif text-2xl sm:text-4xl font-bold text-white mt-1">Kirimkan Doa & Kenangan</h3>
+                    <p class="text-xs sm:text-sm text-ivory-200/75 mt-1">
                         Tuliskan doa terbaik atau kenangan manis Anda bersama almarhum Bapak Deni Priyadi.
                     </p>
                 </div>
 
-                <!-- Hidden Iframe & Form Anti-CORS -->
-                <iframe name="hidden_gsheet_iframe" id="hidden_gsheet_iframe" style="display:none;"></iframe>
-
-                <!-- Prayer Form -->
                 <form id="prayer-form" onsubmit="submitPrayer(event)" class="space-y-4 mb-8">
                     <div>
-                        <label class="block text-xs font-semibold text-royal-900 mb-1">Nama Anda</label>
+                        <label class="block text-xs font-semibold text-gold-300 mb-1.5">Nama Anda</label>
                         <input type="text" id="sender-name" required placeholder="Contoh: H. Ahmad Fauzi / Rekan Kerja" 
-                               class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
+                               class="w-full px-4 py-3 rounded-xl bg-cinema-950/80 border border-gold-400/40 text-sm text-ivory-50 placeholder-ivory-200/40 focus:outline-none focus:ring-2 focus:ring-gold-400">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-royal-900 mb-1">Hubungan / Keterangan</label>
+                        <label class="block text-xs font-semibold text-gold-300 mb-1.5">Hubungan / Keterangan</label>
                         <input type="text" id="sender-relation" placeholder="Contoh: Sahabat SMA / Tetangga / Keluarga" 
-                               class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">
+                               class="w-full px-4 py-3 rounded-xl bg-cinema-950/80 border border-gold-400/40 text-sm text-ivory-50 placeholder-ivory-200/40 focus:outline-none focus:ring-2 focus:ring-gold-400">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-royal-900 mb-1">Untaian Doa & Kenangan</label>
+                        <label class="block text-xs font-semibold text-gold-300 mb-1.5">Untaian Doa & Kenangan</label>
                         <textarea id="sender-message" rows="3" required placeholder="Tuliskan doa khusnul khotimah atau kenangan indah bersama almarhum..." 
-                                  class="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold-300/80 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"></textarea>
+                                  class="w-full px-4 py-3 rounded-xl bg-cinema-950/80 border border-gold-400/40 text-sm text-ivory-50 placeholder-ivory-200/40 focus:outline-none focus:ring-2 focus:ring-gold-400"></textarea>
                     </div>
-                    <button type="submit" id="submit-prayer-btn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-royal-900 to-royal-800 text-ivory-50 font-semibold text-sm tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-gold-400/50">
-                        <i data-lucide="send" class="w-4 h-4 text-gold-300"></i>
+                    <button type="submit" id="submit-prayer-btn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-cinema-950 font-bold text-sm tracking-wide shadow-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-4 h-4"></i>
                         <span>Kirim Untaian Doa</span>
                     </button>
                 </form>
 
-                <!-- Prayers List (Otomatis dimuat dari Google Sheets) -->
+                <!-- Prayers List -->
                 <div class="space-y-3 max-h-96 overflow-y-auto pr-1" id="prayers-list">
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer class="relative z-10 text-center px-4 pt-6 pb-10 max-w-xl mx-auto">
-            <p class="font-arabic text-xl text-gold-600 mb-2">وَاللَّهُ خَيْرُ الرَّازِقِينَ</p>
-            <p class="text-xs text-gray-600 leading-relaxed">
+        <!-- CLOSING CREDITS FOOTER -->
+        <footer class="relative text-center px-4 pt-8 pb-20 max-w-xl mx-auto border-t border-gold-400/20">
+            <p class="font-arabic text-2xl text-gold-300 mb-2">وَاللَّهُ خَيْرُ الرَّازِقِينَ</p>
+            <p class="text-xs sm:text-sm text-ivory-200/75 leading-relaxed">
                 Terima kasih atas kehadiran, perhatian, serta keikhlasan doa Bapak/Ibu/Saudara/i untuk almarhum Papah kami tercinta.
             </p>
-            <p class="font-serif text-base font-bold text-royal-900 mt-3">
+            <p class="font-serif text-lg font-bold text-gold-300 mt-4 tracking-wider">
                 Keluarga Besar Deni Priyadi bin Moeryadi
             </p>
         </footer>
     </main>
 
     <!-- =====================================================================
-         5. MODAL: LIGHTBOX GALLERY
+         7. MODAL: LIGHTBOX GALLERY
     ====================================================================== -->
-    <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
-        <div class="max-w-lg w-full text-center relative" onclick="event.stopPropagation()">
+    <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 backdrop-blur-md p-4">
+        <div class="max-w-xl w-full text-center relative" onclick="event.stopPropagation()">
             <button onclick="closeLightbox()" class="mb-3 ml-auto w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/30">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-            <img id="lightbox-img" src="" alt="Preview Kenangan" class="w-full max-h-[70vh] object-contain rounded-2xl border-2 border-gold-400 shadow-2xl mx-auto">
-            <p id="lightbox-caption" class="font-serif text-lg text-ivory-100 mt-4 italic"></p>
+            <img id="lightbox-img" src="" alt="Preview Kenangan" class="w-full max-h-[72vh] object-contain rounded-2xl border border-gold-400/70 shadow-2xl mx-auto">
+            <p id="lightbox-caption" class="font-serif text-lg text-gold-300 mt-4 italic"></p>
         </div>
     </div>
 
     <!-- =====================================================================
-         6. CUSTOM TOAST NOTIFICATION
+         8. CUSTOM TOAST NOTIFICATION
     ====================================================================== -->
-    <div id="toast-box" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-royal-900 text-ivory-50 border border-gold-400 px-5 py-3 rounded-full shadow-2xl text-xs font-medium flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 -translate-y-4">
+    <div id="toast-box" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-cinema-900 text-ivory-50 border border-gold-400 px-5 py-3 rounded-full shadow-2xl text-xs font-medium flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 -translate-y-4">
         <i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400"></i>
         <span id="toast-message">Pesan terkirim</span>
     </div>
 
     <!-- =====================================================================
-         7. JAVASCRIPT INTERACTIVITY, AUDIO & GOOGLE SHEETS DATABASE
+         9. JAVASCRIPT: PARALLAX, STORYTELLING REVEAL, AUDIO, VIDEO & SHEETS
     ====================================================================== -->
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Hybrid Audio Engine (gala-bunga-matahari.mp3.aac -> YouTube -> Ambient Fallback)
+        // ---------------------------------------------------------------------
+        // A. BACKGROUND MUSIC ENGINE (PLAY / PAUSE)
+        // ---------------------------------------------------------------------
         const localAudio = document.getElementById('local-backsound-audio');
         let ytPlayer = null;
-        let activeAudioMode = 'none'; // 'local' | 'youtube' | 'ambient'
+        let activeAudioMode = 'none';
         let isPlaying = false;
         let pendingPlay = false;
-
-        // Web Audio Ambient Piano Fallback
-        let audioCtx = null;
-        let ambientInterval = null;
-
-        function startAmbientFallback() {
-            try {
-                if (!audioCtx) {
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    audioCtx = new AudioContext();
-                }
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-                if (ambientInterval) clearInterval(ambientInterval);
-
-                const chords = [
-                    [261.63, 329.63, 392.00, 493.88],
-                    [220.00, 261.63, 329.63, 392.00],
-                    [174.61, 220.00, 261.63, 329.63],
-                    [196.00, 246.94, 293.66, 329.63]
-                ];
-                let step = 0;
-
-                const playChord = () => {
-                    if (!isPlaying || activeAudioMode !== 'ambient') return;
-                    const now = audioCtx.currentTime;
-                    const freqs = chords[step % chords.length];
-                    freqs.forEach((freq, idx) => {
-                        const osc = audioCtx.createOscillator();
-                        const gain = audioCtx.createGain();
-                        osc.type = 'sine';
-                        osc.frequency.setValueAtTime(freq, now + idx * 0.12);
-                        gain.gain.setValueAtTime(0.0001, now + idx * 0.12);
-                        gain.gain.exponentialRampToValueAtTime(0.035, now + idx * 0.12 + 0.6);
-                        gain.gain.exponentialRampToValueAtTime(0.0001, now + 4.2);
-                        osc.connect(gain);
-                        gain.connect(audioCtx.destination);
-                        osc.start(now + idx * 0.12);
-                        osc.stop(now + 4.3);
-                    });
-                    step++;
-                };
-
-                activeAudioMode = 'ambient';
-                isPlaying = true;
-                playChord();
-                ambientInterval = setInterval(playChord, 4200);
-                const labelEl = document.getElementById('music-title-label');
-                if (labelEl) labelEl.textContent = 'Sal Priadi - Gala Bunga Matahari (Instrumen)';
-                updateAudioIcon();
-            } catch (e) {
-                console.warn('Ambient fallback unavailable', e);
-            }
-        }
-
-        function stopAmbientFallback() {
-            if (ambientInterval) {
-                clearInterval(ambientInterval);
-                ambientInterval = null;
-            }
-        }
 
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('yt-backsound-player', {
                 height: '1',
                 width: '1',
                 videoId: '9_31100C8eA',
-                playerVars: {
-                    autoplay: 0,
-                    controls: 0,
-                    loop: 1,
-                    playlist: '9_31100C8eA',
-                    playsinline: 1,
-                    rel: 0
-                },
+                playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: '9_31100C8eA', playsinline: 1, rel: 0 },
                 events: {
                     onReady: function(event) {
                         event.target.setVolume(80);
@@ -819,24 +816,16 @@
                             event.target.playVideo();
                             activeAudioMode = 'youtube';
                             isPlaying = true;
-                            updateAudioIcon();
+                            updateAudioUI();
                         }
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.PLAYING) {
-                            stopAmbientFallback();
                             activeAudioMode = 'youtube';
                             isPlaying = true;
-                            const labelEl = document.getElementById('music-title-label');
-                            if (labelEl) labelEl.textContent = 'Sal Priadi - Gala Bunga Matahari';
-                            updateAudioIcon();
+                            updateAudioUI();
                         } else if (event.data === YT.PlayerState.ENDED) {
                             event.target.playVideo();
-                        }
-                    },
-                    onError: function() {
-                        if (pendingPlay || isPlaying) {
-                            startAmbientFallback();
                         }
                     }
                 }
@@ -845,66 +834,40 @@
 
         function initAndPlayAudio() {
             if (localAudio) {
-                localAudio.volume = 0.8;
+                localAudio.volume = 0.85;
                 const playPromise = localAudio.play();
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
                         activeAudioMode = 'local';
                         isPlaying = true;
-                        updateAudioIcon();
+                        updateAudioUI();
                     }).catch(() => {
-                        playViaYouTubeOrFallback();
+                        if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                            ytPlayer.playVideo();
+                            activeAudioMode = 'youtube';
+                            isPlaying = true;
+                            updateAudioUI();
+                        } else {
+                            pendingPlay = true;
+                        }
                     });
                     return;
                 }
-            }
-            playViaYouTubeOrFallback();
-        }
-
-        function playViaYouTubeOrFallback() {
-            if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
-                ytPlayer.playVideo();
-                activeAudioMode = 'youtube';
-                isPlaying = true;
-                updateAudioIcon();
-
-                setTimeout(() => {
-                    if (isPlaying && activeAudioMode === 'youtube' && typeof ytPlayer.getPlayerState === 'function') {
-                        const state = ytPlayer.getPlayerState();
-                        if (state !== YT.PlayerState.PLAYING && state !== YT.PlayerState.BUFFERING) {
-                            startAmbientFallback();
-                        }
-                    }
-                }, 3000);
-            } else {
-                pendingPlay = true;
-                setTimeout(() => {
-                    if (pendingPlay && activeAudioMode === 'none') {
-                        startAmbientFallback();
-                    }
-                }, 3000);
             }
         }
 
         function toggleAudio() {
             if (isPlaying) {
-                if (activeAudioMode === 'local' && localAudio) {
-                    localAudio.pause();
-                } else if (activeAudioMode === 'youtube' && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-                    ytPlayer.pauseVideo();
-                } else if (activeAudioMode === 'ambient') {
-                    stopAmbientFallback();
-                }
+                if (activeAudioMode === 'local' && localAudio) localAudio.pause();
+                else if (activeAudioMode === 'youtube' && ytPlayer && typeof ytPlayer.pauseVideo === 'function') ytPlayer.pauseVideo();
                 isPlaying = false;
-                updateAudioIcon();
-                showToast("Backsound dijeda.");
+                updateAudioUI();
+                showToast("Musik latar dijeda.");
             } else {
                 if (activeAudioMode === 'local' && localAudio) {
                     localAudio.play();
                     isPlaying = true;
-                    updateAudioIcon();
-                } else if (activeAudioMode === 'ambient') {
-                    startAmbientFallback();
+                    updateAudioUI();
                 } else {
                     initAndPlayAudio();
                 }
@@ -912,113 +875,177 @@
             }
         }
 
-        function updateAudioIcon() {
+        function updateAudioUI() {
             const icon = document.getElementById('audio-icon');
-            const badge = document.getElementById('music-badge');
+            const dot = document.getElementById('music-dot');
             if (isPlaying) {
-                icon.setAttribute('data-lucide', 'volume-2');
-                if (badge) badge.classList.remove('opacity-50');
+                icon.setAttribute('data-lucide', 'pause');
+                if (dot) dot.classList.add('animate-ping');
             } else {
-                icon.setAttribute('data-lucide', 'volume-x');
-                if (badge) badge.classList.add('opacity-50');
+                icon.setAttribute('data-lucide', 'play');
+                if (dot) dot.classList.remove('animate-ping');
             }
             lucide.createIcons();
         }
 
-        // Expand / Collapse Story Card ("Baca Kisah Lengkap")
-        function toggleStory(contentId, btn) {
-            const contentEl = document.getElementById(contentId);
-            const labelEl = btn.querySelector('span');
-            const iconEl = btn.querySelector('svg, i');
+        // ---------------------------------------------------------------------
+        // B. START DOCUMENTARY CURTAIN & SCROLL REVEAL
+        // ---------------------------------------------------------------------
+        function startDocumentary() {
+            const curtain = document.getElementById('opening-curtain');
+            const hud = document.getElementById('cinema-hud');
+            const audioHud = document.getElementById('audio-hud');
+            const vDots = document.getElementById('vertical-dots');
 
-            if (contentEl.classList.contains('hidden')) {
-                contentEl.classList.remove('hidden');
-                labelEl.textContent = 'Tutup Kisah';
-                if (iconEl) iconEl.style.transform = 'rotate(180deg)';
-            } else {
-                contentEl.classList.add('hidden');
-                labelEl.textContent = 'Baca Kisah Lengkap';
-                if (iconEl) iconEl.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Open Cover Gate Transition
-        function openBiography() {
-            const gate = document.getElementById('cover-gate');
-            const nav = document.getElementById('bottom-nav');
-            const controls = document.getElementById('floating-controls');
-            
-            gate.classList.add('opened');
+            curtain.classList.add('lifted');
             setTimeout(() => {
-                gate.style.display = 'none';
-                nav.classList.remove('opacity-0', 'pointer-events-none');
-                controls.classList.remove('opacity-0', 'pointer-events-none');
-                triggerScrollReveal();
-            }, 850);
+                curtain.style.display = 'none';
+                hud.classList.remove('opacity-0', 'pointer-events-none');
+                audioHud.classList.remove('opacity-0', 'pointer-events-none');
+                if (vDots) vDots.classList.remove('opacity-0', 'pointer-events-none');
+                setupDocumentaryObservers();
+            }, 900);
 
             initAndPlayAudio();
         }
 
-        // Scroll Reveal Observer
-        function triggerScrollReveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
+        function setupDocumentaryObservers() {
+            // 1. Staggered Narrative Reveal
+            const revealEls = document.querySelectorAll('.doc-reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
+                        entry.target.classList.add('visible');
                     }
                 });
-            }, { threshold: 0.12 });
+            }, { threshold: 0.14 });
+            revealEls.forEach(el => revealObserver.observe(el));
 
-            reveals.forEach(el => observer.observe(el));
+            // 2. Active Chapter Tracking (Horizontal & Vertical Timeline Sync)
+            const chapters = document.querySelectorAll('.chapter-section');
+            const chapterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        updateActiveTimeline(id);
+                    }
+                });
+            }, { threshold: 0.4 });
+            chapters.forEach(sec => chapterObserver.observe(sec));
         }
 
-        // Timeline Filter
-        function filterTimeline(category, clickedTab) {
-            const items = document.querySelectorAll('.timeline-item');
-            const tabs = document.querySelectorAll('.timeline-tab');
-
-            tabs.forEach(tab => {
-                tab.classList.remove('bg-royal-800', 'text-white', 'shadow');
-                tab.classList.add('bg-ivory-50', 'text-royal-800', 'border', 'border-gold-300');
-            });
-            if (clickedTab) {
-                clickedTab.classList.remove('bg-ivory-50', 'text-royal-800', 'border', 'border-gold-300');
-                clickedTab.classList.add('bg-royal-800', 'text-white', 'shadow');
-            }
-
-            items.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
+        function updateActiveTimeline(chapterId) {
+            // Update horizontal pills
+            document.querySelectorAll('.chapter-pill').forEach(pill => {
+                if (pill.dataset.chapter === chapterId) {
+                    pill.classList.add('bg-gold-400', 'text-cinema-950', 'font-bold', 'border-gold-400');
+                    pill.classList.remove('text-ivory-200/75');
+                    pill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 } else {
-                    item.style.display = 'none';
+                    pill.classList.remove('bg-gold-400', 'text-cinema-950', 'font-bold', 'border-gold-400');
+                    pill.classList.add('text-ivory-200/75');
+                }
+            });
+
+            // Update vertical dots
+            document.querySelectorAll('.v-dot').forEach(dot => {
+                if (dot.dataset.dot === chapterId) {
+                    dot.classList.add('bg-gold-400', 'scale-150');
+                    dot.classList.remove('bg-white/30');
+                } else {
+                    dot.classList.remove('bg-gold-400', 'scale-150');
+                    dot.classList.add('bg-white/30');
                 }
             });
         }
 
-        // Interactive Al-Fatihah Counter
+        // ---------------------------------------------------------------------
+        // C. PARALLAX & SCROLL PROGRESS BAR
+        // ---------------------------------------------------------------------
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            const progressEl = document.getElementById('scroll-progress');
+            if (progressEl) progressEl.style.width = `${progress}%`;
+
+            // Parallax movement on chapter backdrops
+            document.querySelectorAll('.parallax-bg').forEach(bg => {
+                const rect = bg.parentElement.getBoundingClientRect();
+                const speed = parseFloat(bg.dataset.speed || 0.2);
+                const yOffset = rect.top * speed;
+                bg.style.transform = `translate3d(0, ${yOffset}px, 0) scale(1.12)`;
+            });
+        }, { passive: true });
+
+        // ---------------------------------------------------------------------
+        // D. VIDEO TRIBUTE & AUTHENTIC PHOTO REEL FALLBACK
+        // ---------------------------------------------------------------------
+        const tributeSlides = [
+            { src: 'https://drive.google.com/thumbnail?id=1o7sH90VH67yFA8jHfa7LHoWCQ6USqWqK&sz=w1400', caption: 'Potret Almarhum Deni Priyadi bin Moeryadi' },
+            { src: 'https://drive.google.com/thumbnail?id=1BY7_Ce5xL9-V8NbGODxU8okWXMNTRlz1&sz=w1400', caption: 'Foto Papah SMA — Masa Muda di SMAN 1 Sumedang' },
+            { src: 'https://drive.google.com/thumbnail?id=1fRjBZOWeOR4Txt0coq_TEKVyybljSZnn&sz=w1400', caption: 'Potret Dengan Istri Tercinta' },
+            { src: 'https://drive.google.com/thumbnail?id=1I7GkPRKxhHY9DwYIPvOnC0ewyH5SnRJe&sz=w1400', caption: 'Mengantar Papah Mamah ke Baitullah' },
+            { src: 'https://drive.google.com/thumbnail?id=1BsPaH0l7ds8iFgA62kFtlE4WE3DKG3KR&sz=w1400', caption: 'Lebaran Terakhir Bersama Papah' },
+            { src: 'https://drive.google.com/thumbnail?id=1AJvFY7g9Mfuo81mjUvqg6-usNhanBneY&sz=w1400', caption: 'Pengantaran Terakhir Papah' }
+        ];
+        let reelIndex = 0;
+        let reelTimer = null;
+
+        function activatePhotoReelFallback() {
+            const videoEl = document.getElementById('tribute-video');
+            const fallbackEl = document.getElementById('photo-reel-fallback');
+            if (videoEl) videoEl.classList.add('hidden');
+            if (fallbackEl) fallbackEl.classList.remove('hidden');
+
+            if (reelTimer) clearInterval(reelTimer);
+            reelTimer = setInterval(() => {
+                reelIndex = (reelIndex + 1) % tributeSlides.length;
+                const imgEl = document.getElementById('reel-image');
+                const capEl = document.getElementById('reel-caption');
+                const cntEl = document.getElementById('reel-counter');
+                if (imgEl && capEl && cntEl) {
+                    imgEl.style.opacity = '0.2';
+                    setTimeout(() => {
+                        imgEl.src = tributeSlides[reelIndex].src;
+                        capEl.textContent = tributeSlides[reelIndex].caption;
+                        cntEl.textContent = `0${reelIndex + 1} / 0${tributeSlides.length}`;
+                        imgEl.style.opacity = '1';
+                    }, 400);
+                }
+            }, 5000);
+        }
+
+        // Cek otomatis jika video-tribute.mp4 tidak ditemukan di server
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoEl = document.getElementById('tribute-video');
+            if (videoEl) {
+                const sourceEl = videoEl.querySelector('source');
+                if (sourceEl) {
+                    sourceEl.addEventListener('error', activatePhotoReelFallback);
+                }
+            }
+            loadPrayers();
+        });
+
+        // ---------------------------------------------------------------------
+        // E. AL-FATIHAH COUNTER & GOOGLE SHEETS GUESTBOOK
+        // ---------------------------------------------------------------------
         let alfatihahSent = false;
         function sendAlFatihah() {
             const countEl = document.getElementById('alfatihah-count');
-            const btnEl = document.getElementById('alfatihah-btn');
             let current = parseInt(countEl.textContent, 10);
-
             if (!alfatihahSent) {
                 countEl.textContent = current + 1;
                 alfatihahSent = true;
-                btnEl.classList.replace('bg-emerald-800', 'bg-royal-900');
                 showToast("Terima kasih, hadiah Al-Fatihah telah tercatat.");
             } else {
                 showToast("Anda sudah mengirimkan hadiah Al-Fatihah.");
             }
         }
 
-// =====================================================================
-        // GOOGLE SHEETS DATABASE (BUKU TAMU LINTAS PERANGKAT)
-        // =====================================================================
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6ESRXJij3FhsmA5smlJE6P14FNvm9Q4vf1z97CWGUpJ5FZ6hVjwAq97oaXr6bxIPiCA/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPatn5l26PXPprBeCvklrGgLqbQCcOfbVtNN_dkrfs-CJCDq_0QkXez7ovo3YQwkI2g/exec";
 
-        // Muat semua doa dari Google Sheets saat web dibuka siapa saja
         function loadPrayers() {
             const oldScript = document.getElementById('apps-script-jsonp');
             if (oldScript) oldScript.remove();
@@ -1043,32 +1070,32 @@
 
         function renderPrayerCard(list, name, relation, message, timeText) {
             const card = document.createElement('div');
-            card.className = 'p-4 rounded-2xl bg-ivory-100 border border-gold-300/50 shadow-sm transition-all';
+            card.className = 'p-4 rounded-2xl bg-cinema-950/75 border border-gold-400/30 shadow-sm transition-all';
             
             const header = document.createElement('div');
             header.className = 'flex items-center justify-between mb-1.5';
             
             const info = document.createElement('div');
             const h5 = document.createElement('h5');
-            h5.className = 'font-bold text-sm text-royal-900';
+            h5.className = 'font-bold text-sm text-gold-300';
             h5.textContent = name;
             
             const spanRel = document.createElement('span');
-            spanRel.className = 'text-[11px] text-emerald-800 font-medium';
+            spanRel.className = 'text-[11px] text-ivory-200/70 font-medium';
             spanRel.textContent = relation || 'Kerabat / Sahabat';
             
             info.appendChild(h5);
             info.appendChild(spanRel);
 
             const timeSpan = document.createElement('span');
-            timeSpan.className = 'text-[10px] text-gold-600 font-semibold';
+            timeSpan.className = 'text-[10px] text-gold-400/80 font-semibold';
             timeSpan.textContent = timeText || 'Baru dikirim';
 
             header.appendChild(info);
             header.appendChild(timeSpan);
 
             const p = document.createElement('p');
-            p.className = 'text-xs sm:text-sm text-gray-700 leading-relaxed';
+            p.className = 'text-xs sm:text-sm text-ivory-100/90 leading-relaxed';
             p.textContent = `"${message}"`;
 
             card.appendChild(header);
@@ -1089,7 +1116,6 @@
             btn.disabled = true;
             btnSpan.textContent = 'Menyimpan Doa...';
 
-            // Kirim langsung ke Google Apps Script via Image Ping (100% tembus tanpa terpotong reset form)
             const query = new URLSearchParams({
                 action: 'add',
                 nama: name,
@@ -1101,7 +1127,6 @@
             const beacon = new Image();
             beacon.src = `${SCRIPT_URL}?${query}`;
 
-            // Tampilkan langsung di layar pengirim
             const list = document.getElementById('prayers-list');
             renderPrayerCard(list, name, relation, message, 'Baru dikirim');
             if (list.lastChild) {
@@ -1111,7 +1136,6 @@
             document.getElementById('prayer-form').reset();
             showToast("Jazakallah khairan, doa Anda telah tersimpan.");
 
-            // Sinkronkan ulang dari Google Sheets setelah 3 detik
             setTimeout(() => {
                 btn.disabled = false;
                 btnSpan.textContent = 'Kirim Untaian Doa';
@@ -1119,8 +1143,9 @@
             }, 3000);
         }
 
-        document.addEventListener('DOMContentLoaded', loadPrayers);
-        // Lightbox Controls
+        // ---------------------------------------------------------------------
+        // F. LIGHTBOX & TOAST
+        // ---------------------------------------------------------------------
         function openLightbox(src, caption) {
             const modal = document.getElementById('lightbox-modal');
             document.getElementById('lightbox-img').src = src;
@@ -1135,7 +1160,6 @@
             modal.classList.remove('flex');
         }
 
-        // Custom Toast Helper
         let toastTimeout;
         function showToast(msg) {
             const toast = document.getElementById('toast-box');
